@@ -13,6 +13,7 @@
 <script src="css/test.js"></script>
 <script src="member/member.js"></script>
 <script src="mypage/mypage.js"></script>
+<script src="main.js"></script>
 </head>
 <body>
 <div id="wrap">
