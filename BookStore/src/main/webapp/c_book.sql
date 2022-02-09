@@ -27,7 +27,7 @@ CREATE TABLE bookproduct(
 	kind char(1) NOT NULL,
 	price number(7),
 	publisher varchar2(10), -- 출판사
-	genre NUMBER(10), - 출판년도
+	genre NUMBER(10), -- 장르
 	content varchar2(1000),
 	image varchar2(50),
 	useyn char(1) DEFAULT 'y',     -- 상품 판매 유효 여부
@@ -35,6 +35,7 @@ CREATE TABLE bookproduct(
 	indate date DEFAULT sysdate    -- 등록일
 	
 );
+
 
 CREATE TABLE review (
 	rseq NUMBER(5) NOT NULL PRIMARY KEY,
