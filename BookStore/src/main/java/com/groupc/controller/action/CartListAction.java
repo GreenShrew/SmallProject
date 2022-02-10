@@ -16,25 +16,25 @@ public class CartListAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "mypage/cartList.jsp";
+		String url = "mypage/cartList.jsp"; //최종 목적지
 		
 		HttpSession session = request.getSession();
 		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
-		
-		if(mvo == null) {
+	
+		if(mvo==null) {
 			url = "bs.do?cmd=loginForm";
 		}else {
 			CartDao cdao = CartDao.getInstance();
-			ArrayList<CartVO> cartList = cdao.selectCart(mvo.getId());
-			request.setAttribute("cartList", cartList);
+			ArrayList<CartVO> list = cdao.selectCart(mvo.getId());
+			request.setAttribute("cartList", list); 
 			
-			int totalPrice = 0;
-			for(CartVO cvo : cartList) {
-				totalPrice += cvo.getPrice()* cvo.getQuantity();
-			}
-			request.setAttribute("totalPrice", totalPrice);
+			int totalPrice=0;
+			for(CartVO cvo:list)
+				totalPrice += cvo.getPrice() * cvo.getQuantity(); 
+			request.setAttribute("totalPrice", totalPrice); 
 		}
 		request.getRequestDispatcher(url).forward(request, response);
+		
 	}
 
 }

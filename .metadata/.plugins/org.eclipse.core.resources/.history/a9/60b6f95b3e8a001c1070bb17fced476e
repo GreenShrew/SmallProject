@@ -1,0 +1,98 @@
+@charset "UTF-8";
+
+body{ background:#eef5eb; margin:0; padding:0; font-size:0.75em;  }
+#wrap { width: 971px;	text-align:left;	margin: 0 auto; background:#eef5eb; min-height: 780px; }
+
+#logo { float: left; width: 180px; height: 100px; margin: 40px 0 0 40px;}
+
+
+/* top menu */
+#top_menu{position:relative;}
+nav#top_menu{float:right; margin:20px 64px 0 0;}
+nav#top_menu ul{width:800px;}
+nav#top_menu ul li{ display:block; height:30px; float:right; font-family: Verdana; font-size:90%;}
+nav#top_menu a { text-decoration: none; display: inline-block; width: 60px; text-align: center; 
+color:#6F0C78; font-weight: bold; border-right: 1px solid gray;}
+nav#top_menu a:hover {	color: blue;	font-weight: bold;}
+
+#top{ width:960px; height:130px;/* background-color:white; */}
+/* search */
+#logo {position:relative; float:left; text-align: center; width:250px; height:80px;bottom:30px; /* border:1px solid black; */ margin-right:0px;}
+#logo img{margin:0 auto;}
+
+#search{position:relative; width:450px; height:50px; top: 65px; left:50px;border:2px solid green; margin:0 auto;}
+.day_box{position: relative; margin:0 auto; bottom:143px; left: 5px; width: 440px; height:36px; border:0px;  float:left;}
+#day_font {float:left; width: 100px; height:36px; font-size:120%; background:none;
+	font-weight:bold; line-height:36px; border:0px; text-align:center; margin-right:2px;
+	text-decoration:none; color:green;}
+#searchbox{float:left; font-size:16px; width:280px; height:36px; line-height:36px;border:0px; outline:none; font-size: 120%; color:green;
+background-color:#eef5eb;}
+#button1 {float:left; background-image:url("../images/search.png"); width:50px;; height:40px; background-repeat:no-repeat; border:0px; overflow:hidden}
+
+#mainFrame{position:relative; margin:0 auto; padding:0px;}
+
+/* index_menu */
+#main_menu{position:relative; margin:0 auto; padding:0px;}
+nav#index_menu {margin: 0 auto; padding:0px; float: left; overflow:hidden; }
+nav#index_menu ul {list-style: none;font-family: Verdana;}
+nav#index_menu ul li {float: left;margin: 0 0 0 0;font-size: 14pt;  text-align:center; font-weight:bold;
+width:180px; /* border: 1px solid gray;  *//* background:white; */}
+nav#index_menu a {display: block;height: 20px;text-decoration: none;color: black;padding: 10px; 
+border-radius:10px;transition: all ease 0.5s 0s;}
+nav#index_menu a:hover {font-size:110%; transform:scaleY(1.3);/* background:red;  */
+background:green; color:white; border-radius:3px 3px;}
+
+
+/* mainFrame */
+#mainFrame{height:1300px; position:relative; margin:0 auto;}
+#view{position: relative; width:954px; height:400px; overflow:hidden; margin:0 auto;}
+
+#imgs{position: absolute; width:2000px; height:398px; left:0px; top:0px; transition:1s;}
+#lbutton{position:absolute; width:48px; height:48px; bottom:160px; left:0px;border-radius: 50%; overflow:hidden; 
+opacity:0.5; visibility:hidden;
+background-image:url(../images/main/ico_btn.png); background-position: -60px -460px;}
+#rbutton{position:absolute; width:48px; height:48px; bottom:160px; right:0px;border-radius: 50%; overflow:hidden;
+opacity:0.5; visibility:hidden; 
+background-image:url(../images/main/ico_btn.png); background-position: 0px -460px;}
+
+/* product */
+#bestProduct {position:relative; width:960px; height:800px; margin: 0 auto; /* border:1px solid black; background:white;*/ }
+.book{position:relative; width:162px; height:320px;float:left;top:40px; left:40px; margin-right:60px; margin-bottom:40px;
+ /*  background:yellowgreen;margin: 0 auto;  border:1px solid black;*/  text-align:left;}
+.booktitle{position:relative; width:162px; height:40px; margin:0 auto; left:5px;
+font-size:110%; line-height:40px; font-weight:bold; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.bookwrite{position:relative; width:162px; height:20px; margin:0 auto; left:5px;}
+.bookprice{position:relative; width:162px; height:20px; margin:0 auto; left:5px;}
+.overview{position:absolute; width:160px; height:42px; top: 188px;border:1px solid red;
+background:black; opacity:0.5; overflow:hidden; visibility:hidden;}
+.tocart{position:relative; width:70px; height:34px; border:1px solid blue;left:10px; top:4px; margin-right:10px; float:left;
+text-align:center; color:white; font-size:110%; line-height:34px;}
+.tobuy{position:relative; width:70px; height:34px; border:1px solid green; top:4px; margin: 0 auto; float:left;
+text-align:center; color:white; font-size:110%; line-height:34px;}
+
+.tab{ margin:0 auto; top:1000px; width:950px;  height:780px;  overflow:hidden; border:4px solid #DAEFE0;}
+.tab ul{padding:0;  margin:0; list-style:none; width:100%; height:auto; overflow:hidden;}
+.tab ul li{ display:inline-block; width:33.3333%;  float:left;line-height:40px;  text-align:center; 
+cursor:pointer; font-size:120%; font-weight:bold;}
+.tab ul li:hover{text-decoration:underline; background-color:#DAEFE0;}
+.tab ul li.on{ background:#DAEFE0;}
+.tab .conBox{ width:100%;  height:auto; overflow:hidden; min-height:250px;background:#DAEFE0; display:none;
+ text-align:center;}
+.tab .conBox.on{ display:block; }
+
+
+#bestProduct {width: 910px; min-height: 260px; background: #DAEFE0;
+padding: 10px;	text-align: center; margin:0 auto;}
+#item {	width: 200px;	float: left;	margin: 0 13px; 	text-align: center; }
+#item img {overflow:hidden; border:1px solid gray;}
+
+
+.clear {clear: both;}
+
+/* footer */
+footer {position:relative; bottom:0;margin: 10px 0 0 0;	height: 100px;background-repeat: no-repeat;
+background-position: 60px center;  }	
+footer #footerlogo {float:left;margin-right:10px;}
+footer #copy {float:left; margin: 5px 0 0 0; 	width:450px; font-size:80%; 
+/* border: 1px solid gray; */}
+footer #serviceimg{float:right; margin:10px 0 0 0;}

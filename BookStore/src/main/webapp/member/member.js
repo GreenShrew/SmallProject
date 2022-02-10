@@ -1,3 +1,4 @@
+/* 회원가입 */
 function go_next(){
 	var chk = document.contractFrm.okon.checked;
 	if(!chk)  {
@@ -90,5 +91,60 @@ function main(){
 function joincheck(message){
 	if(message!=null){
 		alert(message);
+	}
+}
+
+
+/* 장바구니 */
+
+function go_cart(){
+	if (document.formm.quantity.value == "") {
+	    alert("수량을 입력하여 주세요.");
+	    document.formm.quantity.focus();
+	}else{
+		document.formm.action ="bs.do?cmd=cartInsert";
+		document.formm.submit();
+	}
+}
+
+function go_cart_delete(){
+	var count = 0;  
+	
+	if(document.formm.cseq.length==undefined){  
+		if( document.formm.cseq.checked == true )
+			count++;
+	}else{  
+		for( var i=0; i< document.formm.cseq.length ; i++){
+			if( document.formm.cseq[i].checked == true )
+				count++;
+		}
+	}	
+	
+	if( count == 0 ){
+		alert("삭제할 항목을 선택해주세요");
+	} else{
+		document.formm.action = "bs.do?cmd=cartDelete";
+	    document.formm.submit();
+	}
+}
+
+
+/* 회원정보 수정 */
+function go_update(){
+	if (document.joinForm.pwd.value == "") {
+	    alert("비밀번호를 입력해 주세요.");
+	    document.joinForm.pwd.focus();
+	}else if ((document.joinForm.pwd.value != document.joinForm.pwdCheck.value)) {
+	    alert("비밀번호가 일치하지 않습니다.");
+	    document.joinForm.pwd.focus();
+	}else if (document.joinForm.name.value == "") {
+	    alert("이름을 입력해 주세요.");
+	    document.joinForm.name.focus();
+	} else if (document.joinForm.email.value == "") {
+	    alert("이메일을 입력해 주세요.");
+	    document.joinForm.email.focus();
+	}else {
+	    document.joinForm.action = "bs.do";
+	    document.joinForm.submit();
 	}
 }

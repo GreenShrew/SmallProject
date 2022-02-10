@@ -1,6 +1,7 @@
 package com.groupc.dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -64,6 +65,34 @@ public class ProductDao {
 			Dbm.close(con, pstmt, rs);
 		}
 		return newList;
+	}
+
+	public ProductVO getProduct(int bseq) {
+		ProductVO pvo = new ProductVO();
+		String sql = "select * from bookproduct where bseq = ?";
+		con = Dbm.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1,  bseq);
+			rs = pstmt.executeQuery();
+			if( rs.next() ) {
+				pvo.setBseq(bseq);
+				pvo.setBname(rs.getString("bname"));
+				pvo.setByear(rs.getInt("byear"));
+				pvo.setKind(rs.getString("kind"));
+				pvo.setPrice(rs.getInt("price"));
+				pvo.setPublisher(rs.getString("publisher"));
+				pvo.setGenre(rs.getString("genre"));
+				pvo.setContent(rs.getString("content"));
+				pvo.setImage(rs.getString("image"));
+				pvo.setUseyn(rs.getString("useyn"));
+				pvo.setBestyn(rs.getString("bestyn"));
+				pvo.setIndate(rs.getTimestamp("indate"));
+			}
+		} catch (SQLException e) { e.printStackTrace();
+		} finally { Dbm.close(con, pstmt, rs);
+		}		
+		return pvo;
 	}
 	
 

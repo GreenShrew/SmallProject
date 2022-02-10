@@ -21,7 +21,7 @@
 		<div>
 			<nav id="top_menu">
 				<ul>
-					<li><a href="bs.do?cmd=qna" style="border:0px;">고객센터</a></li>
+					<li><a href="bs.do?cmd=qnaList" style="border:0px;">고객센터</a></li>
 					<li><a href="bs.do?cmd=orderView" style="width:80px;">주문/배송조회</a></li>
 					<li><a href="bs.do?cmd=cart">장바구니</a></li>
 					<c:choose>

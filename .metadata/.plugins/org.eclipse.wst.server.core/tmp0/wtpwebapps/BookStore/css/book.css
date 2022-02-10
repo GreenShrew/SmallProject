@@ -89,6 +89,32 @@ padding: 10px;	text-align: center; margin:0 auto;}
 
 .clear {clear: both;}
 
+/* login */
+#login{position:relative; width:390px; height:500px;top:10px; margin:0 auto;background-color:#eef5eb;}
+#login form{height: 400px;}
+#userLogin form div{position:relative; width:360px; height:54px;
+margin:0 auto;margin-bottom: 14px; top:20px;}
+#userLogin .logininput{width:350px; height:48px; line-height:48px;border:0px; 
+outline:none; font-size: 120%; color:green;}
+#userLogin .checkbox{position:relative;margin:10px 10px; float:left;}
+
+
+#nonmemberLogin form div{position:relative; width:360px; height:54px;  
+margin:0 auto; margin-bottom: 14px; top:20px;}
+#nonmemberLogin .logininput{width:350px; height:48px; line-height:48px;border:0px; 
+outline:none; font-size: 120%; color:green;}
+
+#login a{position:relative; margin:0 auto; text-decoration:none; color: black;}
+#login a:hover{text-decoration:underline;}
+.login_btn{position:relative; background-color: blue; width:350px; height:60px; color:white; text-align:center;
+font-size:150%; font-weight:bold;}
+
+/* mypage */
+#sidemenu{float:left; width:150px; border:1px solid black;}
+#sub_img{text-align:center;}
+
+
+
 /* footer */
 footer {position:relative; bottom:0;margin: 10px 0 0 0;	height: 100px;background-repeat: no-repeat;
 background-position: 60px center;  }	
