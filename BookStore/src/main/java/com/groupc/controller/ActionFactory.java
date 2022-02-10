@@ -3,6 +3,7 @@ package com.groupc.controller;
 import com.groupc.controller.action.Action;
 import com.groupc.controller.action.CartListAction;
 import com.groupc.controller.action.ContractAction;
+import com.groupc.controller.action.IdCheckFormAction;
 import com.groupc.controller.action.IndexAction;
 import com.groupc.controller.action.LoginFormAction;
 import com.groupc.controller.action.OrderListAction;
@@ -37,9 +38,8 @@ public class ActionFactory {
 		// contract
 		else if(cmd.equals("contract")) {ac = new ContractAction();}
 		
-		// joinForm
-		else if(cmd.equals("joinForm")) {ac = new JoinFormAction();}
-		
+		// idCheckForm
+		else if(cmd.equals("idCheckForm")) ac = new IdCheckFormAction();
 		
 		return ac;
 	}
