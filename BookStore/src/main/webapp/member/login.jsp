@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
-
+<!-- 
+	<script>
+		var message = "<c:out value="${message.value}"/>"; 
+		$(document).ready(function(){
+	    	alert(message);
+	    });
+	</script>
+ -->
 <article>
 <h1>Login</h1>
 <form method="post" action="bs.do" name="loginFrm">

@@ -12,6 +12,7 @@ CREATE TABLE member (
 	gender CHAR(1),
 	point NUMBER(10)
 );
+select * from member;
 
 drop table nonmember cascade constraints;
 CREATE TABLE nonmember(
@@ -117,3 +118,14 @@ CREATE TABLE qna(
 drop sequence qna_seq;
 create sequence qna_seq start with 1;
 select * from qna;
+
+
+
+create table address(
+	zip_num varchar2(7) not null,
+	sido varchar2(30) not null,
+	gugun varchar2(30) not null,
+	dong varchar(100) not null,
+	zip_code varchar2(30),
+	bunji varchar2(30)
+);

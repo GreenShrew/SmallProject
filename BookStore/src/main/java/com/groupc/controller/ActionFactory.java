@@ -3,8 +3,10 @@ package com.groupc.controller;
 import com.groupc.controller.action.Action;
 import com.groupc.controller.action.CartListAction;
 import com.groupc.controller.action.ContractAction;
+import com.groupc.controller.action.FindZipNumAction;
 import com.groupc.controller.action.IdCheckFormAction;
 import com.groupc.controller.action.IndexAction;
+import com.groupc.controller.action.JoinAction;
 import com.groupc.controller.action.LoginFormAction;
 import com.groupc.controller.action.OrderListAction;
 import com.groupc.controller.action.QnaListAction;
@@ -20,7 +22,7 @@ public class ActionFactory {
 		
 		if(cmd.equals("index")) {ac = new IndexAction();}
 		
-		//join
+		// joinForm
 		else if(cmd.equals("joinForm")) {ac = new joinFormAction();}
 		
 		// qna
@@ -40,6 +42,12 @@ public class ActionFactory {
 		
 		// idCheckForm
 		else if(cmd.equals("idCheckForm")) ac = new IdCheckFormAction();
+		
+		// findZipNum
+		else if(cmd.equals("findZipNum")) ac = new FindZipNumAction();
+		
+		// join
+		else if(cmd.equals("join")) ac = new JoinAction();
 		
 		return ac;
 	}

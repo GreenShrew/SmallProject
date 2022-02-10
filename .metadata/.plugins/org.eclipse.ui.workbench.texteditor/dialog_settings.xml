@@ -8,6 +8,12 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="command"/>
+			<item value="shop"/>
+			<item value="add"/>
+			<item value="pop"/>
+			<item value="pob"/>
+			<item value="dup"/>
 			<item value="do"/>
 			<item value="background"/>
 			<item value="kind"/>

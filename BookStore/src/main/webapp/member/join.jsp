@@ -2,7 +2,7 @@
 <%@ include file="../header.jsp" %>
 <article>
 <form method="post" name="joinForm">
-	<input type="hidden" name="command" value="join">
+	<input type="hidden" name="cmd" value="join">
 	<fieldset><legend>Basic Info</legend>
 		<label>User ID</label><input type="text" name="id" size="12"><input type="hidden" name="reid">
 		<input type="button" value="중복체크" class="dup" onclick="idcheck()"><br>
@@ -27,7 +27,7 @@
 	<div class="clear"></div>
 	<div id="buttons">
 		<input type="button" value="회원가입" class="submit" onclick="go_save()">
-		<input type="reset" value="취소" class="cancel">
+		<input type="button" value="취소" onClick="main()">
 	</div>
 </form></article>
 
