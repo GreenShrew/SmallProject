@@ -13,7 +13,7 @@
 	<div class="banner">
 			<img src="images/banner/1.jpg" id="abc" value='1'>
 			<div id="lbutton" onClick="move(-1);"></div>
-  			  <div id="rbutton" onClick="move(1);"></div>
+  			<div id="rbutton" onClick="move(1);"></div>
 		<!-- 하단은 jQuery로 할 예정이라면...? -->
 		<!--
  		<div class="banner" id="2" value="2">

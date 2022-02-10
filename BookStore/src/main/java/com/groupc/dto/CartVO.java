@@ -5,10 +5,13 @@ import java.sql.Timestamp;
 public class CartVO {
 	private Integer cseq;
 	private String id;
+	private String mname;
 	private Integer bseq;
+	private String bname;
+	private Integer price;
 	private Integer quantity;
 	private String result;
-	private Timestamp date;
+	private Timestamp indate;
 	public Integer getCseq() {
 		return cseq;
 	}
@@ -21,11 +24,29 @@ public class CartVO {
 	public void setId(String id) {
 		this.id = id;
 	}
+	public String getMname() {
+		return mname;
+	}
+	public void setMname(String mname) {
+		this.mname = mname;
+	}
 	public Integer getBseq() {
 		return bseq;
 	}
 	public void setBseq(Integer bseq) {
 		this.bseq = bseq;
+	}
+	public String getBname() {
+		return bname;
+	}
+	public void setBname(String bname) {
+		this.bname = bname;
+	}
+	public Integer getPrice() {
+		return price;
+	}
+	public void setPrice(Integer price) {
+		this.price = price;
 	}
 	public Integer getQuantity() {
 		return quantity;
@@ -39,11 +60,11 @@ public class CartVO {
 	public void setResult(String result) {
 		this.result = result;
 	}
-	public Timestamp getDate() {
-		return date;
+	public Timestamp getIndate() {
+		return indate;
 	}
-	public void setDate(Timestamp date) {
-		this.date = date;
+	public void setIndate(Timestamp indate) {
+		this.indate = indate;
 	}
 	
 }
