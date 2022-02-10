@@ -25,6 +25,10 @@
 		<label>Phone Number</label><input type="text" name="phone"><br>
 	</fieldset>
 	<div class="clear"></div>
+	개인정보 수집 및 이용에 대한 안내(선택)
+	<input type="radio" name="info" value="1">동의
+	<input type="radio" name="info" value="2" checked="checked">미동의
+	
 	<div id="buttons">
 		<input type="button" value="회원가입" class="submit" onclick="go_save()">
 		<input type="button" value="취소" onClick="main()">

@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
-<!-- 
+<c:if test="${not empty message}">
 	<script>
-		var message = "<c:out value="${message.value}"/>"; 
+		var message = "<c:out value='${message}'/>"; 
 		$(document).ready(function(){
 	    	alert(message);
 	    });
 	</script>
- -->
+</c:if>
 <article>
 <h1>Login</h1>
 <form method="post" action="bs.do" name="loginFrm">

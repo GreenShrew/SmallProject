@@ -39,7 +39,6 @@ public class LoginAction implements Action {
 	    	request.setAttribute("message", "로그인이 실패했어요. 관리자에게 문의하세요");
 	    }
 	    
-	    request.setAttribute("message", "temp");
 		RequestDispatcher dp=request.getRequestDispatcher(url);
 		dp.forward(request, response);
 	}

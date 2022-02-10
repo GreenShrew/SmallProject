@@ -20,6 +20,8 @@ function idcheck(){
 	window.open(url, "IdCheck", opt);
 }
 
+
+
 function idok(userid){
 	opener.joinForm.id.value = userid;
 	opener.joinForm.reid.value = userid;
@@ -58,12 +60,21 @@ function go_save(){
 		alert("이름을 입력해주세요.");
 		document.joinForm.name.focus();
 	} else if(document.joinForm.email.value == "") {
-	    alert("이메일을 입력해 주세요.");	   
+	    alert("이메일을 입력해 주세요."); 
 	   	document.joinForm.email.focus();
-	} else if(document.joinForm.phone.value == "") {
+	}else if(document.joinForm.zip_num.value == ""){
+		alert("우편번호를 입력해 주세요.");
+		document.joinForm.zip_num.focus();
+	}else if(document.joinForm.addr1.value == ""){
+		alert("주소를 입력해 주세요.");
+		document.joinForm.addr1.focus();
+	}else if(document.joinForm.addr2.value == ""){
+		alert("상세주소를 입력해 주세요.");
+		document.joinForm.addr2.focus();
+	}else if(document.joinForm.phone.value == "") {
 	    alert("전화번호를 입력해 주세요.");	   
 	   	document.joinForm.phone.focus();
-	} else{
+	}else{
 		document.joinForm.action = "bs.do";
 		document.joinForm.submit();
 	}
