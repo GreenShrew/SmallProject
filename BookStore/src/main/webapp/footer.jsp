@@ -5,8 +5,8 @@
 
 	<footer>
 		<hr>
-		<div id="logo">
-			<a href="bs.do?cmd=index"><img alt="" src="images/footer/logo.png" width="200px"></a>
+		<div id="footerlogo">
+			<a href="bs.do?cmd=index"><img alt="" src="images/footer/logo.png" style="width:105px; height:80px;"></a>
 		</div>
 		<div id="copy">
 			회사명 : (주)청년문고 | 대표이사 : ㅁㅁㅁ <br>
@@ -16,7 +16,7 @@
 			COPYRIGHT@CHEONGNYEONBOOKSTORE INC.ALLRIGHTS RESERVED. <br>
 		</div>
 		<div id="serviceimg">
-			<img alt="" src="images/footer/customer_servicecenter.jpg" width="100px">
+			<img alt="" src="images/footer/customer_servicecenter.jpg"style="width:180px; height:80px;">
 		</div>
 	</footer>
 

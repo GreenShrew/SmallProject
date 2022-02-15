@@ -2,7 +2,7 @@ CREATE OR REPLACE VIEW order_view
 AS
 SELECT d.odseq, o.oseq, o.indate, o.id, 
 			m.name AS mname, m.zip_num, m.address, m.phone, 
-			d.bseq, b.bname AS bname, b.price, d.quantity, d.result
+			d.bseq, b.bname AS bname, b.price, d.quantity, d.result, b.bname
 FROM orders o, order_detail d, member m, bookproduct b
 WHERE o.oseq = d.oseq AND o.id = m.id AND d.bseq = b.bseq;
 select * from ORDER_VIEW;

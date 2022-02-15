@@ -1,3 +1,4 @@
+drop table member cascade constraints;
 CREATE TABLE member (
 	id varchar2(20) NOT NULL PRIMARY KEY ,
 	pwd varchar2(20) NOT NULL,
@@ -11,13 +12,14 @@ CREATE TABLE member (
 	gender CHAR(1),
 	point NUMBER(10)
 );
+select * from member;
 
 drop table nonmember cascade constraints;
 CREATE TABLE nonmember(
 	phone VARCHAR2(20) PRIMARY KEY,
 	name VARCHAR2(20),
 	email VARCHAR2(20),
-	od_pass VARCHAR2(20),		-- 비회원 주문번호
+	od_pass VARCHAR2(20) NOT NULL,		-- 비회원 주문번호
 	zip_num varchar2(10) NOT NULL,	-- 비회원 우편번호
 	address VARCHAR2(100)
 );
@@ -29,7 +31,7 @@ CREATE TABLE bookproduct(
 	byear number(10),	-- 출판년도
 	kind char(1),	-- ?
 	price number(7),		-- 가격
-	publisher varchar2(20), -- 출판사
+	publisher varchar2(30), -- 출판사
 	genre varchar2(10), -- 장르
 	content varchar2(1000),	-- 책 내용설명
 	image varchar2(50),	-- 책 이미지
@@ -57,7 +59,7 @@ select * from review;
 
 
 -- 쇼핑몰 관리자 테이블
-
+drop table worker cascade constraints;
 CREATE TABLE worker (
 	id varchar2(20) NOT NULL PRIMARY KEY,
 	pwd varchar2(20) NOT NULL,
@@ -65,6 +67,10 @@ CREATE TABLE worker (
 	phone varchar2(20) NOT NULL
 );
 
+
+insert into worker values('admin', 'admin', '관리자', '010-7777-7777');
+
+drop table cart cascade constraints;
 create table cart (
   cseq number(10) primary key,  -- 장바구니 일련번호
   id varchar2(16) references member(id),   -- 주문자 아이디(FK :　member.id) 
@@ -89,6 +95,7 @@ create sequence orders_seq start with 1;
 select * from orders;
 
 
+drop table order_detail cascade constraints;
 CREATE TABLE order_detail(
 	odseq number(10) primary key,		-- 주문 상세번호
 	oseq NUMBER(10) REFERENCES orders(oseq),	-- 주문번호
@@ -100,6 +107,8 @@ drop sequence order_detail_seq;
 create sequence order_detail_seq start with 1;
 select * from order_detail;
 
+
+drop table qna cascade constraints;
 CREATE TABLE qna(
 	qseq number(10) primary key,
 	subject VARCHAR2(50),
@@ -112,3 +121,18 @@ CREATE TABLE qna(
 drop sequence qna_seq;
 create sequence qna_seq start with 1;
 select * from qna;
+
+
+
+create table address(
+	zip_num varchar2(7) not null,
+	sido varchar2(30) not null,
+	gugun varchar2(30) not null,
+	dong varchar(100) not null,
+	zip_code varchar2(30),
+	bunji varchar2(30)
+);
+
+
+select * from address;
+select * from member;

@@ -1,11 +1,18 @@
 package com.groupc.dto;
 
-public class NonmemberVO {
+public class NonMemberVO {
 	private String phone;
 	private String name;
-	private String eamil;
+	private String email;
 	private String od_pass;
+	private String zip_num;
 	private String address;
+	public String getZip_num() {
+		return zip_num;
+	}
+	public void setZip_num(String zip_num) {
+		this.zip_num = zip_num;
+	}
 	public String getPhone() {
 		return phone;
 	}
@@ -18,11 +25,11 @@ public class NonmemberVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getEamil() {
-		return eamil;
+	public String getEmail() {
+		return email;
 	}
-	public void setEamil(String eamil) {
-		this.eamil = eamil;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getOd_pass() {
 		return od_pass;
