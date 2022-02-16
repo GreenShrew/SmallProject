@@ -22,15 +22,15 @@
 			<nav id="top_menu">
 				<ul>
 					<li><a href="bs.do?cmd=qnaList" style="border:0px;">고객센터</a></li>
-					<li><a href="bs.do?cmd=orderView" style="width:80px;">주문/배송조회</a></li>
-					<li><a href="bs.do?cmd=cart">장바구니</a></li>
+					<li><a href="bs.do?cmd=orderAll" style="width:80px;">주문/배송조회</a></li>
+					<li><a href="bs.do?cmd=cartList">장바구니</a></li>
 					<c:choose>
 						<c:when test="${empty loginUser}">
 							<li><a href="bs.do?cmd=contract">회원가입</a></li>
 							<li><a href="bs.do?cmd=loginForm">로그인</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="bs.do?cmd=updateForm">정보수정</a></li>
+							<li><a href="bs.do?cmd=editForm">정보수정</a></li>
 							<li> &nbsp; ${loginUser.name}(${loginUser.id}) </li> 
 							<li><a href="bs.do?cmd=logout">로그아웃</a></li>
 						</c:otherwise>

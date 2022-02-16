@@ -7,11 +7,19 @@ public class CartVO {
 	private String id;
 	private String mname;
 	private Integer bseq;
+	private String image;
 	private String bname;
 	private Integer price;
 	private Integer quantity;
 	private String result;
 	private Timestamp indate;
+	
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
 	public Integer getCseq() {
 		return cseq;
 	}

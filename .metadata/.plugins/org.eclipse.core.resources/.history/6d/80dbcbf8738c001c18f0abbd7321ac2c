@@ -1,0 +1,25 @@
+package com.groupc.controller.action;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.groupc.dao.MemberDao;
+import com.groupc.dto.MemberVO;
+
+public class IdResultAction implements Action {
+
+	@Override
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = "member/idResult.jsp";
+		String id = request.getParameter("kind");
+		
+		MemberDao mdao = MemberDao.getInstance();
+		MemberVO mvo = new MemberVO();
+		
+		mvo.set
+	}
+
+}

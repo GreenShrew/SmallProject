@@ -67,3 +67,17 @@ function moveRight(){
     var dist = -318 * num;
     document.getElementById("imgs").style.left = dist + "px";
 }
+
+$(function(){
+    $(".book").hover(
+        function(){
+            var num = $(this).index(".book");
+            $(".book .overview").eq(num).css({"visibility":"visible"});
+            $(".book .bookimgs").eq(num).css({"box-shadow":"3px 3px 3px 3px #999"});
+        },
+        function(){
+            $(".overview").css({"visibility":"hidden"});
+            $(".bookimgs").css({"box-shadow":"0 0 0 0 #999"});
+        }
+    );
+});

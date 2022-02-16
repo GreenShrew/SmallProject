@@ -117,4 +117,57 @@ public class MemberDao {
 		} finally { Dbm.close(con, pstmt, rs);
 		}
 	}
+
+
+	public MemberVO checkMemberId(String name, String phone, String email) {
+		MemberVO mvo = null;
+		String sql = "select id from member where (name=? and phone=?) or (name=? and email=?)";
+		
+		con = Dbm.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, phone);
+			pstmt.setString(3, name);
+			pstmt.setString(4, email);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				mvo = new MemberVO();
+				mvo.setId( rs.getString("id") );
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally { 
+			Dbm.close(con, pstmt, rs);
+		}
+		return mvo;
+	}
+
+
+	public MemberVO checkMemberPwd(String id, String phone, String email) {
+		MemberVO mvo = null;
+		String sql = "select id, pwd from member where (id=? and phone=?) or (id=? and email=?)";
+		
+		con = Dbm.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, phone);
+			pstmt.setString(3, id);
+			pstmt.setString(4, email);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				mvo = new MemberVO();
+				mvo.setId( rs.getString("id") );
+				mvo.setPwd( rs.getString("pwd") );
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally { 
+			Dbm.close(con, pstmt, rs);
+		}
+		return mvo;
+	}
 }

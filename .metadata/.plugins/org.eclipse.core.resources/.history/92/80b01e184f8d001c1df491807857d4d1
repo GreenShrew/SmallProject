@@ -1,0 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ include file="findHeader.jsp" %>
+<body>
+<div>
+<span class="resultText">${MemberVO.id}</span>님의 비밀번호는<br>
+<span class="resultText">${MemberVO.pwd}</span> 입니다.
+<input type="button" value="로그인" onClick="location.href='bs.do?cmd=loginForm'">
+</div>
+</body>
+
+<%@ include file="../footer.jsp" %>

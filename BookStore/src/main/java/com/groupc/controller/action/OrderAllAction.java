@@ -13,14 +13,21 @@ import com.groupc.dto.MemberVO;
 import com.groupc.dto.OrderVO;
 
 public class OrderAllAction implements Action {
-
+	// 고객의 주문내역을 담은 orderTemp.jsp로 보낸다.
+	// 단, 비회원의 경우 
+	// #1. 비회원용 주문 id를 인증하지 않았다면  loginForm으로
+	// #2. 비회원용 주문 id를 인증했다면 orderTemp.jsp로
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "mypage/mypage.jsp";
+		String url = "mypage/orderTemp.jsp";
 		HttpSession session = request.getSession();
 		MemberVO mvo = (MemberVO) session.getAttribute("loginUser");
-	    if(mvo==null) {
-	    	url = "bs.do?cmd=login_form";
+	    
+		
+		// 즉, 아래의 if 조건문에 'and 비회원용id==null' 을 넣는다.
+		// else if를 추가하여 '비회원용 id != null' 조건을 달고 비회원용 테이블에서 정보를 긁어올 수 있도록 만든다.
+		if(mvo==null) {
+	    	url = "bs.do?cmd=loginForm";
 	    }else {
 	    	OrderDao odao = OrderDao.getInstance();
 	    	ArrayList<OrderVO> finalList = new ArrayList<OrderVO>();  // 아래에서 언급한 별도의 리스트, mypage.jsp 에 전달될 리스트

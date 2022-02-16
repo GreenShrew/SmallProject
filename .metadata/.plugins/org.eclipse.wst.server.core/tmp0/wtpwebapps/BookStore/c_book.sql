@@ -19,7 +19,7 @@ CREATE TABLE nonmember(
 	phone VARCHAR2(20) PRIMARY KEY,
 	name VARCHAR2(20),
 	email VARCHAR2(20),
-	od_pass VARCHAR2(20),		-- 비회원 주문번호
+	od_pass VARCHAR2(20) NOT NULL,		-- 비회원 주문번호
 	zip_num varchar2(10) NOT NULL,	-- 비회원 우편번호
 	address VARCHAR2(100)
 );
@@ -66,6 +66,9 @@ CREATE TABLE worker (
 	name varchar2(20) NOT NULL,
 	phone varchar2(20) NOT NULL
 );
+
+
+insert into worker values('admin', 'admin', '관리자', '010-7777-7777');
 
 drop table cart cascade constraints;
 create table cart (
@@ -129,3 +132,7 @@ create table address(
 	zip_code varchar2(30),
 	bunji varchar2(30)
 );
+
+
+select * from address;
+select * from order_view;

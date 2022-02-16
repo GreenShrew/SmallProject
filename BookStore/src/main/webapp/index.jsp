@@ -57,7 +57,7 @@
 	    </div>
 	    <div id="con3" class="conBox">
 			<div id="bestProduct">
-				<c:forEach items="${bestList}" var = "productVO" >
+				<c:forEach items="${recommandList}" var = "productVO" >
 					<div class="book">
 						<div class="bookimgs" onClick="">
 							<img alt="" src="images/book/${productVO.image}" style="width:162px; height:230px;">

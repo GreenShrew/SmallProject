@@ -15,7 +15,7 @@
 	<input type="hidden" name="cmd" value="idCheckForm">
 	User ID : <input type="text" name="id" value="${id}">
 	<input type="submit" value="검색" class="submit"><br>
-	
+
 	<div style="margin-top:20px">
 		<c:if test="${result == 1}">
 			<script type="text/javascript">opener.document.joinForm.id.value="";</script>
@@ -26,6 +26,7 @@
 			<input type="button" value="사용" class="cancel" onclick="idok('${id}');">
 		</c:if>
 	</div>
+	
 </form>
 </div>
 </body>

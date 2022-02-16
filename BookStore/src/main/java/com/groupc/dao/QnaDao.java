@@ -1,6 +1,7 @@
 package com.groupc.dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,4 +46,42 @@ public class QnaDao {
 		}
 		return qnaList;
 	}
+
+
+	public QnaVO getQna(int qseq) {
+		QnaVO qvo = new QnaVO();
+		String sql = "select * from qna where qseq=?";
+		con = Dbm.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1,  qseq);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				qvo.setQseq(qseq);
+				qvo.setSubject(rs.getString("subject"));
+				qvo.setContent(rs.getString("content"));
+				qvo.setId(rs.getString("id"));
+				qvo.setIndate(rs.getTimestamp("indate"));
+				qvo.setReply(rs.getString("reply"));
+				qvo.setRep(rs.getString("rep"));
+			}
+		} catch (SQLException e) {e.printStackTrace();
+		} finally { Dbm.close(con, pstmt, rs);}
+		return qvo;
+	}
+	
+	
+	public void insertQna(QnaVO qvo) {
+		String sql = "insert into qna (qseq, subject, content, id) values(qna_seq.nextval, ?, ?, ?)";
+		con = Dbm.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, qvo.getSubject());
+			pstmt.setString(2, qvo.getContent());
+			pstmt.setString(3, qvo.getId());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {e.printStackTrace();
+		} finally { Dbm.close(con, pstmt, rs);}
+	}
+	
 }

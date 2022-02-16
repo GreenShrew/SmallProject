@@ -1,4 +1,4 @@
-package com.ezenac.dao;
+package com.groupc.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,13 +20,13 @@ public class CartDao {
 	ResultSet rs = null;
 	
 	public void insertCart(CartVO cvo) {
-		String sql = "insert into cart( cseq , id, pseq, quantity)"
+		String sql = "insert into cart( cseq , id, bseq, quantity)"
 				+ "values( cart_seq.nextVal, ? , ? , ? )";
 		con = Dbm.getConnection();
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,  cvo.getId() );
-			pstmt.setInt(2,  cvo.getPseq());
+			pstmt.setInt(2,  cvo.getBseq());
 			pstmt.setInt( 3, cvo.getQuantity() );
 			
 			pstmt.executeUpdate();
@@ -48,10 +48,10 @@ public class CartDao {
 				cvo.setCseq(rs.getInt("cseq"));  		
 				cvo.setId(rs.getString("id"));
 				cvo.setMname(rs.getString("mname")); 
-				cvo.setPseq(rs.getInt("pseq"));				
-				cvo.setPname(rs.getString("pname"));  
+				cvo.setBseq(rs.getInt("bseq"));	
+				cvo.setBname(rs.getString("bname"));  
 				cvo.setQuantity(rs.getInt("quantity"));
-				cvo.setPrice2(rs.getInt("price2"));  
+				cvo.setPrice(rs.getInt("price"));  
 				cvo.setIndate(rs.getTimestamp("indate"));
 				list.add(cvo);
 			}

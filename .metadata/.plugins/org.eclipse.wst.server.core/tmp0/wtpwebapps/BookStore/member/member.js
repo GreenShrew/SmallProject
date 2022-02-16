@@ -1,4 +1,31 @@
-/* 회원가입 */
+/*login*/
+function loginCheck(){
+	if(document.loginFrm.id.value == ""){
+		alert("아이디 입력");
+		document.loginFrm.id.focuse();
+		return false;
+	}else if(document.loginFrm.pwd.value == ""){
+		alert("비밀번호 입력");
+		document.loginFrm.pwd.focus();
+		return false;
+	}
+	return ture;	
+}
+
+function nonmemCheck(){
+	if(document.nonmemloginFrm.phone.value == ""){
+		alert("전화번호 입력");
+		document.nonmemloginFrm.phone.focuse();
+		return false;
+	}else if(document.nonmemloginFrm.od_pass.value == ""){
+		alert("주문번호 입력");
+		document.nonmemloginFrm.od_pass.focus();
+		return false;
+	}
+	return ture;	
+}
+
+
 function go_next(){
 	var chk = document.contractFrm.okon.checked;
 	if(!chk)  {
@@ -21,8 +48,6 @@ function idcheck(){
 	window.open(url, "IdCheck", opt);
 }
 
-
-
 function idok(userid){
 	opener.joinForm.id.value = userid;
 	opener.joinForm.reid.value = userid;
@@ -41,7 +66,6 @@ function result(zip_num, sido, gugun, dong){
 	opener.document.joinForm.addr1.value=sido+" "+gugun+" "+dong;
 	self.close();
 }
-
 
 function go_save(){
 	if(document.joinForm.id.value == ""){
@@ -76,26 +100,21 @@ function go_save(){
 	    alert("전화번호를 입력해 주세요.");	   
 	   	document.joinForm.phone.focus();
 	}else{
-		document.joinForm.action = "bs.do";
+		document.joinForm.action = "bs.do?";
 		document.joinForm.submit();
 	}
 }
-
 
 function main(){
 	document.joinForm.action="bs.do?cmd=index";
 	document.joinForm.submit();
 }
 
-
 function joincheck(message){
 	if(message!=null){
 		alert(message);
 	}
 }
-
-
-/* 장바구니 */
 
 function go_cart(){
 	if (document.formm.quantity.value == "") {
@@ -129,7 +148,7 @@ function go_cart_delete(){
 }
 
 
-/* 회원정보 수정 */
+
 function go_update(){
 	if (document.joinForm.pwd.value == "") {
 	    alert("비밀번호를 입력해 주세요.");
@@ -148,3 +167,70 @@ function go_update(){
 	    document.joinForm.submit();
 	}
 }
+
+
+
+
+function findIdCheck1(){
+	if(document.findForm.name1.value==""){
+		alert("이름을 입력해 주세요.");
+	    document.findForm.name1.focus();
+	}else if (document.findForm.phone.value == "") {
+	    alert("전화번호를 입력해 주세요.");
+	    document.findForm.phone.focus();
+	}else{
+		document.findForm.action="bs.do?cmd=idResult";
+		document.findForm.submit();
+	}
+}
+
+function findIdCheck2(){
+	if(document.findForm.name2.value==""){
+		alert("이름을 입력해 주세요.");
+	    document.findForm.name2.focus();
+	}else if (document.findForm.email.value == "") {
+	    alert("이메일을 입력해 주세요.");
+	    document.findForm.email.focus();
+	}else{
+		document.findForm.action="bs.do?cmd=idResult";
+		document.findForm.submit();
+	}
+}
+
+function findPwdCheck1(){
+	if(document.findForm.id1.value==""){
+		alert("아이디를 입력해 주세요.");
+	    document.findForm.id1.focus();
+	}else if (document.findForm.phone.value == "") {
+	    alert("전화번호를 입력해 주세요.");
+	    document.findForm.phone.focus();
+	}else{
+		document.findForm.action="bs.do?cmd=pwdResult";
+		document.findForm.submit();
+	}
+}
+
+function findPwdCheck2(){
+	if(document.findForm.id2.value==""){
+		alert("아이디를 입력해 주세요.");
+	    document.findForm.id2.focus();
+	}else if (document.findForm.email.value == "") {
+	    alert("이메일을 입력해 주세요.");
+	    document.findForm.email.focus();
+	}else{
+		document.findForm.action="bs.do?cmd=pwdResult";
+		document.findForm.submit();
+	}
+}
+
+
+$(function(){
+	$(".method").click(function(){
+		var num = $(this).index(".method");
+		$(".method").css({"height":"50px"})
+		$(".method .inputbox").css({"height":"1px","visibility":"hidden"});
+		$(".method").eq(num).css({"height":"240px"});
+		$(".method .inputbox").eq(num).css({"height":"180px","visibility":"visible"});
+	});
+});
+

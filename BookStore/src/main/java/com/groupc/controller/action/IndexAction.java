@@ -18,9 +18,11 @@ public class IndexAction implements Action {
 		
 		ArrayList<ProductVO> bestList = pdao.getBestList();
 		ArrayList<ProductVO> newList = pdao.getNewList();
+		ArrayList<ProductVO> recommandList = pdao.getRecommandList();
 		
 		request.setAttribute("bestList", bestList);
 		request.setAttribute("newList", newList);
+		request.setAttribute("recommandList", recommandList);
 		
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
