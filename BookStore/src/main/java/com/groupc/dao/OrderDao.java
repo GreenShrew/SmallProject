@@ -135,7 +135,7 @@ public class OrderDao {
 	public int insertOrderOne(ProductVO pvo, String id, int quantity) {
 		int oseq = 0;
 		con = Dbm.getConnection();
-		String sql = "insert into orders(oseq, id) values( orders_seq.nextVal , ?)";
+		String sql = "insert into orders(oseq, id) values(orders_seq.nextVal, ?)";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -152,7 +152,7 @@ public class OrderDao {
 						+ "values(order_detail_seq.nextVal, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, oseq);
-			pstmt.setInt(2, pvo.getBseq() );
+			pstmt.setInt(2, pvo.getBseq());
 			pstmt.setInt(3, quantity );
 			pstmt.executeUpdate();
 		} catch (SQLException e) { e.printStackTrace();

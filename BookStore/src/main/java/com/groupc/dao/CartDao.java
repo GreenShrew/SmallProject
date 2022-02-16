@@ -84,6 +84,22 @@ public class CartDao {
 	    }   	
 		
 	}
+
+	public void insertCartArr(String id, int bseq) {
+		String sql = "insert into cart(cseq, id, bseq, quantity) values( cart_seq.nextVal, ? , ? , 1)";
+		// 임시로 quantity의 값을 1로 두고 만들었습니다.
+		con = Dbm.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, bseq);
+			
+			pstmt.executeUpdate();
+		} catch (SQLException e) {e.printStackTrace();
+		} finally { Dbm.close(con, pstmt, rs); 
+		}
+	}
+	
 }
 
 

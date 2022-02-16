@@ -1,0 +1,18 @@
+function go_order_insert(){
+	
+	document.formm.action = "bs.do?cmd=orderInsert";
+	document.formm.submit();
+	
+}
+
+
+
+function buyyn(bseq){
+	var a = confirm("상품을 바로 구매하시겠습니까?");
+	if(a){
+		location.href="bs.do?cmd=orderOne&bseq=+"+bseq+"+&quantity=1";
+		return true;
+	}else{
+		return false;
+	}
+}

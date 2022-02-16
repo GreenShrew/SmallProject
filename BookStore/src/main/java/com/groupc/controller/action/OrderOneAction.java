@@ -31,14 +31,13 @@ public class OrderOneAction implements Action {
 		}else {
 			ProductDao pdao = ProductDao.getInstance();
 			ProductVO pvo = pdao.getProduct(bseq);
-			// OrderDao 에  insertOrderOne 메서드 만들어서   아이디와  상품객체를 보내서 주믄을 완료 합니다.
+			// OrderDao 에  insertOrderOne 메서드 만들어서   아이디와  상품객체를 보내서 주문을 완료.
 			OrderDao odao = OrderDao.getInstance();
-			int oseq = odao.insertOrderOne( pvo, mvo.getId() , quantity );
-			// oseq 를 리턴받아  orderList.jsp 로 가서 주문내역을 화면에 표시합니다.
+			int oseq = odao.insertOrderOne(pvo, mvo.getId() , quantity);
+			// oseq 를 리턴받아  orderList.jsp 로 가서 주문내역을 화면에 표시.
 			url = "bs.do?cmd=orderList&oseq="+oseq;
 		}
-		
-		
+		request.getRequestDispatcher(url).forward(request, response);
 	}
 
 }

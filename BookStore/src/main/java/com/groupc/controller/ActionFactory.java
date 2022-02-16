@@ -3,6 +3,7 @@ package com.groupc.controller;
 import com.groupc.controller.action.Action;
 import com.groupc.controller.action.CartDeleteAction;
 import com.groupc.controller.action.CartInsertAction;
+import com.groupc.controller.action.CartInsertMultiAction;
 import com.groupc.controller.action.CartListAction;
 import com.groupc.controller.action.ContractAction;
 import com.groupc.controller.action.FindIdAction;
@@ -69,11 +70,12 @@ public class ActionFactory {
 		else if(cmd.equals("orderDetail")) ac = new OrderDetailAction();
 		else if(cmd.equals("orderOne")) ac = new OrderOneAction();
 		
-
+		
 		// cart
 		else if(cmd.equals("cartList")) {ac = new CartListAction();}
 		else if(cmd.equals("cartInsert")) ac = new CartInsertAction();
 		else if(cmd.equals("cartDelete") ) ac = new CartDeleteAction();
+		else if(cmd.equals("cartInsertMulti") ) ac = new CartInsertMultiAction();
 		
 		// contract
 		else if(cmd.equals("contract")) {ac = new ContractAction();}

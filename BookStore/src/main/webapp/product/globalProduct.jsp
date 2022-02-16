@@ -25,8 +25,8 @@
 			</div>
 			<div class="bookboxbtn">
 				<div><a href="#" onClick="">상세보기</a></div>
-				<div><a href="#" onClick="">바로구매</a></div>
-				<div><a href="bs.do?cmd=cartInsert&bseq=${pvo.bseq}&quantity=1" onClick="">장바구니</a></div>
+				<div><a href="javascript:buyyn(${pvo.bseq});">바로구매</a></div>
+				<div><a href="javascript:cartyn(${pvo.bseq});">장바구니</a></div>
 			</div>
 		</form>
 	</c:forEach>

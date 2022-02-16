@@ -2,7 +2,7 @@
 function loginCheck(){
 	if(document.loginFrm.id.value == ""){
 		alert("아이디 입력");
-		document.loginFrm.id.focuse();
+		document.loginFrm.id.focus();
 		return false;
 	}else if(document.loginFrm.pwd.value == ""){
 		alert("비밀번호 입력");

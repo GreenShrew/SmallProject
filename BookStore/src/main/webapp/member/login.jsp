@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 
-<c:if test="${not empty message}">
+<c:if test="${not empty msg}">
 	<script>
-		var message = "<c:out value='${message}'/>"; 
+/* 		var msg = "<c:out value='${msg}'/>";  */
 		$(document).ready(function(){
-	    	alert(message);
+	    	alert(${msg});
 	    });
 	</script>
 </c:if>
 
+ 
 <div class="tab" style="top: 100px; width:400px; height:450px; background-color:#eef5eb">
     <ul>
         <li style="width:50%;" data-id="userLogin" class="on">회원</li>
