@@ -94,3 +94,14 @@ WHERE c.bseq = b.bseq AND c.id = m.id;
 
 SELECT * FROM cart_view;
 
+
+
+drop view non_order_view;
+CREATE OR REPLACE VIEW non_order_view
+AS
+SELECT d.odseq, o.oseq, o.indate, nm.od_pass,
+			nm.name AS nmname, nm.zip_num, nm.address, nm.phone, 
+			d.bseq, b.bname AS bname, b.price, d.quantity, d.result, nm.email
+FROM nm_orders o, nm_order_detail d, nonmember nm, bookproduct b
+WHERE o.oseq = d.oseq AND o.od_pass = nm.od_pass AND d.bseq = b.bseq;
+select * from non_order_view;

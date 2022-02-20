@@ -15,14 +15,18 @@ function loginCheck(){
 function nonmemCheck(){
 	if(document.nonmemloginFrm.phone.value == ""){
 		alert("전화번호 입력");
-		document.nonmemloginFrm.phone.focuse();
+		document.nonmemloginFrm.phone.focus();
 		return false;
 	}else if(document.nonmemloginFrm.od_pass.value == ""){
 		alert("주문번호 입력");
 		document.nonmemloginFrm.od_pass.focus();
 		return false;
+	}else{
+		/*document.getElementById('checking').value*/
+		var phone = document.getElementById('phone').value;
+		var od_pass = document.getElementById('od_pass').value;
+		location.href="bs.do?cmd=nonmemberlogin&phone="+phone+"&od_pass="+od_pass;
 	}
-	return ture;	
 }
 
 

@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="../header.jsp" %>
+
+<article>
+<br><br><br>
+<form method="post" name="nresult" style="text-align:center;">
+<div id=joinLabel><h2>주문 완료</h2></div>
+<br>
+	<div id="joinBox"><!-- css 재활용 -->
+		<div id="joinInfo">
+			<strong style="font-size:18px;"> 감사합니다. [${name}]님의 주문이 정상적으로 처리되었습니다.</strong></br>
+			고객님의 주문번호는 <span style="color:red;">[${od_pass}]</span> 입니다.
+		</div>
+	
+	</div>
+</form>
+</article>
+
+<%@ include file="../footer.jsp" %>

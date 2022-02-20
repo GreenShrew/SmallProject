@@ -5,7 +5,7 @@
 <%@ include file="sub_menu.jsp" %>
 
 <article>
-<h2>1:1 고객 게시판</h2><h3>고객님의 질문에 대해서 운영자가 1:1 답변을 드립니다.</h3>
+<h2>고객센터</h2><hr>
 <form>
 <table>
 	<tr><th>제목</th><td width="600" style="text-align:left;">${qnaVO.subject}</td></tr>

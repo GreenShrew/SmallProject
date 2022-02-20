@@ -247,3 +247,89 @@ footer #serviceimg{float:right; margin:10px 0 0 0;}
 .con_text{position:relative; display: inline-block;}
 .con_check{position:relative; top:-4px;color:red; font-weight:bold; font-size:14px;}
 #agree{position:relative; width:720px; text-align:left; display: inline-block; font-size:17px; margin-bottom:5px;}
+
+
+
+
+/* qna */
+.mybox{position:relative; width:660px; height:400px; }
+#qnaList {margin-left:50px; border-collapse: collapse; border-top: 1px solid #DDDEDB;	border-bottom: 1px solid #DDDEDB; width: 80%;	
+margin-bottom: 30px; font-size:10pt;}
+#qnaList td { border-bottom: 1px solid #DDDEDB; text-align: center;}	
+#qnaList th { border-bottom: 1px solid #DDDEDB; text-align: center; background-color:#FFFFFF;}	
+
+form #buttons2 {margin: 20px 0 0 0; }
+form  #cancel{height: 30px;	width: 100px;  border: 1px solid #fff; border-radius: 5px; 
+font-size: 14px; background-repeat: repeat-x; background-position: center center; color: 	black; background-color:#fff; margin: 0 0 0 20px;  }
+form  #submit{height: 30px;	width: 100px;  border: 1px solid #43A22F; border-radius: 5px; 
+font-size: 14px; background-repeat: repeat-x; background-position: center center; color: #fff; background-color:#43A22F; margin: 0 0 0 20px;  }
+
+#qna{margin: 20px 0; font-weight: normal; }
+#qna article{ float: right; width: 680px; padding-right: 10px; font-family: Verdana; font-size: 1em; line-height: 1.5em; }
+
+#side2{font-weight:bold; font-size:15px;margin-left:70px;}
+
+#sub_menu { width: 250px; 	float: left; }
+#sub_menu ul { list-style: none; }
+
+#sub_menu a {float: left; text-decoration: none; color: black;  font-family:Verdana ; font-weight: bold;  font-size: 12px;	display: block;	
+height: 15px; width: 160px; padding: 7px;	}
+#sub_menu a:hover {color: #F90; font-weight: bold;  font-size: 12px;	font-family: Arial, Helvetica, sans-serif; }
+
+#write form {margin: 20px 0 0 0; width: 670px; float:right;}
+#write form fieldset {padding: 10px 0 20px 5px;	border: none;}
+#write form fieldset legend {	font-size: 20px; border-bottom: 1px dotted #666; width: 600px;  padding: 5px 0; }
+
+#write form label { width: 140px;  float: left;  margin: 5px 0; }
+#write form input {margin: 5px 0;  border: 1px solid #999; 	background-color: #FCFDEA; } 
+
+
+
+/* notice */
+form #plus{float:right;}
+#noticeList{margin-left:50px; border-collapse: collapse; border-top: 1px solid #DDDEDB;	border-bottom: 1px solid #DDDEDB; width: 80%;	
+margin-bottom: 30px; font-size:10pt;}
+#noticeList td { border-bottom: 1px solid #DDDEDB; text-align: center;}	
+#noticeList th { border-bottom: 1px solid #DDDEDB; text-align: center; background-color:#FFFFFF;}	
+
+#notice{margin-left:50px; border-collapse: collapse; border:1px dotted #999; width: 80%;	
+margin-bottom: 30px; font-size:10pt;}
+
+#noticeView{float:right; margin-bottom:10%; border-collapse: collapse; border-top: 1px solid #DDDEDB;	border-bottom: 1px solid #DDDEDB; width: 73%;	
+margin-bottom: 30px; font-size:10pt; font-family:Verdana;}
+#noticeView td { border-bottom: 1px solid #DDDEDB; text-align: center;}	
+#noticeView th { border-bottom: 1px solid #DDDEDB; text-align: center; background-color:#FFFFFF;}	
+
+
+form #buttons3 {margin: 20px 0 0 0; }
+form  #cancel{height: 30px;	width: 100px;  border: 1px solid #43A22F; border-radius: 5px; 
+font-size: 14px; background-repeat: repeat-x; background-position: center center; color: #fff; background-color:#43A22F; margin: 0 0 0 20px;  }
+form  #submit{height: 30px;	width: 100px;  border: 1px solid #fff; border-radius: 5px; 
+font-size: 14px; background-repeat: repeat-x; background-position: center center; color: black; background-color:#fff; margin: 0 0 0 20px;  }
+
+
+form #buttons4 {margin: 20px 0 0 0; }
+form  #cancel{height: 30px;	width: 100px;  border: 1px solid #43A22F; border-radius: 5px; 
+font-size: 14px; background-repeat: repeat-x; background-position: center center; color: #fff; background-color:#43A22F; margin: 0 0 0 20px;  }
+form  #submit{height: 30px;	width: 100px;  border: 1px solid #fff; border-radius: 5px; 
+font-size: 14px; background-repeat: repeat-x; background-position: center center; color: black; background-color:#fff; margin: 0 0 0 20px;  }
+
+
+
+/* nonmember buy form */
+.nbuyform td{padding-left:10px; font-weight: bold;}
+.nbuyform{position:relative; text-align:left; border-collapse:collapse; border-color:#C6C6C6; background:white; margin-top:5px; display:inline-block;}
+
+
+
+
+/* cartbutton */
+.cartbtn{position:fixed; top:300px; background:url('../images/cart.png') no-repeat; background-size: contain; width:60px; height:60px;}
+.x{position:fixed; top:360px; background:url('../images/top.png') no-repeat; background-size: contain; width:60px; height:60px;}
+
+
+/* nOrderResult */
+#nResult td{text-align:center;}
+#nResult td:nth-child(2n-1){width:70px; font-weight:bold;}
+#nResult2 td{text-align:center;}
+#nResult2 tr:first-child{font-weight:bold;}

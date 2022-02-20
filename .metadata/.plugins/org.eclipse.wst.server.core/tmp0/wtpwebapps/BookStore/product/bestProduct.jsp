@@ -3,7 +3,6 @@
 <%@ include file="../header.jsp"%>
 <%@ include file="product_left.jsp"%>
 
-
 <br><br><br>
 <div id="product_Area">
 	<div style="height:20px;"></div>
@@ -26,7 +25,7 @@
 				<div class="bookonelist"><%-- ${pvo.reviewcnt } --%>reviewcnt</div>
 				<div class="bookonelist"><%-- ${pvo.score} --%>score</div>
 				<div class="bookonebtn">
-					<div><a href="#" onClick="">상세보기</a></div>
+					<div><a href="bs.do?cmd=productDetail&bseq=${pvo.bseq}" onClick="">상세보기</a></div>
 					<div><a href="javascript:buyyn(${pvo.bseq});">바로구매</a></div>
 					<div><a href="javascript:cartyn(${pvo.bseq});">장바구니</a></div>
 				</div>
@@ -53,7 +52,7 @@
 				<div class="bookboxlist"><%-- ${pvo.score} --%>score</div>
 			</div>
 			<div class="bookboxbtn">
-				<div><a href="#" onClick="">상세보기</a></div>
+				<div><a href="bs.do?cmd=productDetail&bseq=${pvo.bseq}" onClick="">상세보기</a></div>
 				<div><a href="javascript:buyyn(${pvo.bseq});">바로구매</a></div>
 				<div><a href="javascript:cartyn(${pvo.bseq});">장바구니</a></div>
 			</div>

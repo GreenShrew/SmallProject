@@ -38,10 +38,10 @@
 		   </form>
 	    </div>
 	    <div id="nonmemberLogin" class="conBox">
-	    	<form action="bs.do" method="post" name="nonmemloginFrm">
-    			<div><input class="logininput" type="text" name="phone" placeholder="전화번호"></div>
-    			<div><input class="logininput" type="text" name="od_pass" placeholder="주문번호"></div>
-				<div><input class="login_btn" type="submit" value="확인" onClick="nonmemCheck()"></div>
+	    	<form method="post" name="nonmemloginFrm"> <!-- action="bs.do" -->
+    			<div><input class="logininput" type="text" id="phone" name="phone" placeholder="전화번호"></div>
+    			<div><input class="logininput" type="text" id="od_pass" name="od_pass" placeholder="주문번호"></div>
+				<div><input style="cursor:default" class="login_btn" value="확인" onClick="nonmemCheck()"></div>
 				<br><br>
 				<div><a href="#">주문번호 찾기</a></div>
 	    	</form>

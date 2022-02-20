@@ -18,20 +18,21 @@ public class NonMemberDao {
 	ResultSet rs = null;
 	
 	
-	public NonMemberVO getNonMember(String phone) {
+	public NonMemberVO getNonMember(String phone, String od_pass) {
 		NonMemberVO nmvo = null;
 		
-		String sql = "SELECT * FROM nonmember WHERE phone=?";
+		String sql = "SELECT * FROM nonmember WHERE phone=? and od_pass=?";
 		con = Dbm.getConnection();
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, phone);
+			pstmt.setString(2, od_pass);
 			rs = pstmt.executeQuery();
 			if( rs.next() ) {
 				nmvo = new NonMemberVO();
-				nmvo.setPhone( rs.getString("id") );
+				nmvo.setPhone( rs.getString("phone") );
 				nmvo.setName(rs.getString("name"));
-				nmvo.setOd_pass(rs.getString("pwd"));
+				nmvo.setOd_pass(rs.getString("od_pass"));
 		        nmvo.setEmail(rs.getString("email"));
 		        nmvo.setZip_num(rs.getString("zip_num"));
 		        nmvo.setAddress(rs.getString("address"));

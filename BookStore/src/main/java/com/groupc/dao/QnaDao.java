@@ -41,8 +41,7 @@ public class QnaDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
-			Dbm.close(con, pstmt, rs);
+		}finally {Dbm.close(con, pstmt, rs);
 		}
 		return qnaList;
 	}

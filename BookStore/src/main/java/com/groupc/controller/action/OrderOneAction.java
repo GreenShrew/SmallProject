@@ -24,7 +24,7 @@ public class OrderOneAction implements Action {
 		int quantity = Integer.parseInt( request.getParameter("quantity") );
 		
 		// 여기서는 비회원의 경우 해당 책의 정보를 가지고 loginForm으로 가서 비회원구매 버튼을 누를시 이를 가지고 가서 주문할 수 있도록 만든다.
-		if(mvo==null) {
+		if(mvo==null) {		// 아니다..생각을 잘못한 것 같은데?
 			url = "bs.do?cmd=loginForm";
 			request.setAttribute("bseq", bseq);
 			request.setAttribute("quantity", quantity);

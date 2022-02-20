@@ -10,7 +10,6 @@
 
 <div id="product_Area">
 <a href="javascript:add_multi();">장바구니 일괄 추가 임시버튼</a>
-<!-- <a href="javascript:buy_multi();">일괄 구매 임시버튼</a> -->
 
 	<div style="width: 700px; height:20px; border-bottom:1px solid black;"></div>
 	<c:forEach items="${productViewList}" var="pvo" varStatus="stat">
@@ -48,6 +47,9 @@
 		</div>
 	</c:forEach>
 </div>
+<div style="position:relative; float:right; right:100px;">
+	<input type="button" onclick="add_multi();" class="cartbtn"/>
+	<input type="button" onclick="go_top();" class="x"/>
+</div>
 </form>
-
 <%@ include file="../footer.jsp"%>

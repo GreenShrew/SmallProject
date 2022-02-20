@@ -20,8 +20,18 @@ function cartyn(bseq){
 function buyyn(bseq){
 	var a = confirm("상품을 바로 구매하시겠습니까?");
 	if(a){
-		location.href="bs.do?cmd=orderOne&bseq="+bseq+"&quantity=1";
-		return true;
+/*		var url = "bs.do?cmd=idBuyCheckForm&id="+document.getElementById('checking').value+"&bseq="+bseq+"&quantity=1";*/
+		if(document.getElementById('checking').value){
+			location.href="bs.do?cmd=cartInsert&bseq="+bseq+"&quantity=1";
+			return true;
+		}else{
+			if(confirm("비회원으로 구매하시겠습니까?")){
+				location.href="bs.do?cmd=nmemberBuyForm&bseq="+bseq+"&quantity=1";
+			}else{
+				alert("로그인 후 이용해주세요.");
+				return false;
+			}
+		}
 	}else{
 		return false;
 	}
@@ -42,8 +52,17 @@ function cartpyn(bseq){
 function buypyn(bseq){
 	var a = confirm("상품을 바로 구매하시겠습니까?");
 	if(a){
-		location.href="bs.do?cmd=orderOne&bseq="+bseq+"&quantity="+document.getElementById('quantity').value;
-		return true;
+		if(document.getElementById('checking').value){
+			location.href="bs.do?cmd=orderOne&bseq="+bseq+"&quantity="+document.getElementById('quantity').value;
+			return true;
+		}else{
+			if(confirm("비회원으로 구매하시겠습니까?")){
+				location.href="bs.do?cmd=nmemberBuyForm&bseq="+bseq+"&quantity="+document.getElementById('quantity').value;
+			}else{
+				alert("로그인 후 이용해주세요.");
+				return false;
+			}
+		}
 	}else{
 		return false;
 	}
@@ -54,19 +73,18 @@ function buypyn(bseq){
 
 function add_multi(){
 	var count = 0;
-	var checkbox = document.getElementById('checkbox');
+	var checkbox = document.getElementsByName('checkbox');
 
 	if(checkbox.length==undefined){
-		if(checkbox.checked==true){
-			count++;
-		}else{
-			for(var i=0; i<checkbox.length; i++){
-				if(checkbox[i].checked==true){
-					count++;
-				}
+		if(checkbox.checked==true) {count++;}
+	}else{
+		for(var i=0; i<checkbox.length; i++){
+			if(checkbox[i].checked==true){
+				count++;
 			}
 		}
 	}
+	
 	
 	if(count==0){
 		alert("장바구니에 추가할 항목을 선택해주세요.");
@@ -80,3 +98,40 @@ function add_multi(){
 		}
 	}
 }
+
+
+/*function cartyn(bseq){
+	var a = confirm("상품을 장바구니에 넣어두시겠습니까?");
+	if(a){
+		location.href="bs.do?cmd=cartInsert&bseq="+bseq+"&quantity=1";
+		return true;
+	}else{
+		return false;
+	}
+}  원본 임시저장*/
+
+
+
+
+
+
+/*function buyyn(bseq){
+	var a = confirm("상품을 바로 구매하시겠습니까?");
+	if(a){
+		location.href="bs.do?cmd=orderOne&bseq="+bseq+"&quantity=1";
+		return true;
+	}else{
+		return false;
+	}
+}*/
+
+
+/*function buypyn(bseq){
+	var a = confirm("상품을 바로 구매하시겠습니까?");
+	if(a){
+		location.href="bs.do?cmd=orderOne&bseq="+bseq+"&quantity="+document.getElementById('quantity').value;
+		return true;
+	}else{
+		return false;
+	}
+}*/

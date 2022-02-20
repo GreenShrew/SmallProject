@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.groupc.dto.CartVO;
+import com.groupc.dto.NOrderVO;
+import com.groupc.dto.NonMemberVO;
 import com.groupc.dto.OrderVO;
 import com.groupc.dto.ProductVO;
 import com.groupc.util.Dbm;
@@ -218,6 +220,86 @@ public class OrderDao {
 		} finally { Dbm.close(con, pstmt, rs);
 		}
 		return list;
+	}
+
+	public int insertnOrder(ProductVO pvo, NonMemberVO nmvo, int quantity) {
+		int od_pass = 0;
+		
+		con = Dbm.getConnection();
+		
+		// nonmember 테이블에 먼저 데이터를 넣고 nm_orders 테이블에 데이터를 넣는다.
+		String sql = "insert into nonmember(phone, od_pass, name, email, zip_num, address) "
+				+ " values(?, od_pass_seq.nextVal, ?, ?, ?, ?)";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, nmvo.getPhone());
+			pstmt.setString(2, nmvo.getName());
+			pstmt.setString(3, nmvo.getEmail());
+			pstmt.setString(4, nmvo.getZip_num());
+			pstmt.setString(5, nmvo.getAddress());
+			pstmt.executeUpdate();
+			pstmt.close();
+			
+			sql = "insert into nm_orders(oseq, od_pass) values(nm_orders_seq.nextVal, od_pass_seq.currVal)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeUpdate();
+			pstmt.close();
+
+			sql = "select max(od_pass) as max_od_pass from nm_orders";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				od_pass = rs.getInt("max_od_pass");
+			}
+			pstmt.close();
+			
+			sql = "insert into nm_order_detail(odseq, oseq, od_pass, bseq, quantity) values(order_detail_seq.nextVal, nm_orders_seq.currVal, od_pass_seq.currVal, ?, ?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, pvo.getBseq());
+			pstmt.setInt(2, quantity);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Dbm.close(con, pstmt, rs);
+		}
+		
+		return od_pass;
+	}
+
+	public NOrderVO nOrderByOd_Pass(String od_pass) {
+		NOrderVO novo = null;
+		String sql = "select * from non_order_view where od_pass=?";
+		
+		con = Dbm.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, od_pass);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+			    novo = new NOrderVO();
+				novo.setOdseq(rs.getInt("odseq"));
+				novo.setOseq(rs.getInt("oseq"));
+				novo.setOd_pass(rs.getString("od_pass"));
+				novo.setIndate(rs.getTimestamp("indate"));
+				novo.setNmname(rs.getString("nmname"));
+				novo.setZip_num(rs.getString("zip_num"));
+				novo.setAddress(rs.getString("address"));
+				novo.setPhone(rs.getString("phone"));
+				novo.setBseq(rs.getInt("bseq"));
+				novo.setBname(rs.getString("bname"));
+				novo.setPrice(rs.getInt("price"));
+				novo.setQuantity(rs.getInt("quantity"));
+				novo.setResult(rs.getString("result"));
+				novo.setEmail(rs.getString("email"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			Dbm.close(con, pstmt, rs);
+		}
+		return novo;
 	}
 }
 

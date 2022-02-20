@@ -2,4 +2,6 @@
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="com.groupc.dao.MemberDao"/>
     <fullyQualifiedTypeName name="java.net.URLEncoder"/>
+    <fullyQualifiedTypeName name="com.groupc.dao.ProductDao"/>
+    <fullyQualifiedTypeName name="com.groupc.dao.OrderDao"/>
 </qualifiedTypeNameHistroy>

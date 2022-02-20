@@ -23,8 +23,8 @@ SELECT * FROM nm_orders;
 SELECT * FROM m_orders;
 SELECT * FROM nm_orders;
 SELECT * FROM qna;
-
-
+select * from NM_ORDER_DETAIL;
+select * from orders;
 
 DROP TABLE member CASCADE constraints;
 CREATE TABLE member(
@@ -45,8 +45,8 @@ SELECT * FROM member;
 
 DROP TABLE nonmember CASCADE constraints;
 CREATE TABLE nonmember(
-	phone VARCHAR2(20) NOT NULL PRIMARY KEY,
-	od_pass VARCHAR2(20) NOT NULL,		-- 비회원 주문번호
+	phone VARCHAR2(20) NOT NULL,
+	od_pass VARCHAR2(20) NOT NULL PRIMARY KEY,	-- 비회원 주문번호, 시퀀스
 	name VARCHAR2(20),
 	email VARCHAR2(20),
 	zip_num VARCHAR2(10),	-- 비회원 우편번호
@@ -54,8 +54,10 @@ CREATE TABLE nonmember(
 );
 SELECT * FROM nonmember;
 
+CREATE SEQUENCE od_pass_seq INCREMENT BY 1 START WITH 100000 NOCACHE;
+SELECT od_pass_seq.currVal, od_pass_seq.nextVal FROM dual;
 
-DROP TABLE bookproduct CASCADE constraints;
+/* DROP TABLE bookproduct CASCADE constraints;
 CREATE TABLE bookproduct(
 	bseq NUMBER(5) NOT NULL PRIMARY KEY,	-- 책번호
 	bname VARCHAR2(100) NOT NULL,		-- 책이름
@@ -72,7 +74,25 @@ CREATE TABLE bookproduct(
 	indate DATE DEFAULT sysdate    -- 등록일
 );
 SELECT * FROM bookproduct;
-
+*/
+-- 최종 bookproduct 테이블
+DROP TABLE bookproduct CASCADE constraints;
+CREATE TABLE bookproduct(
+	bseq NUMBER(5) NOT NULL PRIMARY KEY,
+	bname VARCHAR2(100) NOT NULL,	
+	writer VARCHAR2(100), 
+	publisher VARCHAR2(100), 
+	byear VARCHAR2(40),
+	price NUMBER(10),
+	content VARCHAR2(4000),	
+	kind CHAR(1),	
+	genre VARCHAR2(60), 
+	image VARCHAR2(50),	
+	useyn CHAR(1) DEFAULT 'y',  
+	bestyn CHAR(1) DEFAULT 'n',
+	indate DATE DEFAULT sysdate 
+);
+SELECT * FROM bookproduct;
 DROP SEQUENCE bookproduct_seq;
 CREATE SEQUENCE bookproduct_seq INCREMENT BY 1 START WITH 1 NOCACHE;
 SELECT bookproduct_seq.currVal, bookproduct_seq.nextVal FROM dual;
@@ -84,7 +104,8 @@ CREATE TABLE review (
 	bseq NUMBER(5) NOT NULL REFERENCES bookproduct(bseq),
 	id VARCHAR2(20) NOT NULL REFERENCES member(id),
 	content VARCHAR2(1000),
-	score  CHAR(1) DEFAULT '3'
+	score  CHAR(1) DEFAULT '3',
+	indate DATE DEFAULT sysdate 
 );
 SELECT * FROM review;
 
@@ -135,7 +156,7 @@ SELECT m_orders_seq.currVal, m_orders_seq.nextVal FROM dual;
 DROP TABLE nm_orders CASCADE CONSTRAINTS;
 CREATE TABLE nm_orders(
 	oseq NUMBER(10) PRIMARY KEY,
-	phone VARCHAR2(20) REFERENCES nonmember(phone),
+	od_pass VARCHAR2(20) REFERENCES nonmember(od_pass),
 	indate DATE DEFAULT sysdate
 );
 SELECT * FROM nm_orders;
@@ -164,6 +185,7 @@ DROP TABLE nm_order_detail CASCADE CONSTRAINTS;
 CREATE TABLE nm_order_detail(
 	odseq NUMBER(10) PRIMARY KEY,		-- 주문 상세번호
 	oseq NUMBER(10) REFERENCES nm_orders(oseq),	-- 주문번호
+	od_pass VARCHAR2(20) REFERENCES nonmember(od_pass),
 	bseq NUMBER(5) REFERENCES bookproduct(bseq),	-- 상품번호
 	result CHAR(1) DEFAULT '1',	-- 주문 처리 상황 1:미처리 2:처리 
 	quantity NUMBER(5) DEFAULT 1		-- 주문 수량

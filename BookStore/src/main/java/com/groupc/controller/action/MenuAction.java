@@ -40,7 +40,7 @@ public class MenuAction implements Action {
 			request.setAttribute("globalviewList", globalviewList);
 			url = "product/globalProduct.jsp";
 		}else if(kind.equals("5")) {
-			url = "event.jsp";
+			url = "product/event.jsp";
 		}
 		
 		request.getRequestDispatcher(url).forward(request, response);
