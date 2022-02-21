@@ -5,14 +5,16 @@ import java.sql.Timestamp;
 public class ProductVO {
 	private Integer bseq;
 	private String bname;
+	private String writer;
+	private String byear;
 	private String kind;
 	private Integer price;
-	private Integer genre;
 	private String publisher;
+	private String genre;
 	private String content;
 	private String image;
 	private String useyn;
-	private String bsetyn;
+	private String bestyn;
 	private Timestamp indate;
 	public Integer getBseq() {
 		return bseq;
@@ -26,6 +28,18 @@ public class ProductVO {
 	public void setBname(String bname) {
 		this.bname = bname;
 	}
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+	public String getByear() {
+		return byear;
+	}
+	public void setByear(String byear) {
+		this.byear = byear;
+	}
 	public String getKind() {
 		return kind;
 	}
@@ -38,17 +52,17 @@ public class ProductVO {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
-	public Integer getGenre() {
-		return genre;
-	}
-	public void setGenre(Integer genre) {
-		this.genre = genre;
-	}
 	public String getPublisher() {
 		return publisher;
 	}
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
+	}
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String string) {
+		this.genre = string;
 	}
 	public String getContent() {
 		return content;
@@ -68,11 +82,11 @@ public class ProductVO {
 	public void setUseyn(String useyn) {
 		this.useyn = useyn;
 	}
-	public String getBsetyn() {
-		return bsetyn;
+	public String getBestyn() {
+		return bestyn;
 	}
-	public void setBsetyn(String bsetyn) {
-		this.bsetyn = bsetyn;
+	public void setBestyn(String bsetyn) {
+		this.bestyn = bsetyn;
 	}
 	public Timestamp getIndate() {
 		return indate;
@@ -80,5 +94,35 @@ public class ProductVO {
 	public void setIndate(Timestamp indate) {
 		this.indate = indate;
 	}
+	
+	private int rseq;
+	private String rcontent;
+	private String score;
+	private String rid;
+	public int getRseq() {
+		return rseq;
+	}
+	public void setRseq(int rseq) {
+		this.rseq = rseq;
+	}
+	public String getRcontent() {
+		return rcontent;
+	}
+	public void setRcontent(String rcontent) {
+		this.rcontent = rcontent;
+	}
+	public String getScore() {
+		return score;
+	}
+	public void setScore(String score) {
+		this.score = score;
+	}
+	public String getRid() {
+		return rid;
+	}
+	public void setRid(String rid) {
+		this.rid = rid;
+	}
+	
 	
 }

@@ -7,13 +7,15 @@ FROM orders o, order_detail d, member m, bookproduct b
 WHERE o.oseq = d.oseq AND o.id = m.id AND d.bseq = b.bseq;
 select * from ORDER_VIEW;
 
+drop view non_order_view;
 CREATE OR REPLACE VIEW non_order_view
 AS
-SELECT d.odseq, o.oseq, o.indate, o.id, 
+SELECT d.odseq, o.oseq, o.indate, nm.od_pass,
 			nm.name AS nmname, nm.zip_num, nm.address, nm.phone, 
 			d.bseq, b.bname AS bname, b.price, d.quantity, d.result
-FROM orders o, order_detail d, nonmember nm, bookproduct b
-WHERE o.oseq = d.oseq AND o.phone = nm.phone AND d.bseq = b.bseq;
+FROM nm_orders o, nm_order_detail d, nonmember nm, bookproduct b
+WHERE o.oseq = d.oseq AND o.od_pass = nm.od_pass AND d.bseq = b.bseq;
+select * from non_order_view;
 
 
 CREATE OR REPLACE VIEW cart_view 

@@ -9,7 +9,8 @@ public class QnaVO {
 	private String reply;
 	private String id;
 	private String rep;
-	private Timestamp date;
+	private Timestamp indate;
+	
 	public Integer getQseq() {
 		return qseq;
 	}
@@ -46,11 +47,11 @@ public class QnaVO {
 	public void setRep(String rep) {
 		this.rep = rep;
 	}
-	public Timestamp getDate() {
-		return date;
+	public Timestamp getIndate() {
+		return indate;
 	}
-	public void setDate(Timestamp date) {
-		this.date = date;
+	public void setIndate(Timestamp indate) {
+		this.indate = indate;
 	}
 	
 	
