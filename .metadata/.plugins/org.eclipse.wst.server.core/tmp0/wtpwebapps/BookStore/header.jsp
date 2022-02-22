@@ -10,9 +10,12 @@
 <title>BookStore</title>
 <link rel="stylesheet" href="css/book.css">
 <script src="script/jquery-3.6.0.js"></script>
-<script src="css/test.js"></script>
+<script src="script/main.js"></script>
+<script src="product/product.js"></script>
 <script src="member/member.js"></script>
 <script src="mypage/mypage.js"></script>
+<script src="nonmember/nmember.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <div id="wrap">
@@ -20,12 +23,22 @@
 		<div>
 			<nav id="top_menu">
 				<ul>
-					<li><a href="bs.do?cmd=qna" style="border:0px;">고객센터</a></li>
-					<li><a href="bs.do?cmd=orderView" style="width:80px;">주문/배송조회</a></li>
-					<li><a href="bs.do?cmd=cart">장바구니</a></li>
-					<li><a href="bs.do?cmd=joinForm">회원가입</a></li>
-					<li><a href="bs.do?cmd=loginForm">로그인</a></li>
+					<li><a href="bs.do?cmd=qnaList" style="border:0px;">고객센터</a></li>
+					<li><a href="bs.do?cmd=orderAll" style="width:80px;">주문/배송조회</a></li>
+					<li><a href="bs.do?cmd=cartList">장바구니</a></li>
 					<li><a href="bs.do?cmd=mypage">마이페이지</a></li>
+					<c:choose>
+						<c:when test="${empty loginUser}">
+							<li><a href="bs.do?cmd=contract">회원가입</a></li>
+							<li><a href="bs.do?cmd=loginForm">로그인</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="bs.do?cmd=logout">LOGOUT</a></li>
+							<li><a href="bs.do?cmd=editForm">정보수정</a></li>
+							<li><a href="#" style="text-decoration:none; width:80px;">${loginUser.name}(${loginUser.id})</a></li>
+							<input type="hidden" id="checking" value="${loginUser.id}">
+						</c:otherwise>
+					</c:choose>
 				</ul>
 			</nav>
 		</div>
@@ -34,31 +47,9 @@
 		<!-- 검색창 -->
 		<div id="top">
 			<div id="logo">
-				<a href="bs.do?cmd=index"><img alt="" src="images/main/logo.png"></a>
+				<a href="bs.do?cmd=index"><img alt="" src="images/main/logo.png" style="width:248px; height:100%;"></a>
 			</div>
 			<div id="search">
-			<!--
-				<div id="drop">
-					<a href="#" class="dbutton">통합검색</a>
-					<ul>
-						<li><a href="#">통합검색</a></li>
-						<li><a href="#">국내도서</a></li>
-						<li><a href="#">외국도서</a></li>
-						<li><a href="#">리뷰</a></li>
-					</ul>
-				</div>  -->
-				
-				<!-- 
-				<div class="dropdown">
-			      <span class="dropbtn">drop down</span>
-			      <div class="dropdown-content">
-			        <a href="#">link 1</a>
-			        <a href="#">link 2</a>
-			        <a href="#">link 3</a>
-			      </div>
-			    </div>
-			     -->
-			     
 			    <div class="day_box">
 					<select id="day_font">
 					   <option>통합검색</option>
@@ -67,13 +58,14 @@
 					   <option>리뷰</option>
 					</select>
 					<input type="text" id="searchbox" placeholder="검색어입력"/>
-					<input type="button" id="button1" onClick=""/>
+					<input type="button" id="button1" onClick="searching()"/>
 				</div>	
 			</div>
 		</div>
 		<br><br>
+		<br><br>
 		
-		<div>
+		<div id="main_menu">
 			<nav id="index_menu">
 				<ul class="menu">
 					<li><a href="bs.do?cmd=menu&kind=1">베스트도서</a></li>

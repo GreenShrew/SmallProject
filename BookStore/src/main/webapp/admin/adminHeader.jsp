@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="admin/css/admin.css">
 <script src="script/jquery-3.6.0.js"></script>
 <script src="admin/script/admin_script.js"></script>
+<script src="admin/qna/qna.js"></script>
 </head>
 <body>
 

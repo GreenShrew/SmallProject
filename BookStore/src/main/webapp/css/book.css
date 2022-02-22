@@ -114,8 +114,21 @@ outline:none; font-size: 120%; color:green;}
 font-size:150%; font-weight:bold;}
 
 /* mypage */
-#sidemenu{float:left; width:150px; border:1px solid black;}
+#sidemenu{position:relative;float:left; top:30px; width:150px; border:1px solid black;}
+#sidemenu div{position:relative; float:left; width:120px; height:40px; padding-left:20px; font-size:120%; line-height:30px; }
+#sidemenu ul{position:relative; width:100px; height:1px; padding:0px 0px 0px 10px; visibility:hidden;}
+#sidemenu ul li{width:100px;height:1px; list-style:none; padding:2px 0px 2px 2px; position:relative;font-size:70%;}
+#sidemenu ul li a{text-decoration:none; color:black;}
+#sidemenu ul li a:hover{text-decoration:underline; color:green;}
 #sub_img{text-align:center;}
+
+/* mypage 220220 */
+#bodyFrame{position:relative;top:50px;left:160px;width:700px;height:700px;}
+.mypageBox{position:absolute; width:300px; height:300px; margin:0px 10px 10px 10px; border:1px solid black;
+padding-left:20px;background-color:white; }
+.mypageBox div{padding:14px; font-size:130%;}
+.mypageBox a{text-decoration:none; color:black;}
+.mypageBox a:hover{text-decoration:underline; color:green;}
 
 
 /* product */
@@ -180,6 +193,43 @@ line-height:35px; text-align:center; float:left; text-decoration:none; border:1p
 .list_in input[type=text]{width:30px; height:20px; line-height:20px; text-align:center;}
 
 
+/* productDetail css 220216 */
+.detailbox{position:relative; float:left; width:700px; /* border:1px solid black; */}
+
+.pdLeft{position:relative; float:left;width:198px; height:300px; border:1px solid black; overflow:hidden;}
+.pdRight{position:relative; float:left;width:300px; height:300px; margin-left:30px; }
+.pdRightList {position:relative;height:43px;line-height:43px;/*  border:1px solid black;  */}
+.pdRightList div {position:relative;float:left;}
+.pdRightreview {position:relative; float:left; margin-right:10px;}
+
+.pdbott{position:relative; float:left;width:700px; /* border:1px solid black; */}
+.pdbott>ol{list-style:none; /* border:1px solid black; */ padding:0px; }
+
+.pdbott>ol>li>a{position:relative; float:left; width:230px;  background-color:green; color: white;
+border:1px solid black; margin:0 auto; padding:10px 0 10px 0; text-decoration:none; text-align:center;}
+.pdbott>ol>li>a:hover{text-decoration:underline; font-weight:bold;}
+
+ .pdcontent{padding:50px 0px 20px 20px;}
+
+#radio_score>input{float:left; margin:0 2px 0 2px;}
+.starimg{float:left;width:14px; height:14px; background-image:url(../images/main/ico_star.png); 
+background-position:0px -20px; overflow:hidden; line-height:20px;}
+
+#review_content{outline: none;resize: none;background:none;}
+
+.pd_review_btn{padding:37px 30px 38px 30px; background-color:green; color:white;
+text-decoration:none;position:relative;float:right; margin-right:30px;}
+.pd_review_btn:hover{text-decoration:underline; font-weight:bold;}
+
+
+/* productDetail reviewbox 220216 */
+#reviewbox>ul{list-style:none; margin:10px; }
+#reviewbox>ul>li{float:left;}
+#reviewbox>textarea{padding:10px 20px 10px 60px; resize: none;outline: none; border:0px;}
+.pdto_login{padding:10px 20px 10px 20px; background-color:green; color:white;
+border:1px solid black; margin-right:30px;float:right;}
+.pdto_login:hover{text-decoration:underline;}
+
 
 /* find id, pw */
 #findHeader{position:relative; width:100%; height:100px; text-align:center;}
@@ -224,7 +274,7 @@ a:visited {text-decoration: none;}
 #joinInfo{position:relative; width:650px; height:auto; display:inline-block;}
 .warning{position:relative; width:640px; height:50px; text-align:left; padding-left:10px; font-size:14px; line-height:25px; margin-top:5px;}
 
-td{padding:5px; height:35px;}
+.mInfo td{padding:5px; height:35px;}
 .mInfo{position:relative; text-align:left; border-collapse:collapse; border-color:#C6C6C6; background:white; margin-top:5px;}
 .mInfo:last-child{margin-top:15px;}
 
@@ -248,6 +298,31 @@ footer #serviceimg{float:right; margin:10px 0 0 0;}
 .con_check{position:relative; top:-4px;color:red; font-weight:bold; font-size:14px;}
 #agree{position:relative; width:720px; text-align:left; display: inline-block; font-size:17px; margin-bottom:5px;}
 
+
+/* 장바구니 */
+#cartList {border-collapse: collapse;	border-top: 1px solid #DDDEDB;	border-bottom: 1px solid #DDDEDB; 	
+margin-bottom: 10px; font-size:10pt;}
+#cartList td {border-bottom: 1px solid #DDDEDB;	text-align: center;}	
+#cartList th {border-bottom: 1px solid #DDDEDB;	text-align: center; background-color:#FFFFFF;}	
+
+form #buttons1 {	margin: 20px 0 0 0; }
+form  #cancel{height: 30px;	width: 70px; 	border: 1px solid #666; border-radius: 5px; 
+font-size: 14px; background-repeat: repeat-x; background-position: center center;	color:black;margin: 0 0 0 20px;  }
+form  #submit{height: 30px;	width: 70px; 	border: 1px solid #666; border-radius: 5px; 
+font-size: 14px; background-repeat: repeat-x; background-position: center center;	color: #fff; background-color:blue;	margin: 0 0 0 20px;  }
+form #delete{height: 30px;	width: 70px; 	border: 1px solid #666; border-radius: 5px; 
+font-size: 14px; background-repeat: repeat-x; background-position: center center;	color:black;margin: 0 0 0 20px;  }
+
+
+/* 장바구니 css 추가작업 */
+#cartbtn2{margin:10px 0;}
+#cartbtn2 .cancel{height: 30px;	width: 100px;  border: 1px solid #43A22F; border-radius: 5px; 
+font-size: 14px; background-repeat: repeat-x; background-position: center center; color: #fff; background-color:#43A22F; margin: 0 0 0 20px; }
+#cartbtn2 .submit{height: 30px;	width: 100px;  border: 1px solid #fff; border-radius: 5px; 
+font-size: 14px; background-repeat: repeat-x; background-position: center center; color: black; background-color:#fff; margin: 0 0 0 20px;}
+
+#cartList a:link, #cartList a:visited{color:black;}
+#cartList a:hover{color:#F90; transition-duration:1s;}
 
 
 
@@ -350,3 +425,39 @@ font-size: 14px; background-repeat: repeat-x; background-position: center center
 
 /* mypage order */
 #cartList th, #cartList td{text-align:center;}
+
+#orderList {border-collapse: collapse;	border-top: 1px solid #DDDEDB;	border-bottom: 1px solid #DDDEDB;
+margin-bottom: 10px; font-size:10pt;}
+#orderList td {border-bottom: 1px solid #DDDEDB;	text-align: center; height:50px;}	
+#orderList th {border-bottom: 1px solid #DDDEDB;	text-align: center; background-color:#FFFFFF; height:50px;}
+
+
+
+
+
+
+
+
+/* view - review, qna */
+
+#View2{float:right; margin-bottom:10%; border-collapse: collapse; border-top: 1px solid #DDDEDB;	border-bottom: 1px solid #DDDEDB; width: 73%;	
+margin-bottom: 30px; font-size:10pt; font-family:Verdana;}
+#View2 td { border-bottom: 1px solid #DDDEDB; text-align: center;}	
+#View2 th { border-bottom: 1px solid #DDDEDB; text-align: center; background-color:#FFFFFF;}	
+
+form #buttons5{margin: 20px 0 0 0; }
+form  #cancel{height: 30px;	width: 100px;  border: 1px solid #43A22F; border-radius: 5px; 
+font-size: 14px; background-repeat: repeat-x; background-position: center center; color: #fff; background-color:#43A22F; margin: 0 0 0 20px;  }
+form  #submit{height: 30px;	width: 100px;  border: 1px solid #fff; border-radius: 5px; 
+font-size: 14px; background-repeat: repeat-x; background-position: center center; color: black; background-color:#fff; margin: 0 0 0 20px;  }
+
+
+
+
+/* withdrawal */
+#joinInfoFlex{position:relative; width:800px; height:auto; display:flex; justify-content:center; align-items:center;
+flex-wrap: nowrap; text-align: center;}
+.withdrawalbtn{height: 50px; width: 150px; border: 1px solid #43A22F; border-radius: 5px; 
+font-size: 14px; background-repeat: repeat-x; background-position: center center; color: #fff; background-color:#43A22F;}
+
+

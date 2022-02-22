@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import com.groupc.dto.ProductVO;
 import com.groupc.util.Dbm;
+import com.groupc.util.Paging;
 
 public class ProductDao {
 	
@@ -371,9 +372,155 @@ public class ProductDao {
 		return pvo;
 	}
 	
-
+	public int getProductCount(String kind, String genre) {
+		int count = 0;
+		String sql = "SELECT COUNT(*) AS cnt FROM bookproduct WHERE "
+				+ "kind LIKE '%'||?||'%' AND genre LIKE '%'||?||'%'";
+			
+		con = Dbm.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, kind);
+			pstmt.setString(2, genre);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			Dbm.close(con, pstmt, rs);
+		}
+		return count;
+	}
 	
-
+	public ArrayList<ProductVO> getViewList(Paging paging, String genre) {
+		ArrayList<ProductVO> productList = new ArrayList<ProductVO>();
+		String sql = "";
+		// paging 220218
+		con = Dbm.getConnection();
+		try {
+			sql = "SELECT * FROM ("
+					+ " SELECT * FROM ("
+					+ " SELECT rownum AS rn, b.* FROM "
+					+ " ((SELECT * FROM bookproduct WHERE genre LIKE '%'||?||'%' ORDER BY bseq DESC) b)"
+					+ " ) WHERE rn >= ? "
+					+ " ) WHERE rn <= ? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, genre);
+			pstmt.setInt(2, paging.getStartNum());
+			pstmt.setInt(3, paging.getEndNum());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ProductVO pvo = new ProductVO();
+				pvo.setBseq(rs.getInt("bseq"));
+				pvo.setBname(rs.getString("bname"));
+				pvo.setWriter(rs.getString("writer"));
+				pvo.setByear(rs.getString("byear"));
+				pvo.setKind(rs.getString("kind"));
+				pvo.setPrice(rs.getInt("price"));
+				pvo.setPublisher(rs.getString("publisher"));
+				pvo.setGenre(rs.getString("genre"));
+				pvo.setContent(rs.getString("content"));
+				pvo.setImage(rs.getString("image"));
+				pvo.setUseyn(rs.getString("useyn"));
+				pvo.setBestyn(rs.getString("bestyn"));
+				pvo.setIndate(rs.getTimestamp("indate"));
+				productList.add(pvo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			Dbm.close(con, pstmt, rs);
+		}
+		return productList;
+	}
 	
+	
+	public ArrayList<ProductVO> getLocalList(Paging paging, String kind) {
+		ArrayList<ProductVO> localviewList = new ArrayList<ProductVO>();
+//		String sql = "SELECT * FROM localviewList";
+		// paging
+		String sql = "SELECT * FROM ("
+				+ " SELECT * FROM ("
+				+ " SELECT rownum AS rn, b.* FROM "
+				+ " ((SELECT * FROM localviewList WHERE kind LIKE '%'||?||'%' ORDER BY bseq DESC) b)"
+				+ " ) WHERE rn >= ? "
+				+ " ) WHERE rn <= ? ";
+		
+		con = Dbm.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, kind);
+			pstmt.setInt(2, paging.getStartNum());
+			pstmt.setInt(3, paging.getEndNum());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ProductVO pvo = new ProductVO();
+				pvo.setBseq(rs.getInt("bseq"));
+				pvo.setBname(rs.getString("bname"));
+				pvo.setWriter(rs.getString("writer"));
+				pvo.setByear(rs.getString("byear"));
+				pvo.setKind(rs.getString("kind"));
+				pvo.setPrice(rs.getInt("price"));
+				pvo.setPublisher(rs.getString("publisher"));
+				pvo.setGenre(rs.getString("genre"));
+				pvo.setContent(rs.getString("content"));
+				pvo.setImage(rs.getString("image"));
+				pvo.setUseyn(rs.getString("useyn"));
+				pvo.setBestyn(rs.getString("bestyn"));
+				pvo.setIndate(rs.getTimestamp("indate"));
+				localviewList.add(pvo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			Dbm.close(con, pstmt, rs);
+		}
+		return localviewList;
+	}
+	
+	public ArrayList<ProductVO> getGlobalList(Paging paging, String kind) {
+		ArrayList<ProductVO> globalviewList = new ArrayList<ProductVO>();
+//		String sql = "SELECT * FROM globalviewList";
+		// paging
+		String sql = "SELECT * FROM ("
+				+ " SELECT * FROM ("
+				+ " SELECT rownum AS rn, b.* FROM "
+				+ " ((SELECT * FROM globalviewList WHERE kind LIKE '%'||?||'%' ORDER BY bseq DESC) b)"
+				+ " ) WHERE rn >= ? "
+				+ " ) WHERE rn <= ? ";
+		
+		con = Dbm.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, kind);
+			pstmt.setInt(2, paging.getStartNum());
+			pstmt.setInt(3, paging.getEndNum());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ProductVO pvo = new ProductVO();
+				pvo.setBseq(rs.getInt("bseq"));
+				pvo.setBname(rs.getString("bname"));
+				pvo.setWriter(rs.getString("writer"));
+				pvo.setByear(rs.getString("byear"));
+				pvo.setKind(rs.getString("kind"));
+				pvo.setPrice(rs.getInt("price"));
+				pvo.setPublisher(rs.getString("publisher"));
+				pvo.setGenre(rs.getString("genre"));
+				pvo.setContent(rs.getString("content"));
+				pvo.setImage(rs.getString("image"));
+				pvo.setUseyn(rs.getString("useyn"));
+				pvo.setBestyn(rs.getString("bestyn"));
+				pvo.setIndate(rs.getTimestamp("indate"));
+				globalviewList.add(pvo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			Dbm.close(con, pstmt, rs);
+		}
+		return globalviewList;
+	}
 
 }

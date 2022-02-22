@@ -170,4 +170,20 @@ public class MemberDao {
 		}
 		return mvo;
 	}
+
+
+	public void withdrawal(String id) {
+		String sql = "delete from member where id=?";
+		con = Dbm.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			Dbm.close(con, pstmt, rs);
+		}
+		
+	}
 }

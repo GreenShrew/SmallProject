@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="../adminHeader.jsp" %>
+
+<div id="adminBox" style="width:1100px;">
+	<h3>OrderList</h3>
+	<form name="form" method="post">
+		<input type="button" name="button_search" value="전체보기" onClick="go_ListTotal('adminOrderList')">
+		<input type="text" name="key" value="${key}" placeholder="주문번호 검색">
+		<input type="button" name="button_search" value="검색" onClick="">
+	</form>
+	
+	<table id="productList" style="width:1000px;">
+		<tr>
+			<th>No.</th>
+			<th>책</th>
+			<th>수량</th>
+			<th>총 결제 금액</th>
+			<th>주문 날짜</th>
+		</tr>
+		<c:forEach items="${orderList }" var="ovo">
+			<tr>
+				<td>${ovo.qdseq }</td>
+				<td><a href="bs.do?cmd=adminProductDetail&bseq=${ovo.bseq }">${ovo.bname }</a></td>
+				<td>${ovo.quantity }</td>
+				<td><fmt:formatNumber value="${ovo.price*ovo.quantity}" type="currency"/></td>
+				<td><fmt:formatDate value="${ovo.indate }" type="date"/></td>
+				<td><input type="button" value="수정하기" onClick="go_update_product(${pvo.bseq})"></td>
+				<td><input type="button" value="삭제하기" onClick="go_delete_product(${pvo.bseq})"></td>
+			</tr>
+		</c:forEach>
+	</table>
+
+	<jsp:include page="/admin/paging/admin_paging.jsp">
+	 	<jsp:param name="cmd" value="bs.do?cmd=adminProductList" />
+	 </jsp:include>
+</div>
+
+
+<%@ include file="../adminFooter.jsp" %>

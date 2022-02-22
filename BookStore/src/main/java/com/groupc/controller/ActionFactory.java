@@ -43,12 +43,37 @@ import com.groupc.controller.action.QnaViewAction;
 import com.groupc.controller.action.QnaWriteAction;
 import com.groupc.controller.action.QnaWriteFormAction;
 import com.groupc.controller.action.TrackingAction;
+import com.groupc.controller.action.WithdrawalAction;
 import com.groupc.controller.action.WriteReviewAction;
 import com.groupc.controller.action.joinFormAction;
 import com.groupc.controller.action.nonmemberLoginAction;
 import com.groupc.controller.admin_action.AdminAction;
 import com.groupc.controller.admin_action.AdminLoginAction;
 import com.groupc.controller.admin_action.AdminLogoutAction;
+import com.groupc.controller.admin_action.AdminMainAction;
+import com.groupc.controller.admin_action.AdminMemberListAction;
+import com.groupc.controller.admin_action.AdminMemberUpdateAction;
+import com.groupc.controller.admin_action.AdminMemberUpdateFormAction;
+import com.groupc.controller.admin_action.AdminMemberUpdateUseynAction;
+import com.groupc.controller.admin_action.AdminMemberUseNListAction;
+import com.groupc.controller.admin_action.AdminNoticeDetailAction;
+import com.groupc.controller.admin_action.AdminNoticeListAction;
+import com.groupc.controller.admin_action.AdminNoticeWriteAction;
+import com.groupc.controller.admin_action.AdminNoticeWriteFormAction;
+import com.groupc.controller.admin_action.AdminOrderListAction;
+import com.groupc.controller.admin_action.AdminProductBestListAction;
+import com.groupc.controller.admin_action.AdminProductDeleteAction;
+import com.groupc.controller.admin_action.AdminProductDetailAction;
+import com.groupc.controller.admin_action.AdminProductListAction;
+import com.groupc.controller.admin_action.AdminProductUpdateAction;
+import com.groupc.controller.admin_action.AdminProductUpdateBestynAction;
+import com.groupc.controller.admin_action.AdminProductUpdateFormAction;
+import com.groupc.controller.admin_action.AdminProductUploadAction;
+import com.groupc.controller.admin_action.AdminProductUploadFormAction;
+import com.groupc.controller.admin_action.AdminQnaDetailAction;
+import com.groupc.controller.admin_action.AdminQnaListAction;
+import com.groupc.controller.admin_action.AdminQnaRepSaveAction;
+import com.groupc.controller.admin_action.ChangeOrderAction;
 
 public class ActionFactory {
 	private ActionFactory () {}
@@ -126,10 +151,7 @@ public class ActionFactory {
 //		else if(cmd.equals("searching"))ac = new SearchingAction(); // index.jsp searching -> view product
 		else if(cmd.equals("writeReview")) ac = new WriteReviewAction();
 		
-		// admin
-		else if(cmd.equals("admin"))ac = new AdminAction();
-		else if(cmd.equals("adminLogin"))ac = new AdminLoginAction();
-		else if(cmd.equals("adminLogout"))ac = new AdminLogoutAction();
+		
 		
 		// edit
 		else if(cmd.equals("editForm"))ac = new EditFormAction();
@@ -156,6 +178,49 @@ public class ActionFactory {
 		else if(cmd.equals("cancelOrder"))ac = new CancelOrderAction();
 		// cancelNOrder(비회원 주문 취소)
 		else if(cmd.equals("cancelNOrder"))ac = new CancelNOrderAction();
+		
+		
+		// withdrawal(회원탈퇴)
+		else if(cmd.equals("withdrawal"))ac = new WithdrawalAction();
+		
+		// admin
+		else if(cmd.equals("admin"))ac = new AdminAction();
+		else if(cmd.equals("adminLogin"))ac = new AdminLoginAction();
+		else if(cmd.equals("adminLogout"))ac = new AdminLogoutAction();
+		
+		// 220221
+		else if(cmd.equals("adminMain"))ac = new AdminMainAction();
+		else if(cmd.equals("adminProductList"))ac = new AdminProductListAction();
+		else if(cmd.equals("adminProductDetail"))ac = new AdminProductDetailAction();
+		else if(cmd.equals("adminProductUpdateForm"))ac = new AdminProductUpdateFormAction();
+		else if(cmd.equals("adminProductUpdate"))ac = new AdminProductUpdateAction();
+		else if(cmd.equals("adminProductUploadForm"))ac = new AdminProductUploadFormAction();
+		else if(cmd.equals("adminProductUpload"))ac = new AdminProductUploadAction();
+		else if(cmd.equals("adminProductBestList"))ac = new AdminProductBestListAction();
+		else if(cmd.equals("adminProductDelete"))ac = new AdminProductDeleteAction();
+		else if(cmd.equals("adminQnaList")) ac = new AdminQnaListAction();
+		else if(cmd.equals("adminQnaDetail")) ac = new AdminQnaDetailAction();
+		else if(cmd.equals("adminQnaRepSave")) ac = new AdminQnaRepSaveAction();
+		// 220222
+		else if(cmd.equals("adminProductUpdateBestyn"))ac = new AdminProductUpdateBestynAction();
+		else if(cmd.equals("adminMemberList"))ac = new AdminMemberListAction();
+		else if(cmd.equals("adminMemberUseNList"))ac = new AdminMemberUseNListAction();
+		else if(cmd.equals("adminMemberUpdateUseyn"))ac = new AdminMemberUpdateUseynAction();
+		else if(cmd.equals("adminMemberUpdateForm"))ac = new AdminMemberUpdateFormAction();
+		else if(cmd.equals("adminMemberUpdate"))ac = new AdminMemberUpdateAction();
+		
+
+		else if(cmd.equals("adminNoticeList")) ac = new AdminNoticeListAction();
+		else if(cmd.equals("adminNoticeDetail")) ac = new AdminNoticeDetailAction();
+		else if(cmd.equals("adminNoticeWrite")) ac = new AdminNoticeWriteAction();
+		else if(cmd.equals("adminNoticeWriteForm")) ac = new AdminNoticeWriteFormAction();
+		
+		
+		// 주문 관리
+		else if(cmd.equals("adminOrderList"))ac = new AdminOrderListAction();
+		else if(cmd.equals("changeOrder"))ac = new ChangeOrderAction();
+		
+		
 		
 		
 		return ac;

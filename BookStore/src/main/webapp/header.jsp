@@ -11,10 +11,10 @@
 <link rel="stylesheet" href="css/book.css">
 <script src="script/jquery-3.6.0.js"></script>
 <script src="script/main.js"></script>
+<script src="product/product.js"></script>
 <script src="member/member.js"></script>
 <script src="mypage/mypage.js"></script>
 <script src="nonmember/nmember.js"></script>
-<script src="product/product.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
@@ -26,20 +26,19 @@
 					<li><a href="bs.do?cmd=qnaList" style="border:0px;">고객센터</a></li>
 					<li><a href="bs.do?cmd=orderAll" style="width:80px;">주문/배송조회</a></li>
 					<li><a href="bs.do?cmd=cartList">장바구니</a></li>
+					<li><a href="bs.do?cmd=mypage">마이페이지</a></li>
 					<c:choose>
 						<c:when test="${empty loginUser}">
 							<li><a href="bs.do?cmd=contract">회원가입</a></li>
 							<li><a href="bs.do?cmd=loginForm">로그인</a></li>
-							<input type="hidden" id="checking" value="${loginUser.id}">
 						</c:when>
 						<c:otherwise>
+							<li><a href="bs.do?cmd=logout">LOGOUT</a></li>
 							<li><a href="bs.do?cmd=editForm">정보수정</a></li>
-							<li> &nbsp; ${loginUser.name}(${loginUser.id}) </li> 
-							<li><a href="bs.do?cmd=logout">로그아웃</a></li>
+							<li><a href="#" style="text-decoration:none; width:80px;">${loginUser.name}(${loginUser.id})</a></li>
 							<input type="hidden" id="checking" value="${loginUser.id}">
 						</c:otherwise>
 					</c:choose>
-					<li><a href="bs.do?cmd=mypage">마이페이지</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -59,7 +58,7 @@
 					   <option>리뷰</option>
 					</select>
 					<input type="text" id="searchbox" placeholder="검색어입력"/>
-					<input type="button" id="button1" onClick=""/>
+					<input type="button" id="button1" onClick="searching()"/>
 				</div>	
 			</div>
 		</div>
