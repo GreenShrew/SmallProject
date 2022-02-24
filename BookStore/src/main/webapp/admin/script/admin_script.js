@@ -72,9 +72,6 @@ function go_update(){
 	}else if(document.form.content.value == ""){
 		alert("내용 미입력");
 		document.form.content.focus();
-	}else if(document.form.image.value == ""){
-		alert("표지 미선택");
-		document.form.image.focus();
 	}else{
 		if(confirm("수정하시겠습니까?")){
 			document.form.action = "bs.do?cmd=adminProductUpdate";
@@ -121,6 +118,45 @@ function go_delete_product(bseq){
 	location.href = "bs.do?cmd=adminProductDelete&bseq=" + bseq;
 }
 
+/* 220222 admin member */
+
+function go_member_update(id){
+	if(document.form.name.value == ""){
+		alert("이름 미입력");
+		document.form.name.focus();
+	}else if(document.form.pwd.value == ""){
+		alert("비밀번호 미입력");
+		document.form.pwd.focus();
+	}else if(document.form.pwd.value != document.form.pwd_re.value){
+		alert("비밀번호가 다름");
+		document.form.pwd_re.focus();
+	}else if(document.form.email.value == ""){
+		alert("이메일 미입력");
+		document.form.email.focus();
+	}else if(document.form.phone.value == ""){
+		alert("전화번호 미입력");
+		document.form.phone.focus();
+	}else if(document.form.zip_num.value == ""){
+		alert("지번 미입력");
+		document.form.zip_num.focus();
+	}else if(document.form.address.value == ""){
+		alert("주소 미입력");
+		document.form.address.focus();
+	}else{
+		if(confirm("수정하시겠습니까?")){
+			document.form.action = "bs.do?cmd=adminMemberUpdate&id=" + id;
+			document.form.submit();
+		}
+	}
+}
+
+function go_member_useyn(id){
+	location.href = "bs.do?cmd=adminMemberUpdateUseyn&id=" + id;
+}
+
+function go_product_bestyn(bseq){
+	location.href = "bs.do?cmd=adminProductUpdateBestyn&bseq=" + bseq;
+}
 
 
 function orderChange(result){
@@ -165,9 +201,23 @@ function orderChange(result){
 				document.frm.submit();
 			}
 			break;
-	}
+		}
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

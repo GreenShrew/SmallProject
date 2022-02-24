@@ -10,7 +10,6 @@ public class QnaVO {
 	private String id;
 	private String rep;
 	private Timestamp indate;
-	
 	public Integer getQseq() {
 		return qseq;
 	}

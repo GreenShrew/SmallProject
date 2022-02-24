@@ -59,8 +59,8 @@
 	</div>
 	
 	<div id="buttons">
-		<input type="button" value="홈으로" class="submit" onclick="" style="border:1px solid #C6C6C6; margin-top:10px; width:150px; height:25px; border-radius:5px; border-radius:5px;">
-		<input type="button" value="주문/배송 조회" onClick="" style=" border:1px solid #C6C6C6; margin-top:10px; width:150px; height:25px; border-radius:5px; border-radius:5px;">
+		<input type="button" value="홈으로" class="submit" onclick="location.href='bs.do?cmd=index'" style="border:1px solid #C6C6C6; margin-top:10px; width:150px; height:25px; border-radius:5px; border-radius:5px;">
+		<input type="button" value="주문/배송 조회" onClick="location.href='bs.do?cmd=loginForm'" style=" border:1px solid #C6C6C6; margin-top:10px; width:150px; height:25px; border-radius:5px; border-radius:5px;">
 	</div>
 	
 	</div>

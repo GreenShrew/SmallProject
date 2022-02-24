@@ -33,5 +33,9 @@ function go_save(nseq){
 }
 
 
+function go_notice(){
+	document.formm.action="bs.do?cmd=adminNoticeWrite";
+	document.formm.submit();
+}
 
 

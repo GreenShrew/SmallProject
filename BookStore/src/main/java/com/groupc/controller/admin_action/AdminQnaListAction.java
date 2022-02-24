@@ -31,24 +31,6 @@ public class AdminQnaListAction implements Action {
 				session.removeAttribute("page");
 			}
 			
-			int page = 1;
-			
-			if(request.getParameter("page") != null) {
-				page = Integer.parseInt(request.getParameter("page"));
-				session.setAttribute("page", page);
-			}else if(session.getAttribute("page") != null) {
-				page = (int)session.getAttribute("page");
-			}else {
-				page = 1;
-				session.removeAttribute("page");
-			}
-			
-			Paging paging = new Paging();
-			paging.setPage(page);
-			
-			AdminDao adao = AdminDao.getInstance();
-			
-			
 			String key="";
 			if(request.getParameter("key")!=null) {
 				key = request.getParameter("key");
@@ -57,9 +39,23 @@ public class AdminQnaListAction implements Action {
 				key=(String)session.getAttribute("key");
 			}else {
 				session.removeAttribute("key");
-				key="";
 			}
-
+			
+			
+			int page=1;
+			if(request.getParameter("page")!=null) {
+				page = Integer.parseInt(request.getParameter("page"));
+				session.setAttribute("page", page);
+			}else if(session.getAttribute("page")!=null) {
+				page = (int)session.getAttribute("page");
+			}else {
+				session.removeAttribute("page");
+			}
+			
+			Paging paging = new Paging();
+			paging.setPage(page);
+			
+			AdminDao adao = AdminDao.getInstance();
 			int count = adao.getAllCountForQna(key);
 			paging.setTotalCount(count);
 			

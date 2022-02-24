@@ -19,7 +19,7 @@ public class CancelOrderAction implements Action {
 		
 		String [] checkboxArr = request.getParameterValues("checkbox");
 		
-		String url = "bs.do?cmd=orderAll";
+		String url = "bs.do?cmd=orderList";
 		
 		if(mvo==null) {
 			url = "bs.do?cmd=index";

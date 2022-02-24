@@ -3,14 +3,14 @@
 
 <div id="product_side_menu" class="floating">
 	<div class="productgenre" style="color:white;">도서장르</div>
-	<div id="genreall" class="genrelist"><a href="bs.do?cmd=proSide&genre=all">종합</a></div>
-	<div class="genrelist"><a href="bs.do?cmd=proSide&genre=lit">국내소설</a></div>
-	<div class="genrelist"><a href="bs.do?cmd=proSide&genre=for">외국소설</a></div>
-	<div class="genrelist"><a href="bs.do?cmd=proSide&genre=hob">비소설</a></div>
-	<div class="genrelist"><a href="bs.do?cmd=proSide&genre=lit">시</a></div>
-	<div class="genrelist"><a href="bs.do?cmd=proSide&genre=edu">경제경영</a></div>
-	<div class="genrelist"><a href="bs.do?cmd=proSide&genre=hob">인문과학</a></div>
-	<div class="genrelist"><a href="bs.do?cmd=proSide&genre=for">어린이</a></div>
-	<div class="genrelist"><a href="bs.do?cmd=proSide&genre=edu">외국어</a></div>
-	<div class="genrelist"><a href="bs.do?cmd=proSide&genre=hob">컴퓨터</a></div>
+	<div id="genreall" class="genrelist"><a href="bs.do?cmd=proSide&sub=y">종합</a></div>
+	<div class="genrelist"><a href="bs.do?cmd=proSide&genre=history&sub=y">역사</a></div>
+	<div class="genrelist"><a href="bs.do?cmd=proSide&genre=economy&sub=y">경제</a></div>
+	<div class="genrelist"><a href="bs.do?cmd=proSide&genre=hobby&sub=y">취미</a></div>
+	<div class="genrelist"><a href="bs.do?cmd=proSide&genre=essay&sub=y">에세이</a></div>
+	<div class="genrelist"><a href="bs.do?cmd=proSide&genre=travel&sub=y">여행</a></div>
+	<div class="genrelist"><a href="bs.do?cmd=proSide&genre=art&sub=y">예술</a></div>
+	<div class="genrelist"><a href="bs.do?cmd=proSide&genre=science&sub=y">과학</a></div>
+	<div class="genrelist"><a href="bs.do?cmd=proSide&genre=it&sub=y">IT</a></div>
+	<div class="genrelist"><a href="bs.do?cmd=proSide&genre=fiction&sub=y">소설</a></div>
 </div>

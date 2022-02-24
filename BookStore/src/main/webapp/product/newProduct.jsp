@@ -21,10 +21,10 @@
 					<div>${pvo.writer}&nbsp;저&nbsp;|&nbsp;${pvo.publisher}</div>
 				</div>
 				<div class="bookonelist"><fmt:formatNumber value="${pvo.price}" type="currency"/></div>
-				<div class="bookonelist"><%-- ${pvo.reviewcnt } --%>reviewcnt</div>
-				<div class="bookonelist"><%-- ${pvo.score} --%>score</div>
+				<div class="bookonelist"></div>
+				<div class="bookonelist"></div>
 				<div class="bookonebtn">
-					<div><a href="#" onClick="">상세보기</a></div>
+					<div><a href="bs.do?cmd=productDetail&bseq=${pvo.bseq}">상세보기</a></div>
 					<div><a href="javascript:buyyn(${pvo.bseq});">바로구매</a></div>
 					<div><a href="javascript:cartyn(${pvo.bseq});">장바구니</a></div>
 				</div>
@@ -46,16 +46,19 @@
 					<div>${pvo.writer}&nbsp;저&nbsp;|&nbsp;${pvo.publisher}</div>
 				</div>
 				<div class="bookboxlist"><fmt:formatNumber value="${pvo.price}" type="currency"/></div>
-				<div class="bookboxlist"><%-- ${pvo.reviewcnt } --%>reviewcnt</div>
-				<div class="bookboxlist"><%-- ${pvo.score} --%>score</div>
+				<div class="bookboxlist"></div>
+				<div class="bookboxlist"></div>
 			</div>
 			<div class="bookboxbtn">
-				<div><a href="#" onClick="">상세보기</a></div>
+				<div><a href="bs.do?cmd=productDetail&bseq=${pvo.bseq}">상세보기</a></div>
 				<div><a href="javascript:buyyn(${pvo.bseq});">바로구매</a></div>
 				<div><a href="javascript:cartyn(${pvo.bseq});">장바구니</a></div>
 			</div>
 		</div>
 	</c:forEach>
+		<div style="position:relative; float:right; right:100px;">
+			<input type="button" onclick="go_top();" class="x"/>
+		</div>
 </div>
 
 

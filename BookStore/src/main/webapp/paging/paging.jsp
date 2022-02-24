@@ -8,7 +8,7 @@
 <title>paging</title>
 <style type="text/css">
 	body{text-align:center;}
-	#paging{position:relative; float:left; width:700px; height:30px; font-size:105%; padding-left:300px;}
+	#paging{position:relative; float:left; width:700px; height:30px; font-size:105%; padding-left:200px;}
 	#paging span{padding:4px; line-height:30px; }
 	#paging a{color:black; padding:4px;}
 </style>
@@ -25,7 +25,7 @@
 	<c:forEach begin="${paging.beginPage }" end="${paging.endPage }" var="index">
 		<c:choose>
 			<c:when test="${paging.page == index }">
-				<span style="color:green;">${index }</span>&nbsp;
+				<span style="color:green; font-weight:bold;">${index }</span>&nbsp;
 			</c:when>
 			<c:otherwise>
 				<a href="${action }&page=${index}&genre=${genre}">${index }</a>&nbsp;

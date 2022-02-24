@@ -24,6 +24,7 @@ public class ProSideAction implements Action {
 		String sub = request.getParameter("sub");
 		if(sub!=null && sub.equals("y")) {
 			session.removeAttribute("genre");
+			session.removeAttribute("kind");
 			session.removeAttribute("page");
 		}
 		

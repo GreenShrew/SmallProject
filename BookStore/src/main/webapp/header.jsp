@@ -11,11 +11,12 @@
 <link rel="stylesheet" href="css/book.css">
 <script src="script/jquery-3.6.0.js"></script>
 <script src="script/main.js"></script>
-<script src="product/product.js"></script>
-<script src="member/member.js"></script>
-<script src="mypage/mypage.js"></script>
-<script src="nonmember/nmember.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="script/member.js"></script>
+<script src="script/nmember.js"></script>
+<script src="script/product.js"></script>
+<script src="script/mypage.js"></script>
+<script src="script/order.js"></script>
+<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 </head>
 <body>
 <div id="wrap">
@@ -23,8 +24,9 @@
 		<div>
 			<nav id="top_menu">
 				<ul>
-					<li><a href="bs.do?cmd=qnaList" style="border:0px;">고객센터</a></li>
-					<li><a href="bs.do?cmd=orderAll" style="width:80px;">주문/배송조회</a></li>
+					<li><input type="hidden" id="checking" value="${loginUser.id}"></li>
+					<li><a href="bs.do?cmd=noticeList&z=noticeList" style="border:0px;">고객센터</a></li>
+					<li><a href="bs.do?cmd=orderList" style="width:80px;">주문/배송조회</a></li>
 					<li><a href="bs.do?cmd=cartList">장바구니</a></li>
 					<li><a href="bs.do?cmd=mypage">마이페이지</a></li>
 					<c:choose>
@@ -35,8 +37,7 @@
 						<c:otherwise>
 							<li><a href="bs.do?cmd=logout">LOGOUT</a></li>
 							<li><a href="bs.do?cmd=editForm">정보수정</a></li>
-							<li><a href="#" style="text-decoration:none; width:80px;">${loginUser.name}(${loginUser.id})</a></li>
-							<input type="hidden" id="checking" value="${loginUser.id}">
+							<li><a href="#" style="text-decoration:none; width:120px;">${loginUser.name}(${loginUser.id})</a></li>
 						</c:otherwise>
 					</c:choose>
 				</ul>
@@ -55,7 +56,6 @@
 					   <option>통합검색</option>
 					   <option>국내도서</option>
 					   <option>외국도서</option>
-					   <option>리뷰</option>
 					</select>
 					<input type="text" id="searchbox" placeholder="검색어입력"/>
 					<input type="button" id="button1" onClick="searching()"/>
@@ -70,8 +70,8 @@
 				<ul class="menu">
 					<li><a href="bs.do?cmd=menu&kind=1">베스트도서</a></li>
 					<li><a href="bs.do?cmd=menu&kind=2">신간도서</a></li>
-					<li><a href="bs.do?cmd=menu&kind=3">국내도서</a></li>
-					<li><a href="bs.do?cmd=menu&kind=4">외국도서</a></li>
+					<li><a href="bs.do?cmd=menu&kind=l&sub=y">국내도서</a></li>
+					<li><a href="bs.do?cmd=menu&kind=g&sub=y">외국도서</a></li>
 					<li><a href="bs.do?cmd=menu&kind=5">이벤트</a></li>
 				</ul>
 			</nav>

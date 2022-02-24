@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>NZIP</title>
 <link rel="stylesheet" href="css/book.css">
-<script src="member/member.js"></script>
+<script src="script/member.js"></script>
 </head>
 <body>
 <div id="popup">

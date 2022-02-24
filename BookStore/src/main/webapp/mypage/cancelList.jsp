@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>  
-<%@ include file="sub_img.html"%> 
 <%@ include file="sub_menu.jsp" %>  
 
 <div id="qna">
@@ -10,7 +9,7 @@
 <form>
 <table id="orderList">  <!-- 동일한 css 적용을 위한 id사용 -->
 	<c:if test="${not empty cList}">
-	<tr><th width="100px">주문일자</th><th width="70px">주문번호</th><th width="265px">상품명</th><th width="100px">결제 금액</th><th width="70px">주문 상세</th><th width="65px">처리상태</th></tr>
+	<tr><th width="100px">주문일자</th><th width="70px">주문번호</th><th width="260px">상품명</th><th width="100px">결제 금액</th><th width="70px">주문 상세</th><th width="70px">처리상태</th></tr>
 	<c:forEach items="${cList}" var="cList">
 		<tr>
        		<td><fmt:formatDate value="${cList.indate}" type="date"/></td>
@@ -29,7 +28,7 @@
 <hr>
 </form>	
 </article>
-<div id="qna">
+</div>
 
 
 <%@ include file="../footer.jsp" %>

@@ -6,7 +6,7 @@
 <div id="mainFrame">
 	<div id="view">
         <div id="imgs">
-            <a href="#1"><img src="images/main/main_s1.png"></a><a href="#2"><img src="images/main/main_s2.png"></a><a href="#3"><img src="images/main/main_s3.png"></a><a href="#4"><img src="images/main/main_s4.png"></a><a href="#5"><img src="images/main/main_s5.png"></a><a href="#6"><img src="images/main/main_s6.png"></a>
+            <a href="bs.do?cmd=menu&kind=5"><img src="images/main/main_s1.png"></a><a href="bs.do?cmd=menu&kind=5"><img src="images/main/main_s2.png"></a><a href="bs.do?cmd=menu&kind=5"><img src="images/main/main_s3.png"></a><a href="bs.do?cmd=menu&kind=5"><img src="images/main/main_s4.png"></a><a href="bs.do?cmd=menu&kind=5"><img src="images/main/main_s5.png"></a><a href="bs.do?cmd=menu&kind=5"><img src="images/main/main_s6.png"></a>
         </div>
         <div id="lbutton" onClick="moveLeft();"></div>
         <div id="rbutton" onClick="moveRight();"></div>

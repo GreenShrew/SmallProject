@@ -110,3 +110,4 @@ WHERE o.oseq = d.oseq AND o.od_pass = nm.od_pass AND d.bseq = b.bseq;
 select * from non_order_view;
 
 select * from order_view;
+select * from non_order_view;

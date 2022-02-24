@@ -6,10 +6,7 @@
 
 <br><br><br>
 <form name="frm" method="post">
-
-
 <div id="product_Area">
-
 	<div style="width: 700px; height:20px; border-bottom:1px solid black;"></div>
 	<c:forEach items="${productViewList}" var="pvo" varStatus="stat">
 		<div class="listbox">
@@ -30,25 +27,29 @@
 				</div>
 				<div>${pvo.price}</div>
 				<div>
-					<p>score | review cnt</p>
+<%-- 					<p>${pvo.avg } | ${pvo.cnt }</p> 해결불가--%>
 				</div>
 			</div>
 			<div class="list_in" style="width:130px; padding:20px 0 0 70px;">
 				수량
-				<input type="text" id="quantity" name="quantity" maxlength="2" value="1">
+				<input type="text" name="quantity" maxlength="2" value="1" id="quantity">
 				개
 			</div>
 			<div class="list_in" style="width:140px; padding:20px 0 0 60px;">
-				<a href="#">상세설명</a>
+				<a href="bs.do?cmd=productDetail&bseq=${pvo.bseq}">상세보기</a>
 				<a href="javascript:cartpyn(${pvo.bseq});">장바구니</a>
 				<a href="javascript:buypyn(${pvo.bseq});">바로구매</a>
 			</div>
 		</div>
 	</c:forEach>
-</div>
-<div style="position:relative; float:right; right:100px;">
-	<input type="button" onclick="add_multi();" class="cartbtn"/>
-	<input type="button" onclick="go_top();" class="x"/>
+		<div style="position:relative; float:right; right:100px;">
+			<input type="button" onclick="add_multi();" class="cartbtn"/>
+			<input type="button" onclick="go_top();" class="x"/>
+		</div>
+	<jsp:include page="/paging/paging.jsp">
+		<jsp:param name="cmd" value="bs.do?cmd=proSide" />
+	</jsp:include>
 </div>
 </form>
+
 <%@ include file="../footer.jsp"%>

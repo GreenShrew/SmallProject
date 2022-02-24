@@ -22,7 +22,6 @@ public class CartInsertMultiAction implements Action {
 		String [] checkboxArr = request.getParameterValues("checkbox");
 		
 		
-		
 		String url = "bs.do?cmd=cartList";
 		String msg = "";
 		

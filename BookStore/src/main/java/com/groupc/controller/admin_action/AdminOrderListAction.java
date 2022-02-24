@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.groupc.controller.action.Action;
 import com.groupc.dao.AdminDao;
 import com.groupc.dto.AdminVO;
+import com.groupc.dto.NOrderVO;
 import com.groupc.dto.OrderVO;
 import com.groupc.util.Paging;
 
@@ -18,7 +19,7 @@ public class AdminOrderListAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "admin/order/adminOrderList.jsp";
+		String url = "";
 		HttpSession session = request.getSession();
 		AdminVO avo = (AdminVO)session.getAttribute("loginAdmin");
 		
@@ -75,16 +76,21 @@ public class AdminOrderListAction implements Action {
 //			count = adao.getAdminCount("order_view", "mname", key);
 			
 			paging.setTotalCount(count);
-			
+
 			ArrayList<OrderVO> orderList = new ArrayList<OrderVO>();
+			ArrayList<NOrderVO> norderList = new ArrayList<NOrderVO>();
 			if(kind.equals("1") || kind.equals("2")) {
-				orderList = adao.listOrder(paging, key);
+				orderList = adao.listOrder(paging, key, kind);
+				url = "admin/order/adminOrderList.jsp";
 			}else {
-				orderList = adao.listNOrder(paging, key);
+				norderList = adao.listNOrder(paging, key, kind);
+				url = "admin/order/adminNOrderList.jsp";
 			}
 
 			
+			request.setAttribute("kind", kind);
 			request.setAttribute("orderList", orderList);
+			request.setAttribute("norderList", norderList);
 			request.setAttribute("paging", paging);
 			request.setAttribute("key", key);
 		}

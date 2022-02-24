@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="insertProduct"/>
+		<item key="selection" value="이름"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="insertproduct"/>
-			<item value="getadmincount"/>
-			<item value="getproduct"/>
-			<item value="deletepro"/>
-			<item value="updateqna"/>
-			<item value="listqna"/>
-			<item value="getallcountforq"/>
-			<item value="getallcount"/>
-			<item value="(&quot;adminNoticeDetail&quot;)) "/>
-			<item value="(&quot;adminNoticeList&quot;)) "/>
-			<item value="(&quot;adminQnaRepSave&quot;)) "/>
-			<item value="(&quot;adminQnaDetail&quot;)) "/>
-			<item value="adminqnalist"/>
-			<item value="adminqna"/>
-			<item value="notice"/>
+			<item value="이름"/>
+			<item value="joinbox"/>
+			<item value="findMain"/>
+			<item value="기본 입력 정보"/>
+			<item value="insertCart"/>
+			<item value="buypyn"/>
+			<item value="&lt;div id=&quot;qna&quot;&gt;"/>
+			<item value="insert"/>
+			<item value="#cancel"/>
+			<item value="buttons1"/>
+			<item value="submit"/>
+			<item value="form"/>
+			<item value="getCnt"/>
+			<item value="mainnotice"/>
+			<item value="formm"/>
 		</list>
 		<list key="replacehistory">
+			<item value="#fcf9f2"/>
 			<item value="confirm"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1424"/>
-		<item key="DIALOG_Y_ORIGIN" value="43"/>
+		<item key="DIALOG_X_ORIGIN" value="1137"/>
+		<item key="DIALOG_Y_ORIGIN" value="265"/>
 		<item key="DIALOG_WIDTH" value="369"/>
 		<item key="DIALOG_HEIGHT" value="518"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import com.groupc.dto.AdminVO;
 import com.groupc.dto.MemberVO;
+import com.groupc.dto.NOrderVO;
 import com.groupc.dto.NoticeVO;
 import com.groupc.dto.OrderVO;
 import com.groupc.dto.ProductVO;
@@ -71,12 +72,21 @@ public class AdminDao {
 			pstmt.close();
 			
 			// ordercnt
-			sql = "SELECT COUNT(*) AS ordercnt FROM orders";
+			sql = "SELECT COUNT(*) AS ordercnt FROM order_view WHERE result='1'";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				int i = rs.getInt("ordercnt");
 				cnt.add(2, i);
+			}
+			pstmt.close();
+			
+			sql = "SELECT COUNT(*) AS ordercnt FROM non_order_view WHERE result='1'";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				int i = rs.getInt("ordercnt");
+				cnt.add(3, i);
 			}
 			pstmt.close();
 
@@ -86,7 +96,7 @@ public class AdminDao {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				int i = rs.getInt("qnacnt");
-				cnt.add(3, i);
+				cnt.add(4, i);
 			}
 			
 		} catch (SQLException e) { e.printStackTrace();
@@ -222,8 +232,9 @@ public class AdminDao {
 		}finally {
 			Dbm.close(con, pstmt, rs);
 		}
+		
 	}
-
+	// 220222
 	public ArrayList<ProductVO> getBestProductList(Paging paging) {
 		ArrayList<ProductVO> bestproductList = new ArrayList<ProductVO>();
 		
@@ -335,21 +346,6 @@ public class AdminDao {
 		return list;
 	}
 	
-	public void updateQna(QnaVO qvo) {
-		String sql = "update qna set reply=?, rep='2' where qseq=?";
-		con = Dbm.getConnection();
-		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, qvo.getReply() );
-			pstmt.setInt(2,  qvo.getQseq() );
-			pstmt.executeUpdate();
-		} catch (SQLException e) {e.printStackTrace(); 
-		} finally { Dbm.close(con, pstmt, rs);  
-		}
-		
-	}
-	
-	
 	public ArrayList<NoticeVO> listNotice(Paging paging, String key) {
 		ArrayList<NoticeVO> list = new ArrayList<NoticeVO>();
 		String sql = " select * from ( "
@@ -369,7 +365,6 @@ public class AdminDao {
 			while(rs.next()) {
 				NoticeVO nvo = new NoticeVO();
 				nvo.setNseq(rs.getInt("nseq"));
-				nvo.setId(rs.getString("id"));
 				nvo.setSubject(rs.getString("subject"));
 				nvo.setContent(rs.getString("content"));
 				nvo.setIndate(rs.getTimestamp("indate"));
@@ -383,14 +378,13 @@ public class AdminDao {
 	}
 	
 	public void insertNotice(NoticeVO nvo) {
-		String sql = "insert into notice(nseq, subject, content, id) values(notice_seq.nextVal, ? , ?, ?)";
+		String sql = "insert into notice( nseq, subject, content) values(notice_seq.nextVal, ? , ?)";
 		
 		con = Dbm.getConnection();
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, nvo.getSubject());
 			pstmt.setString(2, nvo.getContent());
-			pstmt.setString(3, nvo.getId());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {e.printStackTrace();
 		} finally { Dbm.close(con, pstmt, rs);  
@@ -519,16 +513,109 @@ public class AdminDao {
 			Dbm.close(con, pstmt, rs);
 		}
 	}
+
+	public int getOrderCount(String tablename, String fieldname, String key, int i) {
+		int count = 0;
+		String sql = "";
+		if(i==1) {	// result가 1,2,3인 목록들만...
+			sql = "SELECT COUNT(*) AS count FROM " + tablename + " WHERE (result=1 OR result=2 OR result=3) and " + 
+					fieldname + " LIKE '%'||?||'%' ";
+		}else if(i==2) {
+			sql = "SELECT COUNT(*) AS count FROM " + tablename + " WHERE (result=4 OR result=5) and " + 
+					fieldname + " LIKE '%'||?||'%' ";
+		}
+		
+//		sql = "SELECT COUNT(*) AS count FROM " + tablename + " WHERE " + 
+//				fieldname + " LIKE '%'||?||'%' ";
+		con = Dbm.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, key);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			Dbm.close(con, pstmt, rs);
+		}
+		return count;
+	}
+
+	public ArrayList<NOrderVO> listNOrder(Paging paging, String key, String kind) {
+		ArrayList<NOrderVO> list = new ArrayList<NOrderVO>();
+		String sql = "";
+		
+		if(kind.equals("3")) {
+			sql = "select * from ("
+					+ " select * from ("
+					+ " select rownum as rn, m.* from "
+					+ " ((select * from non_order_view where (result=1 OR result=2 OR result=3) and nmname like '%'||?||'%' order by result, odseq desc) m)"
+					+ " ) where rn>=?"
+					+ " ) where rn<=?";
+		}else {
+			sql = "select * from ("
+					+ " select * from ("
+					+ " select rownum as rn, m.* from "
+					+ " ((select * from non_order_view where (result=4 OR result=5) and nmname like '%'||?||'%' order by result, odseq desc) m)"
+					+ " ) where rn>=?"
+					+ " ) where rn<=?";
+		}
+		
+		con = Dbm.getConnection();
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, key);
+			pstmt.setInt(2, paging.getStartNum());
+			pstmt.setInt(3, paging.getEndNum());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {	// 리스트의 내용을 소진할때까지
+				NOrderVO novo = new NOrderVO();
+				novo.setOdseq(rs.getInt("odseq"));
+				novo.setOseq(rs.getInt("oseq"));
+				novo.setOd_pass(rs.getString("od_pass"));
+				novo.setIndate(rs.getTimestamp("indate"));
+				novo.setNmname(rs.getString("nmname"));
+				novo.setZip_num(rs.getString("zip_num"));
+				novo.setAddress(rs.getString("address"));
+				novo.setPhone(rs.getString("phone"));
+				novo.setBseq(rs.getInt("bseq"));
+				novo.setQuantity(rs.getInt("quantity"));
+				novo.setBname(rs.getString("bname"));
+				novo.setPrice(rs.getInt("price"));
+				novo.setResult(rs.getString("result"));
+				list.add(novo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			Dbm.close(con, pstmt, rs);
+		}
+		return list;
+	}
 	
-	
-	public ArrayList<OrderVO> listOrder(Paging paging, String key) {
+	public ArrayList<OrderVO> listOrder(Paging paging, String key, String kind) {
 		ArrayList<OrderVO> list = new ArrayList<OrderVO>();
-		String sql = "select * from ("
-				+ " select * from ("
-				+ " select rownum as rn, m.* from "
-				+ " ((select * from order_view where mname like '%'||?||'%' order by result, odseq desc) m)"
-				+ " ) where rn>=?"
-				+ " ) where rn<=?";
+		String sql = "";
+
+		if(kind.equals("1")) {
+			sql = "select * from ("
+					+ " select * from ("
+					+ " select rownum as rn, m.* from "
+					+ " ((select * from order_view where (result=1 OR result=2 OR result=3) and mname like '%'||?||'%' order by result, odseq desc) m)"
+					+ " ) where rn>=?"
+					+ " ) where rn<=?";
+		}else {
+			sql = "select * from ("
+					+ " select * from ("
+					+ " select rownum as rn, m.* from "
+					+ " ((select * from order_view where (result=4 OR result=5) and mname like '%'||?||'%' order by result, odseq desc) m)"
+					+ " ) where rn>=?"
+					+ " ) where rn<=?";
+		}
+		
 		
 		con = Dbm.getConnection();
 		
@@ -562,9 +649,28 @@ public class AdminDao {
 		}
 		return list;
 	}
-
-	public void changeResult(int odseq, int result) {
-		String sql = "update order_detail set result=? where odseq=?";
+	
+	public void updateQna(QnaVO qvo) {
+		String sql = "update qna set reply=?, rep='2' where qseq=?";
+		con = Dbm.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, qvo.getReply() );
+			pstmt.setInt(2,  qvo.getQseq() );
+			pstmt.executeUpdate();
+		} catch (SQLException e) {e.printStackTrace(); 
+		} finally { Dbm.close(con, pstmt, rs);  
+		}
+	}
+	
+	public void changeResult(int odseq, int result, int mem) {
+		String sql = "";
+		
+		if(mem==1) {
+			sql = "update order_detail set result=? where odseq=?";
+		}else {
+			sql = "update nm_order_detail set result=? where odseq=?";
+		}
 		
 		con = Dbm.getConnection();
 		try {
@@ -578,42 +684,55 @@ public class AdminDao {
 			Dbm.close(con, pstmt, rs);
 		}
 	}
-
-	public int getOrderCount(String tablename, String fieldname, String key, int i) {
-		int count = 0;
-		String sql = "";
-		if(i==1) {	// result가 1,2,3인 목록들만...
-			sql = "SELECT COUNT(*) AS count FROM " + tablename + " WHERE (result=1 OR result=2 OR result=3) and " + 
-					fieldname + " LIKE '%'||?||'%' ";
-		}else if(i==2) {
-			sql = "SELECT COUNT(*) AS count FROM " + tablename + " WHERE (result=4 OR result=5) and " + 
-					fieldname + " LIKE '%'||?||'%' ";
-		}
+	
+	
+	public ArrayList<NoticeVO> getMainNoticeList() {
+		ArrayList<NoticeVO> mainNoticeList = new ArrayList<NoticeVO>();
 		
-//		sql = "SELECT COUNT(*) AS count FROM " + tablename + " WHERE " + 
-//				fieldname + " LIKE '%'||?||'%' ";
+		String sql = "SELECT * FROM notice WHERE rownum <= 4 AND useyn='y' ORDER BY nseq DESC";
 		con = Dbm.getConnection();
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, key);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				count = rs.getInt("count");
+			while(rs.next()) {
+				NoticeVO nvo = new NoticeVO();
+				nvo.setNseq(rs.getInt("nseq"));
+				nvo.setId(rs.getString("id"));
+				nvo.setSubject(rs.getString("subject"));
+				nvo.setUseyn(rs.getString("useyn"));
+				nvo.setIndate(rs.getTimestamp("indate"));
+				mainNoticeList.add(nvo);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			Dbm.close(con, pstmt, rs);
 		}
-		return count;
-	}
-
-	public ArrayList<OrderVO> listNOrder(Paging paging, String key) {
-		// TODO Auto-generated method stub
-		return null;
+		return mainNoticeList;
 	}
 	
-
+	
+	public ArrayList<AdminVO> getAllWorker() {
+		ArrayList<AdminVO> list = new ArrayList<AdminVO>();
+		String sql = "SELECT * FROM worker";
+		con = Dbm.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while( rs.next() ) {
+				AdminVO avo = new AdminVO();
+				avo = new AdminVO();
+				avo.setId( rs.getString("id") );
+				avo.setPwd(rs.getString("pwd"));
+				avo.setName(rs.getString("name"));
+				avo.setPhone(rs.getString("phone"));
+				list.add(avo);
+			}
+		} catch (SQLException e) { e.printStackTrace();
+		} finally { Dbm.close(con, pstmt, rs);
+		}
+		return list;
+	}
 	
 	
 }

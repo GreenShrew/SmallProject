@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>  
-<%@ include file="sub_img.html"%> 
 <%@ include file="sub_menu.jsp" %>  
 
 <div id="qna">
 <article>
 <h2>주문 상세내역</h2><hr>
 <form>
-<table id="cartList">
-	<tr><th width="150px">주문일자</th><th>주문번호</th><th width="300px">상품명</th><th width="150px">결제 금액</th>
+<table id="orderList">
+	<tr><th width="150px">주문일자</th><th width="60px">주문번호</th><th width="312px">상품명</th><th width="150px">결제 금액</th>
 	<c:forEach items="${orderList}" var="orderDetail">
 		<tr><td><fmt:formatDate value="${orderDetail.indate}" type="date"/></td>
 			<td>${orderDetail.oseq}</td><td>${orderDetail.bname}</td>

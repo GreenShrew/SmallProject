@@ -137,7 +137,7 @@ public class OrderDao {
 	public int insertOrderOne(ProductVO pvo, String id, int quantity) {
 		int oseq = 0;
 		con = Dbm.getConnection();
-		String sql = "insert into orders(oseq, id) values(orders_seq.nextVal, ?)";
+		String sql = "insert into orders(oseq, id) values( orders_seq.nextVal , ?)";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -154,7 +154,7 @@ public class OrderDao {
 						+ "values(order_detail_seq.nextVal, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, oseq);
-			pstmt.setInt(2, pvo.getBseq());
+			pstmt.setInt(2, pvo.getBseq() );
 			pstmt.setInt(3, quantity );
 			pstmt.executeUpdate();
 		} catch (SQLException e) { e.printStackTrace();
@@ -200,21 +200,21 @@ public class OrderDao {
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				    OrderVO ovo = new OrderVO();
-					ovo.setOdseq(rs.getInt("odseq"));
-					ovo.setOseq(rs.getInt("oseq"));
-					ovo.setId(rs.getString("id"));
-					ovo.setIndate(rs.getTimestamp("indate"));
-					ovo.setMname(rs.getString("mname"));
-					ovo.setZip_num(rs.getString("zip_num"));
-					ovo.setAddress(rs.getString("address"));
-					ovo.setPhone(rs.getString("phone"));
-					ovo.setBname(rs.getString("bname"));
-					ovo.setPrice(rs.getInt("price"));
-					ovo.setBseq(rs.getInt("bseq"));
-					ovo.setQuantity(rs.getInt("quantity"));
-					ovo.setResult(rs.getString("result"));
-					list.add(ovo);
+			    OrderVO ovo = new OrderVO();
+				ovo.setOdseq(rs.getInt("odseq"));
+				ovo.setOseq(rs.getInt("oseq"));
+				ovo.setId(rs.getString("id"));
+				ovo.setIndate(rs.getTimestamp("indate"));
+				ovo.setMname(rs.getString("mname"));
+				ovo.setZip_num(rs.getString("zip_num"));
+				ovo.setAddress(rs.getString("address"));
+				ovo.setPhone(rs.getString("phone"));
+				ovo.setBname(rs.getString("bname"));
+				ovo.setPrice(rs.getInt("price"));
+				ovo.setBseq(rs.getInt("bseq"));
+				ovo.setQuantity(rs.getInt("quantity"));
+				ovo.setResult(rs.getString("result"));
+				list.add(ovo);
 			}
 		} catch (SQLException e) { e.printStackTrace();
 		} finally { Dbm.close(con, pstmt, rs);
@@ -301,7 +301,7 @@ public class OrderDao {
 		}
 		return novo;
 	}
-
+	
 	public ArrayList<Integer> trackingOseq(String id) {
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		String sql = "select distinct oseq, result from order_view where id=? and not result in ('5') order by result, oseq desc";
@@ -365,10 +365,8 @@ public class OrderDao {
 		}
 	}
 	
-	
-	
-	
 }
+
 
 
 

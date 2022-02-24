@@ -15,9 +15,11 @@
 	</form>
 	
 	<form name="frm" method="post">
+	<input type="hidden" name="kind" value="${kind}">
 	<table id="productList" style="width:1000px;">
 		<tr>
 			<th>주문번호</th>
+			<th>회원 ID</th>
 			<th>책</th>
 			<th>수량</th>
 			<th>총 결제 금액</th>
@@ -25,10 +27,12 @@
 			<th>주문 상태</th>
 			<th>주문 선택</th>
 		</tr>
-		<c:forEach items="${orderList }" var="ovo">
-			<c:if test="${ovo.result==1 || ovo.result==2 || ovo.result==3}">
+	<c:forEach items="${orderList }" var="ovo">
+	<c:choose>
+			<c:when test="${ovo.result==1 || ovo.result==2 || ovo.result==3}">
 			<tr>
 				<td style="height:64px">${ovo.odseq}</td>
+				<td>${ovo.id}</td>
 				<td><a href="bs.do?cmd=adminProductDetail&bseq=${ovo.bseq}">${ovo.bname }</a></td>
 				<td>${ovo.quantity }</td>
 				<td><fmt:formatNumber value="${ovo.price*ovo.quantity}" type="currency"/></td>
@@ -40,10 +44,13 @@
 				</td>
 				<td><input type="checkbox" name="orderCheck" value="${ovo.odseq}"></td>
 			</tr>
-			</c:if>
-<%-- 			<c:if test="${ovo.result==4 || ovo.result==5}">
+			
+			</c:when>
+ 	
+			<c:otherwise>
 			<tr>
 				<td style="height:64px">${ovo.odseq}</td>
+				<td>${ovo.id}</td>
 				<td><a href="bs.do?cmd=adminProductDetail&bseq=${ovo.bseq}">${ovo.bname }</a></td>
 				<td>${ovo.quantity }</td>
 				<td><fmt:formatNumber value="${ovo.price*ovo.quantity}" type="currency"/></td>
@@ -52,14 +59,16 @@
 					<c:if test="${ovo.result==4}">배송 완료</c:if>
 					<c:if test="${ovo.result==5}">주문 취소</c:if>
 				</td>
-				<td><input type="checkbox" name="orderCheck" disabled"></td>
+				<td><input type="checkbox" name="orderCheck" disabled></td>
 			</tr>
-			</c:if> --%>
-		</c:forEach>
+			</c:otherwise>
+		
+		</c:choose>
+	</c:forEach>
 	</table>
 </form>
 	<jsp:include page="/admin/paging/admin_paging.jsp">
-	 	<jsp:param name="cmd" value="bs.do?cmd=adminOrderList" />
+	 	<jsp:param name="cmd" value="bs.do?cmd=adminOrderList&kind=${kind}" />
 	 </jsp:include>
 </div>
 

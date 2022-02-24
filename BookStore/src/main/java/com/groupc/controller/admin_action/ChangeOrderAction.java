@@ -15,21 +15,39 @@ public class ChangeOrderAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "bs.do?cmd=adminOrderList";
+		String url = "";
 		HttpSession session = request.getSession();
 		AdminVO avo = (AdminVO)session.getAttribute("loginAdmin");
+		String kind = request.getParameter("kind");
+		
+		System.out.println(kind);
 		
 		String [] checkboxArr = request.getParameterValues("orderCheck");
 		int result = Integer.parseInt(request.getParameter("result"));
-		
-		if(avo==null) {
-			url="bs.do?cmd=admin";
+		int mem = 1;
+		if(kind.equals("1")||kind.equals("2")) {
+			if(avo==null) {
+				url="bs.do?cmd=admin";
+			}else {
+				url = "bs.do?cmd=adminOrderList&kind="+kind;
+				AdminDao adao = AdminDao.getInstance();
+				for(String odseq : checkboxArr) {
+					adao.changeResult(Integer.parseInt(odseq), result, mem);
+				}
+			}
 		}else {
-			AdminDao adao = AdminDao.getInstance();
-			for(String odseq : checkboxArr) {
-				adao.changeResult(Integer.parseInt(odseq), result);
+			mem = 2;
+			if(avo==null) {
+				url="bs.do?cmd=admin";
+			}else {
+				url = "bs.do?cmd=adminOrderList&kind="+kind;
+				AdminDao adao = AdminDao.getInstance();
+				for(String odseq : checkboxArr) {
+					adao.changeResult(Integer.parseInt(odseq), result, mem);
+				}
 			}
 		}
+		
 		response.sendRedirect(url);
 	}
 

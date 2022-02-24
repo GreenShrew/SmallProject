@@ -22,15 +22,24 @@ public class ProductDetailAction implements Action {
 		ProductDao pdao = ProductDao.getInstance();
 		ProductVO pvo = pdao.getProduct(bseq);
 		
+		int point = (int)Math.ceil((double)pvo.getPrice() * 0.05);
+		
 		ReviewDao rdao = ReviewDao.getInstance();
-		ArrayList<ReviewVO> reviewList = rdao.getReview(bseq);
+		ArrayList<ReviewVO> reviewList = rdao.getReviewbyBseq(bseq);
+		int scoreAVG = rdao.getScoreAVG(bseq);
+		int reviewCnt = rdao.getReviewCnt(bseq);
 		
 		HttpSession session = request.getSession();
 		MemberVO mvo = (MemberVO) session.getAttribute("loginUser");
+		if(mvo != null) {
+			session.setAttribute("loginUser", mvo);
+		}
 		
 		request.setAttribute("productVO", pvo);
+		request.setAttribute("point", point);
 		request.setAttribute("reviewList", reviewList);
-		session.setAttribute("loginUser", mvo);
+		request.setAttribute("scoreAVG", scoreAVG);
+		request.setAttribute("reviewCnt", reviewCnt);
 		
 		String url = "product/productDetail.jsp";
 		request.getRequestDispatcher(url).forward(request, response);

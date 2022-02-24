@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.groupc.controller.action.Action;
 import com.groupc.dao.AdminDao;
 import com.groupc.dto.AdminVO;
+import com.groupc.dto.NoticeVO;
 
 public class AdminLoginAction implements Action {
 
@@ -24,6 +25,7 @@ public class AdminLoginAction implements Action {
 		AdminDao adao = AdminDao.getInstance();
 		AdminVO avo = adao.getWorker(adminId);
 		ArrayList<Integer> cnt = adao.getCnt();
+		ArrayList<NoticeVO> mainNoticeList = adao.getMainNoticeList();
 		
 		if(avo == null) {
 			request.setAttribute("message", "존재하지 않는 아이디");
@@ -34,6 +36,7 @@ public class AdminLoginAction implements Action {
 		}else if(avo.getPwd().equals(adminPwd)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginAdmin", avo);
+			session.setAttribute("mainNoticeList", mainNoticeList);
 			session.setAttribute("cnt", cnt);
 			url = "admin/adminMain.jsp";
 		}else {

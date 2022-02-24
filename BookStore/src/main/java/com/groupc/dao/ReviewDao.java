@@ -56,31 +56,28 @@ public class ReviewDao {
 	}
 
 
-	public ArrayList<ReviewVO> getReview(int bseq) {
-		ArrayList<ReviewVO> reviewList = new ArrayList<ReviewVO>();
-		String sql = "SELECT * FROM review WHERE bseq=?";
+	public ReviewVO getReview(int rseq) {
+		ReviewVO rvo = new ReviewVO();
+		String sql = "SELECT * FROM review WHERE rseq=?";
 		con = Dbm.getConnection();
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, bseq);
+			pstmt.setInt(1, rseq);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				ReviewVO rvo = new ReviewVO();
-				rvo.setRseq(rs.getInt("rseq"));
+			if(rs.next()) {
+				rvo.setRseq(rseq);
 				rvo.setBseq(rs.getInt("bseq"));
 				rvo.setId(rs.getString("id"));
 				rvo.setRcontent(rs.getString("content"));
 				rvo.setScore(rs.getString("score"));
 				rvo.setRindate(rs.getTimestamp("indate"));
-				reviewList.add(rvo);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			Dbm.close(con, pstmt, rs);
 		}
-		
-		return reviewList;
+		return rvo;
 	}
 
 
@@ -141,6 +138,58 @@ public class ReviewDao {
 			Dbm.close(con, pstmt, rs);
 		}
 	}
+
+
+	public ArrayList<ReviewVO> listReview(String id) {
+		ArrayList<ReviewVO> reviewList = new ArrayList<ReviewVO>();
+		String sql = "select * from review where id=? order by rseq desc";
+		con = Dbm.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ReviewVO rvo = new ReviewVO();
+				rvo.setRseq(rs.getInt("rseq"));
+				rvo.setBseq(rs.getInt("bseq"));
+				rvo.setId(rs.getString("id"));
+				rvo.setRcontent(rs.getString("content"));
+				rvo.setScore(rs.getString("score"));
+				rvo.setRindate(rs.getTimestamp("indate"));
+				reviewList.add(rvo);
+			}
+		} catch (SQLException e) {e.printStackTrace();
+		} finally {Dbm.close(con, pstmt, rs);
+		}
+		return reviewList;
+	}
 	
+	
+	public ArrayList<ReviewVO> getReviewbyBseq(int bseq) {
+		ArrayList<ReviewVO> reviewList = new ArrayList<ReviewVO>();
+		String sql = "SELECT * FROM review WHERE bseq=?";
+		con = Dbm.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, bseq);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ReviewVO rvo = new ReviewVO();
+				rvo.setRseq(rs.getInt("rseq"));
+				rvo.setBseq(rs.getInt("bseq"));
+				rvo.setId(rs.getString("id"));
+				rvo.setRcontent(rs.getString("content"));
+				rvo.setScore(rs.getString("score"));
+				rvo.setRindate(rs.getTimestamp("indate"));
+				reviewList.add(rvo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			Dbm.close(con, pstmt, rs);
+		}
+		
+		return reviewList;
+	}
 	
 }

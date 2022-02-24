@@ -14,11 +14,11 @@
 	</td></tr>
 </table>
 <table id="qqnaList">
-	<tr><th>번호</th><th>제목</th><th>작성자</th><th>작성일</th></tr>
+	<tr><th>번호</th><th>제목</th><th>작성일</th></tr>
 	<c:forEach items="${noticeList}" var="noticeVO">
 		<tr><td>${noticeVO.nseq}
 			<td><a href="bs.do?cmd=adminNoticeDetail&nseq=${noticeVO.nseq}">${noticeVO.subject}</a></td>
-			<td>${noticeVO.id}</td><td><fmt:formatDate value="${noticeVO.indate}"/></td></tr>
+			<td><fmt:formatDate value="${noticeVO.indate}"/></td></tr>
 	</c:forEach>
 </table><br>
 	<jsp:include page="/admin/paging/admin_paging.jsp">

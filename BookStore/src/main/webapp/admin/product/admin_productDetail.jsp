@@ -4,7 +4,7 @@
 <%@ include file="../adminHeader.jsp" %>
 
 <div id="adminBox">
-	<h3 style="padding:0px 0px 0px 30px;">ProductList</h3>
+	<h3 style="padding:0px 0px 0px 30px;">ProductDetail</h3>
 	<input type="hidden" value="${productVO.bseq }">
 	<ul id="admin_ProductDetail">
 		<li>등록번호 : ${productVO.bseq }</li>

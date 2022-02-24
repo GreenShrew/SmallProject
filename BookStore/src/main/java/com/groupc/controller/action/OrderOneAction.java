@@ -23,21 +23,21 @@ public class OrderOneAction implements Action {
 		int bseq = Integer.parseInt(request.getParameter("bseq"));
 		int quantity = Integer.parseInt( request.getParameter("quantity") );
 		
-		// 여기서는 비회원의 경우 해당 책의 정보를 가지고 loginForm으로 가서 비회원구매 버튼을 누를시 이를 가지고 가서 주문할 수 있도록 만든다.
-		if(mvo==null) {		// 아니다..생각을 잘못한 것 같은데?
+		if(mvo==null) {
 			url = "bs.do?cmd=loginForm";
 			request.setAttribute("bseq", bseq);
 			request.setAttribute("quantity", quantity);
 		}else {
 			ProductDao pdao = ProductDao.getInstance();
 			ProductVO pvo = pdao.getProduct(bseq);
-			// OrderDao 에  insertOrderOne 메서드 만들어서   아이디와  상품객체를 보내서 주문을 완료.
+			// OrderDao 에  insertOrderOne 메서드 만들어서   아이디와  상품객체를 보내서 주믄을 완료 합니다.
 			OrderDao odao = OrderDao.getInstance();
-			int oseq = odao.insertOrderOne(pvo, mvo.getId() , quantity);
-			// oseq 를 리턴받아  orderList.jsp 로 가서 주문내역을 화면에 표시.
-			url = "bs.do?cmd=orderList&oseq="+oseq;
+			int oseq = odao.insertOrderOne( pvo, mvo.getId() , quantity );
+			// oseq 를 리턴받아  orderList.jsp 로 가서 주문내역을 화면에 표시합니다.
+			url = "bs.do?cmd=orderResult&oseq="+oseq;
 		}
-		request.getRequestDispatcher(url).forward(request, response);
+		response.sendRedirect(url);
+		
 	}
 
 }

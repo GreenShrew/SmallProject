@@ -228,15 +228,23 @@ public class ProductDao {
 	}
 	
 	
-	public ArrayList<ProductVO> getLocalList() {
+	public ArrayList<ProductVO> getLocalList(Paging paging, String kind) {
 		ArrayList<ProductVO> localviewList = new ArrayList<ProductVO>();
-		String sql = "SELECT * FROM localviewList";
+//		String sql = "SELECT * FROM localviewList";
 		// paging
-		// String sql = "SELECT * FROM localviewList";
+		String sql = "SELECT * FROM ("
+				+ " SELECT * FROM ("
+				+ " SELECT rownum AS rn, b.* FROM "
+				+ " ((SELECT * FROM localviewList WHERE kind LIKE '%'||?||'%' ORDER BY bseq DESC) b)"
+				+ " ) WHERE rn >= ? "
+				+ " ) WHERE rn <= ? ";
 		
 		con = Dbm.getConnection();
 		try {
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, kind);
+			pstmt.setInt(2, paging.getStartNum());
+			pstmt.setInt(3, paging.getEndNum());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				ProductVO pvo = new ProductVO();
@@ -263,15 +271,23 @@ public class ProductDao {
 		return localviewList;
 	}
 
-	public ArrayList<ProductVO> getGlobalList() {
+	public ArrayList<ProductVO> getGlobalList(Paging paging, String kind) {
 		ArrayList<ProductVO> globalviewList = new ArrayList<ProductVO>();
-		String sql = "SELECT * FROM globalviewList";
+//		String sql = "SELECT * FROM globalviewList";
 		// paging
-		// String sql = "SELECT * FROM globalviewList";
+		String sql = "SELECT * FROM ("
+				+ " SELECT * FROM ("
+				+ " SELECT rownum AS rn, b.* FROM "
+				+ " ((SELECT * FROM globalviewList WHERE kind LIKE '%'||?||'%' ORDER BY bseq DESC) b)"
+				+ " ) WHERE rn >= ? "
+				+ " ) WHERE rn <= ? ";
 		
 		con = Dbm.getConnection();
 		try {
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, kind);
+			pstmt.setInt(2, paging.getStartNum());
+			pstmt.setInt(3, paging.getEndNum());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				ProductVO pvo = new ProductVO();
@@ -299,20 +315,22 @@ public class ProductDao {
 	}
 
 
-	public ArrayList<ProductVO> getViewList(String genre) {
+	public ArrayList<ProductVO> getViewList(Paging paging, String genre) {
 		ArrayList<ProductVO> productList = new ArrayList<ProductVO>();
 		String sql = "";
-		// paging
+		// paging 220218
 		con = Dbm.getConnection();
 		try {
-			if(genre.equals("all")) {
-				sql = "SELECT * FROM bookproduct ORDER BY bseq DESC";
-				pstmt = con.prepareStatement(sql);
-			}else {
-				sql = "SELECT * FROM bookproduct WHERE genre = ? ORDER BY bseq DESC";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, genre);
-			}
+			sql = "SELECT * FROM ("
+					+ " SELECT * FROM ("
+					+ " SELECT rownum AS rn, b.* FROM "
+					+ " ((SELECT * FROM bookproduct WHERE genre LIKE '%'||?||'%' ORDER BY bseq DESC) b)"
+					+ " ) WHERE rn >= ? "
+					+ " ) WHERE rn <= ? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, genre);
+			pstmt.setInt(2, paging.getStartNum());
+			pstmt.setInt(3, paging.getEndNum());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				ProductVO pvo = new ProductVO();
@@ -372,6 +390,66 @@ public class ProductDao {
 		return pvo;
 	}
 	
+
+	public ArrayList<ProductVO> getSearchViewList(String option, String str, Paging paging) {
+		ArrayList<ProductVO> searchViewList = new ArrayList<ProductVO>();
+		String sql = "";
+		con = Dbm.getConnection();
+		try {
+			if(option.equals("통합검색")) {
+				sql = "SELECT * FROM ("
+						+ " SELECT * FROM ("
+						+ " SELECT rownum AS rn, b.* FROM "
+						+ " ((SELECT * FROM bookproduct WHERE bname LIKE '%'||?||'%' ORDER BY bseq DESC) b)"
+						+ " ) WHERE rn >= ? "
+						+ " ) WHERE rn <= ? ";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, str);
+				pstmt.setInt(2, paging.getStartNum());
+				pstmt.setInt(3, paging.getEndNum());
+			}else {
+				sql = "SELECT * FROM ("
+						+ " SELECT * FROM ("
+						+ " SELECT rownum AS rn, b.* FROM "
+						+ " ((SELECT * FROM bookproduct WHERE bname LIKE '%'||?||'%' AND kind=? ORDER BY bseq DESC) b)"
+						+ " ) WHERE rn >= ? "
+						+ " ) WHERE rn <= ? ";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, str);
+				if(option.equals("국내도서")) {
+					pstmt.setString(2, "l");
+				}else {
+					pstmt.setString(2, "g");
+				}
+				pstmt.setInt(3, paging.getStartNum());
+				pstmt.setInt(4, paging.getEndNum());
+			}
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ProductVO pvo = new ProductVO();
+				pvo.setBseq(rs.getInt("bseq"));
+				pvo.setBname(rs.getString("bname"));
+				pvo.setWriter(rs.getString("writer"));
+				pvo.setByear(rs.getString("byear"));
+				pvo.setKind(rs.getString("kind"));
+				pvo.setPrice(rs.getInt("price"));
+				pvo.setPublisher(rs.getString("publisher"));
+				pvo.setGenre(rs.getString("genre"));
+				pvo.setContent(rs.getString("content"));
+				pvo.setImage(rs.getString("image"));
+				pvo.setUseyn(rs.getString("useyn"));
+				pvo.setBestyn(rs.getString("bestyn"));
+				pvo.setIndate(rs.getTimestamp("indate"));
+				searchViewList.add(pvo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			Dbm.close(con, pstmt, rs);
+		}
+		return searchViewList;
+	}
+	
 	public int getProductCount(String kind, String genre) {
 		int count = 0;
 		String sql = "SELECT COUNT(*) AS cnt FROM bookproduct WHERE "
@@ -394,133 +472,32 @@ public class ProductDao {
 		return count;
 	}
 	
-	public ArrayList<ProductVO> getViewList(Paging paging, String genre) {
-		ArrayList<ProductVO> productList = new ArrayList<ProductVO>();
-		String sql = "";
-		// paging 220218
+	public int getSearchingCount(String str, String option) {
+		int count = 0;
+		String sql = "SELECT COUNT(*) AS cnt FROM bookproduct WHERE "
+				+ "bname LIKE '%'||?||'%' AND kind LIKE '%'||?||'%'";
+			
 		con = Dbm.getConnection();
 		try {
-			sql = "SELECT * FROM ("
-					+ " SELECT * FROM ("
-					+ " SELECT rownum AS rn, b.* FROM "
-					+ " ((SELECT * FROM bookproduct WHERE genre LIKE '%'||?||'%' ORDER BY bseq DESC) b)"
-					+ " ) WHERE rn >= ? "
-					+ " ) WHERE rn <= ? ";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, genre);
-			pstmt.setInt(2, paging.getStartNum());
-			pstmt.setInt(3, paging.getEndNum());
+			pstmt.setString(1, str);
+			if(option.equals("통합검색")) {option = "";
+			}else if(option.equals("국내도서")) {option = "l";
+			}else if(option.equals("외국도서")) {option = "g";
+			}else {option = "";}
+			pstmt.setString(2, option);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				ProductVO pvo = new ProductVO();
-				pvo.setBseq(rs.getInt("bseq"));
-				pvo.setBname(rs.getString("bname"));
-				pvo.setWriter(rs.getString("writer"));
-				pvo.setByear(rs.getString("byear"));
-				pvo.setKind(rs.getString("kind"));
-				pvo.setPrice(rs.getInt("price"));
-				pvo.setPublisher(rs.getString("publisher"));
-				pvo.setGenre(rs.getString("genre"));
-				pvo.setContent(rs.getString("content"));
-				pvo.setImage(rs.getString("image"));
-				pvo.setUseyn(rs.getString("useyn"));
-				pvo.setBestyn(rs.getString("bestyn"));
-				pvo.setIndate(rs.getTimestamp("indate"));
-				productList.add(pvo);
+			if(rs.next()) {
+				count = rs.getInt("cnt");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			Dbm.close(con, pstmt, rs);
 		}
-		return productList;
+		return count;
 	}
+
 	
-	
-	public ArrayList<ProductVO> getLocalList(Paging paging, String kind) {
-		ArrayList<ProductVO> localviewList = new ArrayList<ProductVO>();
-//		String sql = "SELECT * FROM localviewList";
-		// paging
-		String sql = "SELECT * FROM ("
-				+ " SELECT * FROM ("
-				+ " SELECT rownum AS rn, b.* FROM "
-				+ " ((SELECT * FROM localviewList WHERE kind LIKE '%'||?||'%' ORDER BY bseq DESC) b)"
-				+ " ) WHERE rn >= ? "
-				+ " ) WHERE rn <= ? ";
-		
-		con = Dbm.getConnection();
-		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, kind);
-			pstmt.setInt(2, paging.getStartNum());
-			pstmt.setInt(3, paging.getEndNum());
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				ProductVO pvo = new ProductVO();
-				pvo.setBseq(rs.getInt("bseq"));
-				pvo.setBname(rs.getString("bname"));
-				pvo.setWriter(rs.getString("writer"));
-				pvo.setByear(rs.getString("byear"));
-				pvo.setKind(rs.getString("kind"));
-				pvo.setPrice(rs.getInt("price"));
-				pvo.setPublisher(rs.getString("publisher"));
-				pvo.setGenre(rs.getString("genre"));
-				pvo.setContent(rs.getString("content"));
-				pvo.setImage(rs.getString("image"));
-				pvo.setUseyn(rs.getString("useyn"));
-				pvo.setBestyn(rs.getString("bestyn"));
-				pvo.setIndate(rs.getTimestamp("indate"));
-				localviewList.add(pvo);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			Dbm.close(con, pstmt, rs);
-		}
-		return localviewList;
-	}
-	
-	public ArrayList<ProductVO> getGlobalList(Paging paging, String kind) {
-		ArrayList<ProductVO> globalviewList = new ArrayList<ProductVO>();
-//		String sql = "SELECT * FROM globalviewList";
-		// paging
-		String sql = "SELECT * FROM ("
-				+ " SELECT * FROM ("
-				+ " SELECT rownum AS rn, b.* FROM "
-				+ " ((SELECT * FROM globalviewList WHERE kind LIKE '%'||?||'%' ORDER BY bseq DESC) b)"
-				+ " ) WHERE rn >= ? "
-				+ " ) WHERE rn <= ? ";
-		
-		con = Dbm.getConnection();
-		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, kind);
-			pstmt.setInt(2, paging.getStartNum());
-			pstmt.setInt(3, paging.getEndNum());
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				ProductVO pvo = new ProductVO();
-				pvo.setBseq(rs.getInt("bseq"));
-				pvo.setBname(rs.getString("bname"));
-				pvo.setWriter(rs.getString("writer"));
-				pvo.setByear(rs.getString("byear"));
-				pvo.setKind(rs.getString("kind"));
-				pvo.setPrice(rs.getInt("price"));
-				pvo.setPublisher(rs.getString("publisher"));
-				pvo.setGenre(rs.getString("genre"));
-				pvo.setContent(rs.getString("content"));
-				pvo.setImage(rs.getString("image"));
-				pvo.setUseyn(rs.getString("useyn"));
-				pvo.setBestyn(rs.getString("bestyn"));
-				pvo.setIndate(rs.getTimestamp("indate"));
-				globalviewList.add(pvo);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			Dbm.close(con, pstmt, rs);
-		}
-		return globalviewList;
-	}
 
 }

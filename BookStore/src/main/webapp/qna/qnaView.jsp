@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
-<%@ include file="sub_img.html"%> 
 <%@ include file="sub_menu.jsp" %>
 
 <article>
 <h2>고객센터</h2><hr>
 <form>
-<table>
+<table id="View2">
 	<tr><th>제목</th><td width="600" style="text-align:left;">${qnaVO.subject}</td></tr>
 	<tr><th>등록일</th><td align="left" style="text-align:left;">
 		<fmt:formatDate value="${qnaVO.indate}" type="date"/></td></tr>

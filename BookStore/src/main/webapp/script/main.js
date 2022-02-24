@@ -60,16 +60,20 @@ function moveRight(){
 }
 
 
-$(function(){
-    $(".book").hover(
-        function(){
-            var num = $(this).index(".book");
-            $(".book .overview").eq(num).css({"visibility":"visible"});
-            $(".book .bookimgs").eq(num).css({"box-shadow":"3px 3px 3px 3px #999"});
-        },
-        function(){
-            $(".overview").css({"visibility":"hidden"});
-            $(".bookimgs").css({"box-shadow":"0 0 0 0 #999"});
-        }
-    );
-});
+/* 0215 searching */
+function searching(){
+	var e = document.getElementById('day_font');
+	var option = e.options[e.selectedIndex].value;
+	var searchString = document.getElementById("searchbox");
+	if(searchString.value==""){
+		alert("검색어를 입력해주세요");
+		searchString.focus();
+		return;
+	}else if(searchString.length < 2){
+		alert("검색어는 2글자 이상 입력해주세요");
+		searchString.focus();
+		return;	
+	}else{
+		window.location.href="bs.do?cmd=searching&sub=y&option=" + option + "&str=" + searchString.value;
+	}
+}

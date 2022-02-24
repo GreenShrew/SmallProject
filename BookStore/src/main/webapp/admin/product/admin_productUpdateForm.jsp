@@ -4,7 +4,7 @@
 <%@ include file="../adminHeader.jsp" %>
 
 <div id="adminBox">
-	<h3 style="padding:0px 0px 0px 30px;">ProductList</h3>
+	<h3 style="padding:0px 0px 0px 30px;">Product UpdateForm</h3>
 	<form method="post" name="form" enctype="multipart/form-data">
 	<input type="hidden" name="bseq" value="${productVO.bseq }">
 		<ul id="admin_ProductDetail">

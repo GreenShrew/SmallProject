@@ -11,7 +11,7 @@
 		<form class="detailbox" name="pdfrm1">
 			<input type="hidden" value="${productVO.bseq }">
 			<div class="pdLeft">
-				<img alt="" src="images/book/${productVO.image }">
+				<img alt="" src="images/book/${productVO.image }" style="width:200px; height:300px;">
 			</div>
 			<div class="pdRight">
 				<div class="pdRightList" style="font-size:140%; font-weight:bold;">[${productVO.genre}]&nbsp;${productVO.bname }</div>
