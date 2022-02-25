@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import com.groupc.dto.AdminVO;
 import com.groupc.dto.MemberVO;
 import com.groupc.dto.NOrderVO;
+import com.groupc.dto.NonMemberVO;
 import com.groupc.dto.NoticeVO;
 import com.groupc.dto.OrderVO;
 import com.groupc.dto.ProductVO;
@@ -734,5 +735,38 @@ public class AdminDao {
 		return list;
 	}
 	
+	public ArrayList<NonMemberVO> getNonMemberList(Paging paging, String key) {
+		ArrayList<NonMemberVO> nonmemberList = new ArrayList<NonMemberVO>();
+		
+		String sql = "SELECT * FROM (" + "SELECT * FROM ("
+				+ " SELECT rownum AS rn, m.* FROM( "
+				+ " (SELECT * FROM nonmember WHERE name LIKE '%'||?||'%')m) "
+				+ " ) WHERE rn >= ?" + " ) WHERE rn <= ?";
+		
+		con = Dbm.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, key);
+			pstmt.setInt(2, paging.getStartNum());
+			pstmt.setInt(3, paging.getEndNum());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				NonMemberVO nmvo = new NonMemberVO();
+				nmvo.setOd_pass(rs.getString("od_pass"));
+				nmvo.setName(rs.getString("name"));
+				nmvo.setEmail(rs.getString("email"));
+				nmvo.setPhone(rs.getString("phone"));
+				nmvo.setZip_num(rs.getString("zip_num"));
+				nmvo.setAddress(rs.getString("address"));
+				nonmemberList.add(nmvo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			Dbm.close(con, pstmt, rs);
+		}
+		
+		return nonmemberList;
+	}
 	
 }

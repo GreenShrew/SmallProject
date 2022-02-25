@@ -12,7 +12,7 @@
 	<c:forEach items="${orderList}" var="orderVO">
 		<tr><td>
 			<a href="bs.do?cmd=productDetail&bseq=${orderVO.bseq}">
-			<h3>${orderVO.bname}</h3></td>
+			<h3>${orderVO.bname}</h3></a></td>
 			<td> ${orderVO.quantity}</td>
        		<td><fmt:formatNumber value="${orderVO.price*orderVO.quantity}" type="currency"/></td>      
        		<td><fmt:formatDate value="${orderVO.indate}" type="date"/></td>

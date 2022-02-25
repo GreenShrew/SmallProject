@@ -210,7 +210,7 @@ $(function(){
 function findOd_pass(){
 	var url = "bs.do?cmd=findNMOd_pass";
 	var opt = "toolbar=no, menubar=no, resizable=no, width=550, height=300, top=300, left=300, scrollbars=no";
-	window.open(url, "주문번호 찾기", opt);
+	window.open(url, "", opt);
 }
 
 function Od_passCheck(){

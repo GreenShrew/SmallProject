@@ -19,29 +19,28 @@ public class OrderInsertAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "";
 		
+		String[] cseqlist = request.getParameterValues("cseq");
+		
 		HttpSession session = request.getSession();
 		MemberVO mvo = (MemberVO) session.getAttribute("loginUser");
 		
-		String [] checkboxArr = request.getParameterValues("cseq");
-		
+//		System.out.println("cseqlist  " + cseqlist.length);
 		if (mvo == null) {
 		    url = "bs.do?cmd=loginForm";
 		}else {
 			CartDao cdao = CartDao.getInstance();
 			OrderDao odao = OrderDao.getInstance();
-			for(String cseq : checkboxArr) {
-				// cseq로 내용 불러와서 insertOrderOne에..
-				
+			ArrayList<CartVO> list = new ArrayList<CartVO>();
+			int Oseq = 0;
+			for(String cseq : cseqlist) {
+				list = cdao.selectCartByCseq(Integer.parseInt(cseq));
+//				System.out.println("list.size  " + list.size());
+				Oseq = odao.insertOrder(list, mvo.getId());
+//				System.out.println("oseq  " + Oseq);
 			}
 			
 			
-			OrderDao odao = OrderDao.getInstance();
-			// 추출한 list 와 주문자의 아디를 갖고 OrderDao 에 가서 오더 와 오더 디테일에 데이터를 추가합니다.
-			// 방금 추가한 주문의 주문번호를 리턴받습니다
-			int Oseq = odao.insertOrder(list, mvo.getId());
-			
-			// 방금 주문에 성공한 주문 번호를 갖고 오더 리스트로 이동하여 주문번호로 주문 내역을 다시 조회하고jsp로 이동합니다
-			url = "bs.do?cmd=orderList&oseq="+ Oseq;
+			url = "bs.do?cmd=orderResult&oseq="+ Oseq;
 		}
 		response.sendRedirect(url);
 

@@ -21,7 +21,7 @@ public class MemberDao {
 
 	public MemberVO getMember(String id) {
 	 MemberVO mvo = null;
-		String sql = "select*from member where id=?";
+		String sql = "select * from member where id=?";
 		con = Dbm.getConnection();
 		try {
 			pstmt = con.prepareStatement(sql);

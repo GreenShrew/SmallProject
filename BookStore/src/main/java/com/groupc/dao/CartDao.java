@@ -100,4 +100,34 @@ public class CartDao {
 		}
 	}
 	
+	public ArrayList<CartVO> selectCartByCseq(int cseq) {
+		ArrayList<CartVO> cvolist = new ArrayList<CartVO>();
+		String sql = "SELECT * FROM cart_view WHERE cseq=?";
+		con = Dbm.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, cseq);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				CartVO cvo = new CartVO();
+				cvo.setCseq(rs.getInt("cseq"));  		
+				cvo.setId(rs.getString("id"));
+				cvo.setMname(rs.getString("mname")); 
+				cvo.setBseq(rs.getInt("bseq"));	
+				cvo.setBname(rs.getString("bname"));  
+				cvo.setImage(rs.getString("image"));
+				cvo.setQuantity(rs.getInt("quantity"));
+				cvo.setPrice(rs.getInt("price"));  
+				cvo.setIndate(rs.getTimestamp("indate"));
+				cvo.setResult(rs.getString("result"));
+				cvolist.add(cvo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			Dbm.close(con, pstmt, rs);
+		}
+		
+		return cvolist;
+	}
 }

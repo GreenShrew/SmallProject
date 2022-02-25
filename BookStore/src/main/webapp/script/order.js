@@ -1,29 +1,53 @@
-function go_order_insert(){
-		var count = 0;
-	var checkbox = document.getElementsByName('cseq');
+//function go_order_insert(){
+//		var count = 0;
+//	var checkbox = document.getElementsByName('cseq');
+//
+//	if(checkbox.length==undefined){
+//		if(checkbox.checked==true) {count++;}
+//	}else{
+//		for(var i=0; i<checkbox.length; i++){
+//			if(checkbox[i].checked==true){
+//				count++;
+//			}
+//		}
+//	}
+//	
+//	if(count==0){
+//		alert("장바구니에서 주문할 항목을 선택해주세요.");
+//	}else{
+//		var a = confirm("선택하신 상품들을 주문하시겠습니까?");
+//		if(a){
+//			document.formm.action="bs.do?cmd=orderInsert";
+//			document.formm.submit();
+//		}else{
+//			return false;
+//		}
+//	}
+//}
 
-	if(checkbox.length==undefined){
-		if(checkbox.checked==true) {count++;}
+function go_order_insert(){
+	var cnt = 0;
+	var f = document.formm;
+	if(f.cseq.length == undefined){
+		if(f.cseq.checked == true){
+			cnt++;
+		}
 	}else{
-		for(var i=0; i<checkbox.length; i++){
-			if(checkbox[i].checked==true){
-				count++;
+		for(var i = 0; i < f.cseq.length; i++){
+			if(f.cseq[i].checked == true){
+				cnt++;
 			}
 		}
 	}
 	
-	if(count==0){
-		alert("장바구니에서 주문할 항목을 선택해주세요.");
+	if(cnt == 0){
+		alert("주문할 항목을 체크해주세요");
 	}else{
-		var a = confirm("선택하신 상품들을 주문하시겠습니까?");
-		if(a){
-			document.formm.action="bs.do?cmd=orderInsert";
-			document.formm.submit();
-		}else{
-			return false;
-		}
+		f.action = "bs.do?cmd=orderInsert";
+		f.submit();
 	}
 }
+
 
 
 
@@ -32,7 +56,7 @@ function buyyn(bseq){
 	var a = confirm("상품을 바로 구매하시겠습니까?");
 	if(a){
 		if(document.getElementById('checking').value){
-			location.href="bs.do?cmd=cartInsert&bseq="+bseq+"&quantity=1";
+			location.href="bs.do?cmd=orderOne&bseq="+bseq+"&quantity=1";
 			return true;
 		}else{
 			if(confirm("비회원으로 구매하시겠습니까?")){

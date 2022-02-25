@@ -181,11 +181,12 @@ SELECT m_order_detail_seq.currVal, m_order_detail_seq.nextVal FROM dual;
 -- 비회원 주문 상세
 DROP TABLE nm_order_detail CASCADE CONSTRAINTS;
 CREATE TABLE nm_order_detail(
-	odseq NUMBER(10) PRIMARY KEY,		-- 주문 상세번호
-	oseq NUMBER(10) REFERENCES nm_orders(oseq),	-- 주문번호
-	bseq NUMBER(5) REFERENCES bookproduct(bseq),	-- 상품번호
-	result CHAR(1) DEFAULT '1',	-- 주문 처리 상황 1:미처리 2:처리 
-	quantity NUMBER(5) DEFAULT 1		-- 주문 수량
+   odseq NUMBER(10) PRIMARY KEY,      -- 주문 상세번호
+   oseq NUMBER(10) REFERENCES nm_orders(oseq),   -- 주문번호
+   od_pass VARCHAR2(20) REFERENCES nonmember(od_pass),
+   bseq NUMBER(5) REFERENCES bookproduct(bseq),   -- 상품번호
+   result CHAR(1) DEFAULT '1',   -- 주문 처리 상황 1:미처리 2:처리 
+   quantity NUMBER(5) DEFAULT 1      -- 주문 수량
 );
 SELECT * FROM nm_order_detail;
 

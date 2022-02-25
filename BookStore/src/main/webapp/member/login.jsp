@@ -46,7 +46,7 @@
     			<div><input class="logininput" type="text" name="od_pass" placeholder="주문번호"></div>
 				<div><input class="login_btn" type="submit" value="확인" onClick="nonmemCheck()"></div>
 				<br><br>
-				<div><a href="bs.do?cmd=findNMOd_pass">주문번호 찾기</a></div>
+				<div><a href="#" onClick="findOd_pass()">주문번호 찾기</a></div>
 	    	</form>
 	    </div>
     </div>

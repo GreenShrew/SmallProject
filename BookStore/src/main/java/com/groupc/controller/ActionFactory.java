@@ -31,6 +31,7 @@ import com.groupc.controller.action.NmemberBuyFormAction;
 import com.groupc.controller.action.NoticeListAction;
 import com.groupc.controller.action.NoticeViewAction;
 import com.groupc.controller.action.OrderDetailAction;
+import com.groupc.controller.action.OrderInsertAction;
 import com.groupc.controller.action.OrderListAction;
 import com.groupc.controller.action.OrderOneAction;
 import com.groupc.controller.action.OrderResultAction;
@@ -59,6 +60,7 @@ import com.groupc.controller.admin_action.AdminMemberUpdateAction;
 import com.groupc.controller.admin_action.AdminMemberUpdateFormAction;
 import com.groupc.controller.admin_action.AdminMemberUpdateUseynAction;
 import com.groupc.controller.admin_action.AdminMemberUseNListAction;
+import com.groupc.controller.admin_action.AdminNonMemberListAction;
 import com.groupc.controller.admin_action.AdminNoticeDetailAction;
 import com.groupc.controller.admin_action.AdminNoticeListAction;
 import com.groupc.controller.admin_action.AdminNoticeWriteAction;
@@ -221,10 +223,13 @@ public class ActionFactory {
 		else if(cmd.equals("changeOrder"))ac = new ChangeOrderAction();
 		
 		else if( cmd.equals("findNMOd_pass")) { ac = new FindNMOd_passAction();}
-		
+
 		else if(cmd.equals("adminWorkerList"))ac = new AdminWorkerListAction();
 		
+		else if(cmd.equals("orderInsert")) ac = new OrderInsertAction();
 		
+
+		else if(cmd.equals("adminNonMemberList"))ac = new AdminNonMemberListAction();
 		
 		return ac;
 	}

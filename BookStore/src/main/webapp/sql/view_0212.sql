@@ -31,7 +31,7 @@ ORDER BY DBMS_RANDOM.RANDOM)
 WHERE rownum <= 8;
 
 SELECT * FROM recommand_pro_view;
-
+select * from order_view;
 
 CREATE OR REPLACE VIEW bestviewList
 AS
@@ -109,5 +109,17 @@ FROM nm_orders o, nm_order_detail d, nonmember nm, bookproduct b
 WHERE o.oseq = d.oseq AND o.od_pass = nm.od_pass AND d.bseq = b.bseq;
 select * from non_order_view;
 
-select * from order_view;
 select * from non_order_view;
+
+
+-- order_view 만들었는데...
+CREATE OR REPLACE VIEW m_order_view
+AS
+SELECT d.odseq, o.oseq, o.indate, m.id,
+			m.name AS mname, m.zip_num, m.address, m.phone, m.email,
+			d.bseq, b.bname AS bname, b.price, d.quantity, d.result
+FROM m_orders o, m_order_detail d, member m, bookproduct b
+WHERE o.oseq = d.oseq AND o.id = m.id AND d.bseq = b.bseq;
+
+select * from m_order_view;
+select * from order_view;
