@@ -25,7 +25,11 @@
 				<div style=" overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
 					<span>${pvo.content}</span>
 				</div>
+<<<<<<< HEAD
 				<div>${pvo.price}</div>
+=======
+				<div><fmt:formatNumber value="${pvo.price}" type="currency"/></div>
+>>>>>>> MJ
 				<div>
 <%-- 					<p>${pvo.avg } | ${pvo.cnt }</p> 해결불가--%>
 				</div>

@@ -35,7 +35,11 @@ public class OrderListAction implements Action {
 	    	for(Integer oseq : oseqList) { // 리스트에 담긴 주문 번호들을 하나씩 꺼내서 반복실행
 	    		ArrayList<OrderVO> orderListByOseq = odao.listOrderByOseq( oseq );  // 주문 번호별 주문상품 리스트
 	    		OrderVO ovo = orderListByOseq.get(0);
+<<<<<<< HEAD
 	    		ovo.setBname( ovo.getBname() + " 포함 " + orderListByOseq.size() + " 건");
+=======
+//	    		ovo.setBname( ovo.getBname() + " 포함 " + orderListByOseq.size() + " 건");
+>>>>>>> MJ
 	    		int totalPrice = 0;
 	            for (OrderVO ovo1 : orderListByOseq)  
 	            	totalPrice += ovo1.getPrice() * ovo1.getQuantity();

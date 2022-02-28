@@ -26,7 +26,11 @@ public class OrderResultAction implements Action {
 			url = "bs.do?cmd=loginForm";
 		}else {
 			OrderDao odao = OrderDao.getInstance();
+<<<<<<< HEAD
 			ArrayList<OrderVO> orderList = odao.listOrderByOseq(oseq);
+=======
+			ArrayList<OrderVO> orderList = odao.listOrderResult(oseq);
+>>>>>>> MJ
 			
 			int totalPrice = 0;
 			

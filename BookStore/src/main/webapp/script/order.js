@@ -43,8 +43,15 @@ function go_order_insert(){
 	if(cnt == 0){
 		alert("주문할 항목을 체크해주세요");
 	}else{
+<<<<<<< HEAD
 		f.action = "bs.do?cmd=orderInsert";
 		f.submit();
+=======
+		if(confirm("선택하신 상품을 구매하시겠습니까?")){
+			f.action = "bs.do?cmd=orderInsert";
+			f.submit();
+		}
+>>>>>>> MJ
 	}
 }
 

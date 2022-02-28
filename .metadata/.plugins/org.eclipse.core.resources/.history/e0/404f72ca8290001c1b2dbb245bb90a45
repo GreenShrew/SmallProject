@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="../header.jsp" %>
+
+<article>
+<h3>비회원 구매결과 임시 페이지</h3>
+<form method="post" name="nresult" style="text-align:center;">
+	<div id="joinBox"><!-- css 재활용 -->
+		<div id="joinInfo">
+			<h2>[${bname}]의 주문이 완료되었습니다.</h2>
+			고객님이 주문하신 상품의 주문번호는 [${od_pass}] 입니다. [[${NOrderVO.od_pass}]]
+		</div>
+	
+	</div>
+</form>
+</article>
+
+<%@ include file="../footer.jsp" %>

@@ -99,6 +99,10 @@ function add_multi(){
 	}
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> MJ
 /*function cartyn(bseq){
 	var a = confirm("상품을 장바구니에 넣어두시겠습니까?");
 	if(a){
@@ -133,6 +137,7 @@ function add_multi(){
 	}else{
 		return false;
 	}
+<<<<<<< HEAD
 }*/
 
 
@@ -175,3 +180,6 @@ function norderCancel(od_pass){
 		return false;
 	}
 }
+=======
+}*/
+>>>>>>> MJ

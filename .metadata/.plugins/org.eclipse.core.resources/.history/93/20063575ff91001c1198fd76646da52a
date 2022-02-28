@@ -1,0 +1,329 @@
+@charset "UTF-8";
+
+body{ background:#eef5eb; margin:0; padding:0; font-size:0.75em;  }
+#wrap { width: 971px;	text-align:left;	margin: 0 auto; background:#eef5eb; min-height: 780px; }
+
+#logo { float: left; width: 180px; height: 100px; margin: 40px 0 0 40px;}
+
+
+/* top menu */
+#top_menu{position:relative;}
+nav#top_menu{float:right; margin:20px 64px 0 0;}
+nav#top_menu ul{width:800px;}
+nav#top_menu ul li{ display:block; height:30px; float:right; font-family: Verdana; font-size:90%;}
+nav#top_menu a { text-decoration: none; display: inline-block; width: 60px; text-align: center; 
+color:#6F0C78; font-weight: bold; border-right: 1px solid gray;}
+nav#top_menu a:hover {	color: blue;	font-weight: bold;}
+
+#top{ width:960px; height:130px;/* background-color:white; */}
+/* search */
+#logo {position:relative; float:left; text-align: center; width:250px; height:80px;bottom:30px; /* border:1px solid black; */ margin-right:0px;}
+#logo img{margin:0 auto;}
+
+#search{position:relative; width:450px; height:50px; top: 65px; left:50px;border:2px solid green; margin:0 auto;}
+.day_box{position: relative; margin:0 auto; bottom:143px; left: 5px; width: 440px; height:36px; border:0px;  float:left;}
+#day_font {float:left; width: 100px; height:36px; font-size:120%; background:none;
+	font-weight:bold; line-height:36px; border:0px; text-align:center; margin-right:2px;
+	text-decoration:none; color:green;}
+#searchbox{float:left; font-size:16px; width:280px; height:36px; line-height:36px;border:0px; outline:none; font-size: 120%; color:green;
+background-color:#eef5eb;}
+#button1 {float:left; background-image:url("../images/search.png"); width:50px;; height:40px; background-repeat:no-repeat; border:0px; overflow:hidden}
+
+#mainFrame{position:relative; margin:0 auto; padding:0px;}
+
+/* index_menu */
+#main_menu{position:relative; margin:0 auto; padding:0px;}
+nav#index_menu {margin: 0 auto; padding:0px; float: left; overflow:hidden; }
+nav#index_menu ul {list-style: none;font-family: Verdana;}
+nav#index_menu ul li {float: left;margin: 0 0 0 0;font-size: 14pt;  text-align:center; font-weight:bold;
+width:180px; /* border: 1px solid gray;  *//* background:white; */}
+nav#index_menu a {display: block;height: 20px;text-decoration: none;color: black;padding: 10px; 
+border-radius:10px;transition: all ease 0.5s 0s;}
+nav#index_menu a:hover {font-size:110%; transform:scaleY(1.3);/* background:red;  */
+background:green; color:white; border-radius:3px 3px;}
+
+
+/* mainFrame */
+#mainFrame{height:1300px; position:relative; margin:0 auto;}
+#view{position: relative; width:954px; height:400px; overflow:hidden; margin:0 auto;}
+
+#imgs{position: absolute; width:2000px; height:398px; left:0px; top:0px; transition:1s;}
+#lbutton{position:absolute; width:48px; height:48px; bottom:160px; left:0px;border-radius: 50%; overflow:hidden; 
+opacity:0.5; visibility:hidden;
+background-image:url(../images/main/ico_btn.png); background-position: -60px -460px;}
+#rbutton{position:absolute; width:48px; height:48px; bottom:160px; right:0px;border-radius: 50%; overflow:hidden;
+opacity:0.5; visibility:hidden; 
+background-image:url(../images/main/ico_btn.png); background-position: 0px -460px;}
+
+/* product */
+#bestProduct {position:relative; width:960px; height:800px; margin: 0 auto; /* border:1px solid black; background:white;*/ }
+.book{position:relative; width:162px; height:320px;float:left;top:40px; left:40px; margin-right:60px; margin-bottom:40px;
+ /*  background:yellowgreen;margin: 0 auto;  border:1px solid black;*/  text-align:left;}
+.booktitle{position:relative; width:162px; height:40px; margin:0 auto; left:5px;
+font-size:110%; line-height:40px; font-weight:bold; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.bookwrite{position:relative; width:162px; height:20px; margin:0 auto; left:5px;}
+.bookprice{position:relative; width:162px; height:20px; margin:0 auto; left:5px;}
+.overview{position:absolute; width:162px; height:46px; top: 188px;/* border:1px solid red; */
+background:black; opacity:0.5; overflow:hidden; visibility:hidden;}
+/* 0214 update */
+.tocart{position:relative; width:70px; height:34px; left:10px; top:4px; margin-right:10px; float:left;
+text-align:center; color:white; font-size:120%; line-height:34px; font-weight:bold;}
+.tobuy{position:relative; width:70px; height:34px; top:4px; margin: 0 auto; float:left;
+text-align:center; color:white; font-size:120%; line-height:34px;font-weight:bold;}
+.tocart:hover{text-decoration:underline; background-color:white; color:black;}
+.tobuy:hover{text-decoration:underline; background-color:white; color:black; }
+
+.tab{ margin:0 auto; top:1000px; width:950px;  height:780px;  overflow:hidden; border:4px solid #DAEFE0;}
+.tab ul{padding:0;  margin:0; list-style:none; width:100%; height:auto; overflow:hidden;}
+.tab ul li{ display:inline-block; width:33.3333%;  float:left;line-height:40px;  text-align:center; 
+cursor:pointer; font-size:120%; font-weight:bold;}
+.tab ul li:hover{text-decoration:underline; background-color:#DAEFE0;}
+.tab ul li.on{ background:#DAEFE0;}
+.tab .conBox{ width:100%;  height:auto; overflow:hidden; min-height:250px;background:#DAEFE0; display:none;
+ text-align:center;}
+.tab .conBox.on{ display:block; }
+
+
+#bestProduct {width: 910px; min-height: 260px; background: #DAEFE0;
+padding: 10px;	text-align: center; margin:0 auto;}
+#item {	width: 200px;	float: left;	margin: 0 13px; 	text-align: center; }
+#item img {overflow:hidden; border:1px solid gray;}
+
+
+.clear {clear: both;}
+
+/* login */
+#login{position:relative; width:390px; height:500px;top:10px; margin:0 auto;background-color:#eef5eb;}
+#login form{height: 400px;}
+#userLogin form div{position:relative; width:360px; height:54px;
+margin:0 auto;margin-bottom: 14px; top:20px;}
+#userLogin .logininput{width:350px; height:48px; line-height:48px;border:0px; 
+outline:none; font-size: 120%; color:green;}
+#userLogin .checkbox{position:relative; width:360px; height: 40px; margin:0 auto;}
+
+
+#nonmemberLogin form div{position:relative; width:360px; height:54px;  
+margin:0 auto; margin-bottom: 14px; top:20px;}
+#nonmemberLogin .logininput{width:350px; height:48px; line-height:48px;border:0px; 
+outline:none; font-size: 120%; color:green;}
+
+.login_a{position:relative; width: 300px; height:50px;}
+#login a{position:relative; margin:0 auto; text-decoration:none; color: black;}
+#login a:hover{text-decoration:underline;}
+.login_btn{position:relative; background-color: blue; width:350px; height:60px; color:white; text-align:center;
+font-size:150%; font-weight:bold;}
+
+/* mypage */
+#sidemenu{float:left; width:150px; border:1px solid black;}
+#sub_img{text-align:center;}
+
+
+/* product */
+
+/* product side menu */
+.floating{position: fixed; top: 300px; width:140px; border:1px solid black;}
+.productgenre{width:130px; height:40px; background-color:green;
+font-size:120%; font-weight:bold; line-height:40px; padding-left:10px;}
+#genreall{font-size:105%; font-weight:bold;}
+.genrelist{left:20%; width:200px; height:40px; line-height:40px; right:20px; padding-left:10px;}
+.genrelist a{text-decoration:none; color:green;}
+.genrelist:hover{text-decoration:underline; font-size:105%; color:yellowgreen;}
+	
+/* productList */
+#product_Area{position:relative; width:800px; height:2000px; left:16%;/* border:1px solid black; */ }
+
+/* box one */
+.bookone {position:relative; width:670px; height:300px; margin-left:10px; margin-right:20px;float:left;}
+
+.bookoneimg {position:relative; float:left; overflow:hidden;} 
+.bookoneimg img{width:177px; height:244px; border:1px solid green; margin:0px; padding:0px; overflow:hidden;}
+
+.bookoneright{position:relative; width:440px; height:200px;float:left; }
+.bookonelist{position:relative; width:400px; height:30px;margin:0px;float:left;
+font-size:120%;float:left;padding-left:20px; padding-top:10px;}
+
+.bookonebtn{position:relative;float:left; width:400px; height:35px; top:10px; margin:2px; overflow:hidden; 
+padding-left:20px;}
+.bookonebtn a{color: white; margin-right:10px; width:100px; background-color:green; 
+line-height:35px; text-align:center; float:left; text-decoration:none; border:1px solid black;}
+.bookonebtn a:hover{text-decoration:underline; font-weight:bold; font-size:110%}
+
+/* box list */
+.bookbox {position:relative; width:330px; height:160px; margin-left:10px; margin-right:20px;float:left;}
+.bookbestcount{position:absolute; width: 20px; height:20px; color: white; background-color:red; line-height:20px; 
+box-shadow:1px 1px 1px 1px gray; border:1px solid black; text-align:center; font-weight:bold; font-size:110%;}
+.bookboximg {position:relative; float:left; overflow:hidden;} 
+.bookboximg img{width:80px; height:110px; border:1px solid green; margin:0px; padding:0px; overflow:hidden;}
+
+.bookboxright{position:relative; width:240px; height:70px;float:left; }
+.bookboxlist{position:relative; width:200px; height:19px;margin:0px;float:left;
+font-size:90%;float:left;padding-left:5px;}
+
+.bookboxbtn{position:relative; width:300px; height:24px; top:10px; margin:2px; overflow:hidden;}
+.bookboxbtn a{color: white; margin-right:10px; width:80px; background-color:green; 
+line-height:20px; text-align:center; float:left; text-decoration:none; border:1px solid black;}
+.bookboxbtn a:hover{text-decoration:underline; font-weight:bold; font-size:102%}
+
+/* productviewList */
+.listbox{position:relative; float:left; width:700px; height:200px; border-bottom:1px solid black;}
+.listbox div{position:relative; float:left;}
+
+.list_in{position:relative; float:left; margin-right:10px;}
+
+.list_in input[type=checkbox]{position:relative; vertical-align:middle; width:20px; height:20px;}
+.list_in img{width:123px; height:170px; padding:13px;}
+.list_in div{position:relative; float:left; width:330px; height:30px; padding:5px 0 0 30px; }
+.list_in div p {margin:0px; padding:0px; font-size:90%;}
+.list_in div span {margin:0px; padding:0px;}
+.list_in a {color: white; margin-right:10px; width:100px; background-color:green; margin-bottom:7px;
+line-height:35px; text-align:center; float:left; text-decoration:none; border:1px solid black;}
+.list_in input[type=text]{width:30px; height:20px; line-height:20px; text-align:center;}
+
+
+
+/* find id, pw */
+#findHeader{position:relative; width:100%; height:100px; text-align:center;}
+.findHeader1{position:relative; width:960px; height:100px; display: inline-block;}
+#fhLogo{position:relative; float:left; width:180px; height:100px;}
+
+
+.findHeader1>span{position:relative; float:left; width:auto; height:100px; font-weight:bold; font-size:20px;}
+.findHeader1>span>a{text-decoration:none; text-decoration-line:none; line-height:100px;}
+.division{line-height:100px; color:grey;}
+.fhTextOn{color:black;}
+.fhTextOff{color:grey;}
+a:link{text-decoration: none;}
+a:visited {text-decoration: none;}
+
+
+#sideButton{position:absolute; right:0%; top:30px; width:250px; height:40px;}
+#sideButton .sideButton1{position:relative; float:left; width:120px; height:40px; border:none; line-height:40px; font-size:16px; }
+#sideButton .sideButton1:nth-child(1){margin-right:10px; background:white;}
+#sideButton .sideButton1:nth-child(2){background:white;}
+
+#findMain{position:relative; width:100%; height:auto; text-align:center; background:#62E681;}
+.findMain1{position:relative; width:960px; height:auto; display:inline-block; background:#C7D5D8; margin:60px 0;}
+.findMain1>p{padding:15px 0; font-size:15px;}
+.findMain2{position:relative; width:500px; height:auto; display:inline-block; background:white;}
+.method{height:50px; line-height:50px; background:#97ebdb;}
+.inputbox{position:relative; height:1px; padding:0 0 10px 0; background:#d7d7de; visibility:hidden;}
+.textbox{position:relative; padding:6px 12px; width:460px; height:26px; background:white; border:1px solid grey; margin-top:10px;}
+.findButton{position:relative; width:486px; height:40px; color:white; background:blue; border:none; font-weight:bold; font-size:16px;}
+
+.result{position:relative; display:inline-block; width:500px; height:250px; margin:20px 0; background:white;}
+.resultBox{position:relative; display:table-cell; vertical-align:middle; height:188px; width:498px; border:1px solid grey; background:blue;}
+.resultText{color: red;	font-weight: bold;}
+.resultBox1{position:relative; width:500px; height:40px; margin-top:20px;}
+.resultBox1 input{position:relative; width:242px; height:40px; background:yellow; border:1px solid grey; padding:0 10px;}
+.resultBox1 input:first-child{margin-right:10px;}
+
+/* join */
+#joinBox{position:relative; width:800px; height:auto; text-align:center; display:inline-block; background:#F3F3F3; padding:10px 0;}
+#joinLabel{position:relative; width:950px; height:65px; background:#F3F3F3; text-align:left; padding-left:20px; line-height:65px; font-size:18px; color:#56C0D3;}
+
+#joinInfo{position:relative; width:650px; height:auto; display:inline-block;}
+.warning{position:relative; width:640px; height:50px; text-align:left; padding-left:10px; font-size:14px; line-height:25px; margin-top:5px;}
+
+td{padding:5px; height:35px;}
+.mInfo{position:relative; text-align:left; border-collapse:collapse; border-color:#C6C6C6; background:white; margin-top:5px;}
+.mInfo:last-child{margin-top:15px;}
+
+#idCheckLabel{position:relative; width:950px; height:65px; background:#F3F3F3; text-align:left; padding-left:20px; line-height:65px; font-size:18px; color:#56C0D3;}
+
+
+
+/* footer */
+footer {position:relative; margin: 0 auto; height: 100px; margin-top:10px;}	
+footer #footerlogo {float:left;margin-right:10px;}
+footer #copy {float:left; margin: 5px 0 0 0; 	width:450px; font-size:80%; 
+/* border: 1px solid gray; */}
+footer #serviceimg{float:right; margin:10px 0 0 0;}
+
+
+
+
+
+/* contract */
+.con_text{position:relative; display: inline-block;}
+.con_check{position:relative; top:-4px;color:red; font-weight:bold; font-size:14px;}
+#agree{position:relative; width:720px; text-align:left; display: inline-block; font-size:17px; margin-bottom:5px;}
+
+
+
+
+/* qna */
+.mybox{position:relative; width:660px; height:400px; }
+#qnaList {margin-left:50px; border-collapse: collapse; border-top: 1px solid #DDDEDB;	border-bottom: 1px solid #DDDEDB; width: 80%;	
+margin-bottom: 30px; font-size:10pt;}
+#qnaList td { border-bottom: 1px solid #DDDEDB; text-align: center;}	
+#qnaList th { border-bottom: 1px solid #DDDEDB; text-align: center; background-color:#FFFFFF;}	
+
+form #buttons2 {margin: 20px 0 0 0; }
+form  #cancel{height: 30px;	width: 100px;  border: 1px solid #fff; border-radius: 5px; 
+font-size: 14px; background-repeat: repeat-x; background-position: center center; color: 	black; background-color:#fff; margin: 0 0 0 20px;  }
+form  #submit{height: 30px;	width: 100px;  border: 1px solid #43A22F; border-radius: 5px; 
+font-size: 14px; background-repeat: repeat-x; background-position: center center; color: #fff; background-color:#43A22F; margin: 0 0 0 20px;  }
+
+#qna{margin: 20px 0; font-weight: normal; }
+#qna article{ float: right; width: 680px; padding-right: 10px; font-family: Verdana; font-size: 1em; line-height: 1.5em; }
+
+#side2{font-weight:bold; font-size:15px;margin-left:70px;}
+
+#sub_menu { width: 250px; 	float: left; }
+#sub_menu ul { list-style: none; }
+
+#sub_menu a {float: left; text-decoration: none; color: black;  font-family:Verdana ; font-weight: bold;  font-size: 12px;	display: block;	
+height: 15px; width: 160px; padding: 7px;	}
+#sub_menu a:hover {color: #F90; font-weight: bold;  font-size: 12px;	font-family: Arial, Helvetica, sans-serif; }
+
+#write form {margin: 20px 0 0 0; width: 670px; float:right;}
+#write form fieldset {padding: 10px 0 20px 5px;	border: none;}
+#write form fieldset legend {	font-size: 20px; border-bottom: 1px dotted #666; width: 600px;  padding: 5px 0; }
+
+#write form label { width: 140px;  float: left;  margin: 5px 0; }
+#write form input {margin: 5px 0;  border: 1px solid #999; 	background-color: #FCFDEA; } 
+
+
+
+/* notice */
+form #plus{float:right;}
+#noticeList{margin-left:50px; border-collapse: collapse; border-top: 1px solid #DDDEDB;	border-bottom: 1px solid #DDDEDB; width: 80%;	
+margin-bottom: 30px; font-size:10pt;}
+#noticeList td { border-bottom: 1px solid #DDDEDB; text-align: center;}	
+#noticeList th { border-bottom: 1px solid #DDDEDB; text-align: center; background-color:#FFFFFF;}	
+
+#notice{margin-left:50px; border-collapse: collapse; border:1px dotted #999; width: 80%;	
+margin-bottom: 30px; font-size:10pt;}
+
+#noticeView{float:right; margin-bottom:10%; border-collapse: collapse; border-top: 1px solid #DDDEDB;	border-bottom: 1px solid #DDDEDB; width: 73%;	
+margin-bottom: 30px; font-size:10pt; font-family:Verdana;}
+#noticeView td { border-bottom: 1px solid #DDDEDB; text-align: center;}	
+#noticeView th { border-bottom: 1px solid #DDDEDB; text-align: center; background-color:#FFFFFF;}	
+
+
+form #buttons3 {margin: 20px 0 0 0; }
+form  #cancel{height: 30px;	width: 100px;  border: 1px solid #43A22F; border-radius: 5px; 
+font-size: 14px; background-repeat: repeat-x; background-position: center center; color: #fff; background-color:#43A22F; margin: 0 0 0 20px;  }
+form  #submit{height: 30px;	width: 100px;  border: 1px solid #fff; border-radius: 5px; 
+font-size: 14px; background-repeat: repeat-x; background-position: center center; color: black; background-color:#fff; margin: 0 0 0 20px;  }
+
+
+form #buttons4 {margin: 20px 0 0 0; }
+form  #cancel{height: 30px;	width: 100px;  border: 1px solid #43A22F; border-radius: 5px; 
+font-size: 14px; background-repeat: repeat-x; background-position: center center; color: #fff; background-color:#43A22F; margin: 0 0 0 20px;  }
+form  #submit{height: 30px;	width: 100px;  border: 1px solid #fff; border-radius: 5px; 
+font-size: 14px; background-repeat: repeat-x; background-position: center center; color: black; background-color:#fff; margin: 0 0 0 20px;  }
+
+
+
+/* nonmember buy form */
+.nbuyform td{padding-left:10px; font-weight: bold;}
+.nbuyform{position:relative; text-align:left; border-collapse:collapse; border-color:#C6C6C6; background:white; margin-top:5px; display:inline-block;}
+
+
+
+
+/* cartbutton */
+.cartbtn{position:fixed; right:300px; top:300px; background:url('../images/cart.png') no-repeat; background-size: contain; width:60px; height:60px;}
+.x {position: fixed; top: 300px; width:140px; border:1px solid black;}
+
