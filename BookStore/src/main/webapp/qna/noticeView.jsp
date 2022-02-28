@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
-<%@ include file="sub_img.html"%> 
 <%@ include file="sub_menu.jsp" %>
-
+<br>
 <article>
 <h2>공지사항</h2><hr>
 <h3><span style="color:green;">■</span> 공지사항</h3>
+
 <form name="formm" method="post">
 	<table id="noticeView">
 		<tr><th>제목</th><td width="600" style="text-align:left;">${noticeVO.subject}</td></tr>
@@ -16,9 +16,9 @@
 			<pre>${noticeVO.content}</pre></td></tr>
 	</table>
 	<div class="clear"></div>
-	<div id="buttons4" style="float:right">
-		<input type="button" value="목록보기" class="submit" onclick="location.href='bs.do?cmd=noticeList'">
-		<input type="button" value="쇼핑 계속하기" class="cancel" onclick="location.href='bs.do?cmd=index'">
+	<div id="buttons3" style="float:right">
+		<input type="button" value="쇼핑 계속하기" id="cancel" onclick="location.href='bs.do?cmd=index'">
+		<input type="button" value="목록보기" id="submit" onclick="location.href='bs.do?cmd=noticeList'">
 </div>
 </form>
 </article>

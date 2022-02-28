@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
-<%@ include file="sub_img.html"%> 
 <%@ include file="sub_menu.jsp" %>
 <div id="qna">
 <article>
@@ -18,10 +17,9 @@
 				<label>Content</label><textarea rows="8" cols="65" name="content"></textarea>
 			</fieldset>
 		<div class="clear"></div>
-		<div id="buttons" style="float:right">
-			<input type="submit"  value="글쓰기"   class="submit"> 
-			<input type="button"   value="취소"   class="cancel" >
-			<input type="button"  value="쇼핑 계속하기"  class="submit" onclick="location.href='bs.do?cmd=index'">
+		<div id="buttons1" style="float:right">
+			<input type="submit"  value="글쓰기"   id="submit"> 
+			<input type="button"  value="쇼핑 계속하기"  id="cancel" onclick="location.href='bs.do?cmd=index'" style="font-size:80%;">
 		</div>
 	</form>
 </div>

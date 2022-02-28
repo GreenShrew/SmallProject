@@ -6,7 +6,7 @@
 <div id=joinLabel><h2>회원 가입</h2></div>
 <form id="join" method="post" name="contractFrm">
 <br><div style="width:970px; text-align:center;">
-<div style="width:800px; display: inline-block; height:350px; padding:10px 0; background:#F3F3F3;">
+<div style="width:800px; display: inline-block; height:350px; padding:10px 0; background:#fcf9f2; border: 2px solid #d8d8d8;">
 	<strong id="agree">01 약관동의</strong>
 	<div style="widht:800px; height:5px; background:#7EC4EB;"></div>
 <textarea class="con_text" rows="15" cols="100" style="border:1px solid #C6C6C6; margin-top:15px; resize: none;">

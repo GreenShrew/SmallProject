@@ -22,7 +22,6 @@ public class CartInsertMultiAction implements Action {
 		String [] checkboxArr = request.getParameterValues("checkbox");
 		
 		
-		
 		String url = "bs.do?cmd=cartList";
 		String msg = "";
 		
@@ -32,8 +31,8 @@ public class CartInsertMultiAction implements Action {
 			request.setAttribute("msg", msg);
 		}else {
 			CartDao cdao = CartDao.getInstance();
-			for(String bseq : checkboxArr) {	// 한꺼번에 삭제하는게 아니라 cseqArr의 내용을 하나하나 집어넣으며 하나씩 삭제한다.
-				cdao.insertCartArr(mvo.getId(), Integer.parseInt(bseq));		// 삭제할 상품의 번호 전송
+			for(String bseq : checkboxArr) {
+				cdao.insertCartArr(mvo.getId(), Integer.parseInt(bseq));
 			}
 		}
 		// 뒤로가기 누르면 또 추가될까봐

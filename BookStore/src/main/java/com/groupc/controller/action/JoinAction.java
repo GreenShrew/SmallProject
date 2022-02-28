@@ -27,13 +27,10 @@ public class JoinAction implements Action {
 		mvo.setGender(request.getParameter("gender"));
 		
 		int result = mdao.insertMember(mvo);
-		String msg = "";
-		if(result==1) {
-			request.setAttribute("msg", "회원가입이 완료되었습니다!");
-		}else {
-			request.setAttribute("msg", "회원가입에 실패했습니다. 다시 시도해주세요.");
-		}
-		response.sendRedirect("bs.do?cmd=loginForm");
+		String message = "";
+		if(result==1) message="회원가입이 완료되었습니다!";
+		else message = "회원가입에 실패했습니다. 다시 시도해주세요.";
+		response.sendRedirect("bs.do?cmd=loginForm&message=" + URLEncoder.encode(message,"UTF-8"));
 	}
 
 }

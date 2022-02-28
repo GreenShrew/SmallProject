@@ -19,11 +19,11 @@
 				<div class="box" style="width:200px;">
 					<div class="boxLeft">
 						<label>Admin Id</label>&nbsp;&nbsp;
-						<span><input type="text" name="adminId" size="10"></span>
+						<span><input type="text" name="adminId" size="8"></span>
 					</div>
 					<div class="boxLeft">
 						<label>Admin Pwd</label>
-						<span><input type="password" name="adminPwd" size="10"></span>
+						<span><input type="password" name="adminPwd" size="8"></span>
 					</div>
 					<div class="msg">${message}</div>
 				</div>

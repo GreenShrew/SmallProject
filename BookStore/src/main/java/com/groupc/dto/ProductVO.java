@@ -6,7 +6,7 @@ public class ProductVO {
 	private Integer bseq;
 	private String bname;
 	private String writer;
-	private Integer byear;
+	private String byear;
 	private String kind;
 	private Integer price;
 	private String publisher;
@@ -34,10 +34,10 @@ public class ProductVO {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	public Integer getByear() {
+	public String getByear() {
 		return byear;
 	}
-	public void setByear(Integer byear) {
+	public void setByear(String byear) {
 		this.byear = byear;
 	}
 	public String getKind() {

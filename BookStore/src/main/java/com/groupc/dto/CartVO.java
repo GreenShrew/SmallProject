@@ -13,7 +13,6 @@ public class CartVO {
 	private Integer quantity;
 	private String result;
 	private Timestamp indate;
-	
 	public String getImage() {
 		return image;
 	}

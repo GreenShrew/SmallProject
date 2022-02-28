@@ -16,7 +16,7 @@
 			COPYRIGHT@CHEONGNYEONBOOKSTORE INC.ALLRIGHTS RESERVED. <br>
 		</div>
 		<div id="serviceimg">
-			<img alt="" src="images/footer/customer_servicecenter.jpg"style="width:180px; height:80px;">
+			<img alt="" src="images/footer/customer_servicecenter.png"style="width:180px; height:80px;">
 		</div>
 	</footer>
 

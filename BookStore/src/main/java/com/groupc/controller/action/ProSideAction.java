@@ -6,51 +6,71 @@ import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.groupc.dao.ProductDao;
 import com.groupc.dto.ProductVO;
+import com.groupc.util.Paging;
 
 public class ProSideAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "product/viewProduct.jsp";
-		String genre = request.getParameter("genre");
+		
+		// 220218
+		HttpSession session = request.getSession();
+		
+		String sub = request.getParameter("sub");
+		if(sub!=null && sub.equals("y")) {
+			session.removeAttribute("genre");
+			session.removeAttribute("kind");
+			session.removeAttribute("page");
+		}
+		
+		int page = 1;
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+			session.setAttribute("page", page);
+		}else if(session.getAttribute("page") != null) {
+			page = (int)session.getAttribute("page");
+		}else {
+			page = 1;
+			session.removeAttribute("page");
+		}
+		
+		Paging paging = new Paging();
+		paging.setPage(page);
+		
+		String genre="";
+		if( request.getParameter("genre") != null ) {
+			genre = request.getParameter("genre");
+			session.setAttribute("genre", genre);
+		} else if( session.getAttribute("genre")!= null ) {
+			genre = (String)session.getAttribute("genre");
+		} else {
+			session.removeAttribute("genre");
+			genre = "";
+		}
+		String kind="";
+		if( request.getParameter("kind") != null ) {
+			kind = request.getParameter("kind");
+			session.setAttribute("kind", kind);
+		} else if( session.getAttribute("kind")!= null ) {
+			kind = (String)session.getAttribute("kind");
+		} else {
+			session.removeAttribute("kind");
+			kind = "";
+		}
 		
 		ProductDao pdao = ProductDao.getInstance();
 		
-		// edu for hob lit
-		if(genre.equals("all")) {
-			ArrayList<ProductVO> pro_allviewList = pdao.getViewList(genre);
-			request.setAttribute("productViewList", pro_allviewList);
-		}else if(genre.equals("lit")) {
-			ArrayList<ProductVO> pro_eduviewList = pdao.getViewList(genre);
-			request.setAttribute("productViewList", pro_eduviewList);
-		}else if(genre.equals("for")) {
-			ArrayList<ProductVO> pro_forviewList = pdao.getViewList(genre);
-			request.setAttribute("productViewList", pro_forviewList);
-		}else if(genre.equals("hob")) {
-			ArrayList<ProductVO> pro_hobviewList = pdao.getViewList(genre);
-			request.setAttribute("productViewList", pro_hobviewList);
-		}else if(genre.equals("lit")) {
-			ArrayList<ProductVO> pro_litviewList = pdao.getViewList(genre);
-			request.setAttribute("productViewList", pro_litviewList);
-		}else if(genre.equals("edu")) {
-			ArrayList<ProductVO> pro_edu_forviewList = pdao.getViewList(genre);
-			request.setAttribute("productViewList", pro_edu_forviewList);
-		}else if(genre.equals("hob")) {
-			ArrayList<ProductVO> pro_hob_litviewList = pdao.getViewList(genre);
-			request.setAttribute("productViewList", pro_hob_litviewList);
-		}else if(genre.equals("for")) {
-			ArrayList<ProductVO> pro_for_litviewList = pdao.getViewList(genre);
-			request.setAttribute("productViewList", pro_for_litviewList);
-		}else if(genre.equals("edu")) {
-			ArrayList<ProductVO> pro_edu_litviewList = pdao.getViewList(genre);
-			request.setAttribute("productViewList", pro_edu_litviewList);
-		}else if(genre.equals("hob")) {
-			ArrayList<ProductVO> pro_hob_forviewList = pdao.getViewList(genre);
-			request.setAttribute("productViewList", pro_hob_forviewList);
-		}
+		int count = pdao.getProductCount(kind, genre);
+		paging.setTotalCount(count);
+		request.setAttribute("paging", paging);
+		ArrayList<ProductVO> pro_viewList = pdao.getViewList(paging, genre);
+		request.setAttribute("productViewList", pro_viewList);
+		
 		
 		request.getRequestDispatcher(url).forward(request, response);
 	}

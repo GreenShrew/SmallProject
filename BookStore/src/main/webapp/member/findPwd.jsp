@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ include file="findHeader.jsp" %>
+
+<style type="text/css">
+.fhTextOff{color:black;}
+.fhTextOn{color:grey;}
+</style>
+
 <c:if test="${not empty message}">
 	<script>
 		var message = "<c:out value='${message}'/>"; 
@@ -13,7 +19,7 @@
 	<form method="post" name="findForm">
 		<div id="findMain">
 			<div class="findMain1">
-				<p>비밀번호 찾기 방법을 선택해 주세요.</p>
+				<p style="font-weight:bold; font-size:20px;">비밀번호 찾기 방법을 선택해 주세요.</p>
 				<div class="findMain2">
 					<!-- 휴대폰 번호로 비밀번호 찾기 -->
 					<div>
@@ -41,4 +47,3 @@
 		</div>
 	</form>
 
-<%@ include file="../footer.jsp" %>

@@ -7,7 +7,6 @@ public class AddressVO {
 	private String dong;
 	private String zip_code;
 	private String bunji;
-	
 	public String getZip_num() {
 		return zip_num;
 	}
@@ -44,4 +43,5 @@ public class AddressVO {
 	public void setBunji(String bunji) {
 		this.bunji = bunji;
 	}
+	
 }

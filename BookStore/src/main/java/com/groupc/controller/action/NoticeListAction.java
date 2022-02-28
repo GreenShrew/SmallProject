@@ -20,9 +20,11 @@ public class NoticeListAction implements Action {
 			
 			HttpSession session = request.getSession();
 			MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+			String z = request.getParameter("z");
 			
 			if(mvo == null) {
 				url = "bs.do?cmd=loginForm";
+				request.setAttribute("z", z);
 			}else {
 				NoticeDao ndao = NoticeDao.getInstance();
 				ArrayList<NoticeVO> noticeList = ndao.listNotice(mvo.getId());

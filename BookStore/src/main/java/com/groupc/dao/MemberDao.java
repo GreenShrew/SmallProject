@@ -11,7 +11,6 @@ import com.groupc.dto.MemberVO;
 import com.groupc.util.Dbm;
 
 public class MemberDao {
-	
 	private MemberDao() {}
 	private static MemberDao itc = new MemberDao();
 	public static MemberDao getInstance() {return itc;}
@@ -19,35 +18,35 @@ public class MemberDao {
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
-	
-	
+
 	public MemberVO getMember(String id) {
 	 MemberVO mvo = null;
-	String sql = "select * from member where id=?";
-	con = Dbm.getConnection();
-	try {
-		pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, id);
-		rs = pstmt.executeQuery();
-		if( rs.next() ) {
-			mvo = new MemberVO();
-			mvo.setId( rs.getString("id") );
-			mvo.setPwd(rs.getString("pwd"));
-	        mvo.setName(rs.getString("name"));
-	        mvo.setEmail(rs.getString("email"));
-	        mvo.setZip_num(rs.getString("zip_num"));
-	        mvo.setAddress(rs.getString("address"));
-	        mvo.setPhone(rs.getString("phone"));
-	        mvo.setUseyn(rs.getString("useyn"));
-	        mvo.setIndate(rs.getTimestamp("indate"));
+		String sql = "select * from member where id=?";
+		con = Dbm.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if( rs.next() ) {
+				mvo = new MemberVO();
+				mvo.setId( rs.getString("id") );
+				mvo.setPwd(rs.getString("pwd"));
+		        mvo.setName(rs.getString("name"));
+		        mvo.setEmail(rs.getString("email"));
+		        mvo.setZip_num(rs.getString("zip_num"));
+		        mvo.setAddress(rs.getString("address"));
+		        mvo.setPhone(rs.getString("phone"));
+		        mvo.setGender(rs.getString("gender"));
+		        mvo.setUseyn(rs.getString("useyn"));
+		        mvo.setPoint(rs.getInt("point"));
+		        mvo.setIndate(rs.getTimestamp("indate"));
+			}
+		} catch (SQLException e) { e.printStackTrace();
+		} finally { Dbm.close(con, pstmt, rs);
 		}
-	} catch (SQLException e) { e.printStackTrace();
-	} finally { Dbm.close(con, pstmt, rs);
+		return mvo;
 	}
-	return mvo;
-}
-
-
+	
 	public ArrayList<AddressVO> selectAddress(String dong) {
 		ArrayList<AddressVO> list = new ArrayList<AddressVO>();
 		String sql = "select * from address where dong like '%'||?||'%'";
@@ -98,7 +97,6 @@ public class MemberDao {
 		return result;
 	}
 	
-	
 	public void updateMember(MemberVO mvo) {
 		String sql = "Update member set pwd=?, name=?, zip_num=?, address=?, "
 				+ "email=?, phone=? where id = ?";
@@ -117,8 +115,7 @@ public class MemberDao {
 		} finally { Dbm.close(con, pstmt, rs);
 		}
 	}
-
-
+	
 	public MemberVO checkMemberId(String name, String phone, String email) {
 		MemberVO mvo = null;
 		String sql = "select id from member where (name=? and phone=?) or (name=? and email=?)";
@@ -147,7 +144,7 @@ public class MemberDao {
 
 	public MemberVO checkMemberPwd(String id, String phone, String email) {
 		MemberVO mvo = null;
-		String sql = "select id, pwd from member where (id=? and phone=?) or (id=? and email=?)";
+		String sql = "select pwd from member where (id=? and phone=?) or (id=? and email=?)";
 		
 		con = Dbm.getConnection();
 		try {
@@ -160,7 +157,6 @@ public class MemberDao {
 			
 			if(rs.next()) {
 				mvo = new MemberVO();
-				mvo.setId( rs.getString("id") );
 				mvo.setPwd( rs.getString("pwd") );
 			}
 		} catch (SQLException e) {
@@ -169,5 +165,20 @@ public class MemberDao {
 			Dbm.close(con, pstmt, rs);
 		}
 		return mvo;
+	}
+	
+	public void withdrawal(String id) {
+		String sql = "delete from member where id=?";
+		con = Dbm.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			Dbm.close(con, pstmt, rs);
+		}
+		
 	}
 }

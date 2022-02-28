@@ -28,12 +28,14 @@
 			</tr>
 			<tr>
 				<td style="border-right:none;">
-					수량 : <input type="number" min="1" max="99" id="quantity" value="${quantity}" style="width:40px; height:20px;" maxlength="2"/>
+					수량 : <input type="number" min="1" max="99" id="quantity" name="quantity" 
+					value="${quantity}" style="width:40px; height:20px;" maxlength="2" onchange="cal();"/>
 				</td>
 			</tr>
 			<tr>
 				<td style="border:none;">
-					가격 : ${productVO.price }
+				<input type="hidden" name="price" value="${productVO.price}"/>
+					가격 : <input type="text" name="price_cal" size="7" value="${productVO.price}" readonly/> 원
 				</td>
 			</tr>
 			

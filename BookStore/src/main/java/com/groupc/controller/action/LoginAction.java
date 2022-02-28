@@ -19,6 +19,8 @@ public class LoginAction implements Action {
 		String id=request.getParameter("id");
 		String pwd=request.getParameter("pwd");
 		
+		String z = request.getParameter("z");
+		
 		MemberDao mdao = MemberDao.getInstance();
 	    MemberVO mvo = mdao.getMember(id);
 		
@@ -30,11 +32,17 @@ public class LoginAction implements Action {
 	    } else if( !mvo.getPwd().equals(pwd) ) {
 	    	request.setAttribute("message", "비밀번호가 틀려요");
 	    } else if( !mvo.getUseyn().equals("y") ) {
-	    	request.setAttribute("message", "탈퇴하거나 휴면중인 계정입니다. 고객센터에 문의하세요");
+	    	request.setAttribute("message", "휴면중인 계정입니다. 고객센터에 문의하세요");
 	    } else if( mvo.getPwd().equals(pwd) ) {
 	    	HttpSession session=request.getSession();
 	    	session.setAttribute("loginUser", mvo);
-	    	url="bs.do?cmd=index";
+	    	
+	    	if(z.equals("")) {
+	    		url="bs.do?cmd=index";
+	    	}else {
+	    		url = "bs.do?cmd="+z;
+	    	}
+//	    	url="bs.do?cmd=index";
 	    } else {
 	    	request.setAttribute("message", "로그인이 실패했어요. 관리자에게 문의하세요");
 	    }

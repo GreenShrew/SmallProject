@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 
-<c:if test="${not empty msg}">
+<c:if test="${not empty message}">
 	<script>
-/* 		var msg = "<c:out value='${msg}'/>";  */
+ 		var message = "<c:out value='${message}'/>";
 		$(document).ready(function(){
-	    	alert(${msg});
+	    	alert(${message});
 	    });
 	</script>
 </c:if>
 
- 
+
 <div class="tab" style="top: 100px; width:400px; height:450px; background-color:#eef5eb">
     <ul>
         <li style="width:50%;" data-id="userLogin" class="on">회원</li>
@@ -35,15 +35,18 @@
 					<a href="bs.do?cmd=findId">아이디 찾기</a>
 					<a href="bs.do?cmd=findPwd">비밀번호 찾기</a>
 				</div>
+				<div>${message}${z }</div>
+				<input type="hidden" value="${z}" name="z"/>
 		   </form>
 	    </div>
 	    <div id="nonmemberLogin" class="conBox">
-	    	<form method="post" name="nonmemloginFrm"> <!-- action="bs.do" -->
-    			<div><input class="logininput" type="text" id="phone" name="phone" placeholder="전화번호"></div>
-    			<div><input class="logininput" type="text" id="od_pass" name="od_pass" placeholder="주문번호"></div>
-				<div><input style="cursor:default" class="login_btn" value="확인" onClick="nonmemCheck()"></div>
+	    	<form action="bs.do" method="post" name="nonmemloginFrm">
+			<input type="hidden" name="cmd" value="nonmemberlogin" />
+    			<div><input class="logininput" type="text" name="phone" placeholder="전화번호"></div>
+    			<div><input class="logininput" type="text" name="od_pass" placeholder="주문번호"></div>
+				<div><input class="login_btn" type="submit" value="확인" onClick="nonmemCheck()"></div>
 				<br><br>
-				<div><a href="#">주문번호 찾기</a></div>
+				<div><a href="#" onClick="findOd_pass()">주문번호 찾기</a></div>
 	    	</form>
 	    </div>
     </div>

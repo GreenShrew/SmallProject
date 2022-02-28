@@ -153,4 +153,40 @@ INSERT INTO review(rseq, bseq, id, content, score)
 	VALUES(review_seq.nextVal, 936, 'one', '대충 감상평', 3);
 	
 
+	
+	
+	INSERT INTO notice(nseq, id, subject, content)
+	VALUES(notice_seq.nextVal, 'admin', '설 연휴 운영안내', 
+	'안녕하세요. 인터넷 영풍문고입니다.설 연휴 배송, 고객센터 운영 및 전지점 영업시간 안내드립니다.
+<설 연휴 배송안내>1/28(금) ~ 2/2(수) 주문상품은 2/3(목)부터 순차적으로 출고 및 배송 진행 
+<설 연휴 고객센터 운영안내> 1/29(토) ~ 2/2(수)까지 고객센터 휴무, 2/3(목)부터 상담 진행');
+INSERT INTO notice(nseq, id, subject, content)
+	VALUES(notice_seq.nextVal, 'admin', '폭설 및 택배사 파업 배송 지연', 
+	'안녕하세요. 영풍문고입니다.
+현재 강원도/울릉도 지역 폭설로 인해 배송이 지연되고 있습니다.');
+INSERT INTO notice(nseq, id, subject, content)
+	VALUES(notice_seq.nextVal, 'admin', '5월 카드사 무이자 할부 안내', 
+	'EVENT 1. 카드사 무이자 할부 이벤트 
+EVENT 2. 카드사 부분 무이자 할부 이벤트');
+
+-- qna
+SELECT * FROM qna;
+INSERT INTO qna(qseq, subject, content, id)
+	VALUES(qna_seq.nextVal, '회원가입', '기업이나 단체 명의로도 회원가입이 가능한가요?', 'one');
+INSERT INTO qna(qseq, subject, content, id)
+	VALUES(qna_seq.nextVal, '회원탈퇴', '회원탈퇴는 어떻게 하나요?', 'one');
+INSERT INTO qna(qseq, subject, content, id)
+	VALUES(qna_seq.nextVal, '외국인 회원가입', '외국인 회원가입은 어떻게 하나요?', 'one');
+INSERT INTO qna(qseq, subject, content, id)
+	VALUES(qna_seq.nextVal, '실명인증', '실명인증이 되지 않습니다. 어떻게 하나요?', 'three');
+INSERT INTO qna(qseq, subject, content, id)
+	VALUES(qna_seq.nextVal, 'ID를 변경', 'ID를 변경할 수 있나요?', 'three');
+INSERT INTO qna(qseq, subject, content, id)
+	VALUES(qna_seq.nextVal, 'ID/비밀번호 찾기', 'ID/비밀번호를 잊어버렸습니다.', 'three');
+INSERT INTO qna(qseq, subject, content, id)
+	VALUES(qna_seq.nextVal, '회원정보 변경', '회원정보 변경은 어떻게 하나요?', 'two');
+INSERT INTO qna(qseq, subject, content, id)
+	VALUES(qna_seq.nextVal, '당일배송', '직장이나 학교에서는 당일배송을 받을 수 없나요?', 'two');
+INSERT INTO qna(qseq, subject, content, id)
+	VALUES(qna_seq.nextVal, '배송 주소지를 변경', '배송 주소지를 변경할 수 있나요?', 'two');
 

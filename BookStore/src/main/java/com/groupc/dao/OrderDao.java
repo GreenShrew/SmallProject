@@ -26,35 +26,29 @@ public class OrderDao {
 	public int insertOrder(ArrayList<CartVO> list, String id) {
 		int oseq = 0;
 		con = Dbm.getConnection();
-		// 1. 주문 번호(시퀀스 자동입력)와 구매자 아이디로 orders 테이블에 레코드 추가
-		String sql = "insert into orders(oseq, id) values( orders_seq.nextVal , ?)";
+		String sql = "insert into m_orders(oseq, id) values( m_orders_seq.nextVal , ?)";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.executeUpdate();
-			
-			// 2. Orders 테이블에 시퀀스로 입력된 가장 마지막(방금추가한) 주문 번호 조회
 			pstmt.close();
-			sql = "select max(oseq) as max_oseq from orders";
+			
+			sql = "select max(oseq) as max_oseq from m_orders";
 			pstmt = con.prepareStatement(sql); 
 			rs = pstmt.executeQuery();
 			if(rs.next()) oseq = rs.getInt("max_oseq");
-			
-			// 3. list 의 카트목록들을 Orders 에서 얻은 max_oseq 와 함꼐 order_detail 에 추가
 			pstmt.close();
+			
 			for( CartVO cvo : list) {
-				// 카트 목록을 하나씩 꺼내서  oseq 와 함께 order_detail 테이블에 추가하고
-				sql = "insert into order_detail(odseq, oseq, bseq, quantity) "
-						+ "values(order_detail_seq.nextVal, ?, ?, ?)";
+				sql = "insert into m_order_detail(odseq, oseq, bseq, quantity) "
+						+ "values(m_order_detail_seq.nextVal, ?, ?, ?)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, oseq);
 				pstmt.setInt(2, cvo.getBseq() );
 				pstmt.setInt(3, cvo.getQuantity() );
 				pstmt.executeUpdate();
-				
-				// 4. order_detail 에 추가된 카트 내용은  cart 테이블에서 처리되었으므로 삭제 또는 result  를 2로 변경 또는 삭제
 				pstmt.close();
-				// sql = "delete from cart where cseq = ?"; 
+				
 				sql = "Update cart set result='2' where cseq=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, cvo.getCseq());
@@ -64,13 +58,12 @@ public class OrderDao {
 		} catch (SQLException e) { e.printStackTrace();
 		} finally { Dbm.close(con, pstmt, rs);
 		}		
-		// 5. 주문번호oseq 를 return
 		return oseq;
 	}
 
 	public ArrayList<OrderVO> listOrderByOseq(int oseq) {
 		ArrayList<OrderVO> list = new ArrayList<OrderVO>();
-		String sql = "select * from order_view where oseq=?";
+		String sql = "select * from m_order_view where oseq=?";
 		
 		con = Dbm.getConnection();
 		try {
@@ -102,7 +95,7 @@ public class OrderDao {
 
 	public ArrayList<Integer> selectOseqOrderIng(String id) {
 		ArrayList<Integer> list = new ArrayList<Integer>();
-		String sql = "select distinct oseq from order_view where id=? and result='1'  order by oseq desc";
+		String sql = "select distinct oseq from m_order_view where id=? and result='1'  order by oseq desc";
 		con = Dbm.getConnection();
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -119,7 +112,7 @@ public class OrderDao {
 
 	public ArrayList<Integer> selectOseqOrderAll(String id) {
 		ArrayList<Integer> list = new ArrayList<Integer>();
-		String sql = "select distinct oseq, result from order_view where id=?  order by result, oseq desc";
+		String sql = "select distinct oseq, result from m_order_view where id=?  order by result, oseq desc";
 		con = Dbm.getConnection();
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -137,24 +130,24 @@ public class OrderDao {
 	public int insertOrderOne(ProductVO pvo, String id, int quantity) {
 		int oseq = 0;
 		con = Dbm.getConnection();
-		String sql = "insert into orders(oseq, id) values(orders_seq.nextVal, ?)";
+		String sql = "insert into m_orders(oseq, id) values( m_orders_seq.nextVal , ?)";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.executeUpdate();
 			pstmt.close();
 
-			sql = "select max(oseq) as max_oseq from orders";
+			sql = "select max(oseq) as max_oseq from m_orders";
 			pstmt = con.prepareStatement(sql); 
 			rs = pstmt.executeQuery();
 			if(rs.next()) oseq = rs.getInt("max_oseq");
 			pstmt.close();
 
-			sql = "insert into order_detail(odseq, oseq, bseq, quantity) "
-						+ "values(order_detail_seq.nextVal, ?, ?, ?)";
+			sql = "insert into m_order_detail(odseq, oseq, bseq, quantity) "
+						+ "values(m_order_detail_seq.nextVal, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, oseq);
-			pstmt.setInt(2, pvo.getBseq());
+			pstmt.setInt(2, pvo.getBseq() );
 			pstmt.setInt(3, quantity );
 			pstmt.executeUpdate();
 		} catch (SQLException e) { e.printStackTrace();
@@ -165,7 +158,7 @@ public class OrderDao {
 	}
 
 	public void deleteOrders(Integer oseq) {
-		String sql = "delete from orders where oseq=?";
+		String sql = "delete from m_orders where oseq=?";
 		con = Dbm.getConnection();
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -178,7 +171,7 @@ public class OrderDao {
 	}
 
 	public void deleteOrder_detail(Integer oseq) {
-		String sql = "delete from order_detail where oseq=?";
+		String sql = "delete from m_order_detail where oseq=?";
 		con = Dbm.getConnection();
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -192,7 +185,7 @@ public class OrderDao {
 	
 	public ArrayList<OrderVO> getOrderlist(String id) {
 		ArrayList<OrderVO> list = new ArrayList<OrderVO>();
-		String sql = "select * from order_view where id=?";
+		String sql = "select * from m_order_view where id=?";
 		
 		con = Dbm.getConnection();
 		try {
@@ -200,21 +193,21 @@ public class OrderDao {
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				    OrderVO ovo = new OrderVO();
-					ovo.setOdseq(rs.getInt("odseq"));
-					ovo.setOseq(rs.getInt("oseq"));
-					ovo.setId(rs.getString("id"));
-					ovo.setIndate(rs.getTimestamp("indate"));
-					ovo.setMname(rs.getString("mname"));
-					ovo.setZip_num(rs.getString("zip_num"));
-					ovo.setAddress(rs.getString("address"));
-					ovo.setPhone(rs.getString("phone"));
-					ovo.setBname(rs.getString("bname"));
-					ovo.setPrice(rs.getInt("price"));
-					ovo.setBseq(rs.getInt("bseq"));
-					ovo.setQuantity(rs.getInt("quantity"));
-					ovo.setResult(rs.getString("result"));
-					list.add(ovo);
+			    OrderVO ovo = new OrderVO();
+				ovo.setOdseq(rs.getInt("odseq"));
+				ovo.setOseq(rs.getInt("oseq"));
+				ovo.setId(rs.getString("id"));
+				ovo.setIndate(rs.getTimestamp("indate"));
+				ovo.setMname(rs.getString("mname"));
+				ovo.setZip_num(rs.getString("zip_num"));
+				ovo.setAddress(rs.getString("address"));
+				ovo.setPhone(rs.getString("phone"));
+				ovo.setBname(rs.getString("bname"));
+				ovo.setPrice(rs.getInt("price"));
+				ovo.setBseq(rs.getInt("bseq"));
+				ovo.setQuantity(rs.getInt("quantity"));
+				ovo.setResult(rs.getString("result"));
+				list.add(ovo);
 			}
 		} catch (SQLException e) { e.printStackTrace();
 		} finally { Dbm.close(con, pstmt, rs);
@@ -300,6 +293,103 @@ public class OrderDao {
 			Dbm.close(con, pstmt, rs);
 		}
 		return novo;
+	}
+	
+	public ArrayList<Integer> trackingOseq(String id) {
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		String sql = "select distinct oseq, result from m_order_view where id=? and not result in ('5') order by result, oseq desc";
+		con = Dbm.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				list.add(rs.getInt(1));
+			}
+		} catch (SQLException e) {e.printStackTrace();
+		} finally { Dbm.close(con, pstmt, rs);
+		}
+		return list;
+	}
+	
+
+	public ArrayList<Integer> cancelListOseq(String id) {
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		String sql = "select distinct oseq, result from m_order_view where id=? and result='5'";
+		con = Dbm.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				list.add(rs.getInt(1));
+			}
+		} catch (SQLException e) {e.printStackTrace();
+		} finally { Dbm.close(con, pstmt, rs);
+		}
+		return list;
+	}
+
+	public void cancelOrder(int oseq) {
+		String sql = "update m_order_detail set result='5' where oseq=?";
+		con = Dbm.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, oseq);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			Dbm.close(con, pstmt, rs);
+		}
+	}
+
+	public void cancelNOrder(String od_pass) {
+		String sql = "update nm_order_detail set result='5' where od_pass=?";
+		con = Dbm.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, od_pass);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			Dbm.close(con, pstmt, rs);
+		}
+	}
+	
+	public ArrayList<OrderVO> listOrderResult(int oseq) {
+		ArrayList<OrderVO> list = new ArrayList<OrderVO>();
+		String sql = "SELECT * FROM m_order_view WHERE indate = (SELECT indate FROM m_orders WHERE oseq=?)"
+				+ " AND id = (SELECT id FROM m_orders WHERE oseq=?)";
+		
+		con = Dbm.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, oseq);
+			pstmt.setInt(2, oseq);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+			    OrderVO ovo = new OrderVO();
+				ovo.setOdseq(rs.getInt("odseq"));
+				ovo.setOseq(rs.getInt("oseq"));
+				ovo.setId(rs.getString("id"));
+				ovo.setIndate(rs.getTimestamp("indate"));
+				ovo.setMname(rs.getString("mname"));
+				ovo.setZip_num(rs.getString("zip_num"));
+				ovo.setAddress(rs.getString("address"));
+				ovo.setPhone(rs.getString("phone"));
+				ovo.setBname(rs.getString("bname"));
+				ovo.setPrice(rs.getInt("price"));
+				ovo.setBseq(rs.getInt("bseq"));
+				ovo.setQuantity(rs.getInt("quantity"));
+				ovo.setResult(rs.getString("result"));
+				list.add(ovo);
+			}
+		} catch (SQLException e) { e.printStackTrace();
+		} finally { Dbm.close(con, pstmt, rs);
+		}
+		return list;
 	}
 }
 
