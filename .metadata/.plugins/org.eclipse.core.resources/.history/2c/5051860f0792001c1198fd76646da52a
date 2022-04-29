@@ -1,6 +1,0 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<div style="position:relative; float:right;">
-	<input type="button" onclick="add_multi();" class="cartbtn"/>
-	<input type="button" onclick="location.href='#wrap';" class="cartbtn2"/>
-</div>
